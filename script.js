@@ -175,7 +175,7 @@ function showCurrentQuestionSet() {
     // 表示範囲内の問題のみ表示
     allQuestions.forEach((question, index) => {
         if (index >= partStartIndex && index <= partEndIndex) {
-            // さらに5問ずつのセット内かどうか
+            // セット内の問題かどうか
             if (index >= currentQuestionSet.startIndex && index <= currentQuestionSet.endIndex) {
                 question.style.display = 'block';
             } else {
@@ -191,7 +191,7 @@ function showCurrentQuestionSet() {
     if (quizSection) {
         const setIndex = parseInt(urlParams.get('set') || '0');
         const partQuestionCount = partEndIndex - partStartIndex + 1;
-        const totalSets = Math.ceil(partQuestionCount / 5);
+        const totalSets = Math.ceil(partQuestionCount / QUESTIONS_PER_SET);
         const setInfo = document.createElement('div');
         setInfo.id = 'set-info';
         setInfo.style.cssText = 'background: #e8f4f8; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;';
@@ -219,11 +219,14 @@ function showCurrentQuestionSet() {
 // 現在の出題セットを管理
 let currentQuestionSet = {
     startIndex: 0,
-    endIndex: 4,
+    endIndex: 14,
     answeredCount: 0
 };
 
-// 5問ずつ出題する機能
+// 1セットあたりの出題数
+const QUESTIONS_PER_SET = 15;
+
+// セットごとの出題を初期化
 function initializeQuestionSet() {
     const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
     const urlParams = new URLSearchParams(window.location.search);
@@ -246,13 +249,13 @@ function initializeQuestionSet() {
         partEndIndex = totalQuestions - 1;
     }
     
-    // 5問ずつのセット内での開始・終了インデックス
+    // セット内での開始・終了インデックス
     const partQuestionCount = partEndIndex - partStartIndex + 1;
-    const maxSetIndex = Math.ceil(partQuestionCount / 5) - 1;
+    const maxSetIndex = Math.ceil(partQuestionCount / QUESTIONS_PER_SET) - 1;
     const actualSetIndex = Math.min(setIndex, maxSetIndex);
     
-    currentQuestionSet.startIndex = partStartIndex + (actualSetIndex * 5);
-    currentQuestionSet.endIndex = Math.min(currentQuestionSet.startIndex + 4, partEndIndex);
+    currentQuestionSet.startIndex = partStartIndex + (actualSetIndex * QUESTIONS_PER_SET);
+    currentQuestionSet.endIndex = Math.min(currentQuestionSet.startIndex + (QUESTIONS_PER_SET - 1), partEndIndex);
     currentQuestionSet.answeredCount = 0;
     
     // 表示されている問題数をカウント
@@ -263,13 +266,13 @@ function initializeQuestionSet() {
         }
     });
     
-    // 5問解いたら「次へ」ボタンを表示
+    // セット分解いたら「次へ」ボタンを表示
     checkAndShowNextButton();
 }
 
-// 5問解いたかチェックして「次へ」ボタンを表示
+// セット分解いたかチェックして「次へ」ボタンを表示
 function checkAndShowNextButton() {
-    if (currentQuestionSet.answeredCount >= 5) {
+    if (currentQuestionSet.answeredCount >= QUESTIONS_PER_SET) {
         showNextSetButton();
     }
 }
@@ -287,7 +290,7 @@ function showNextSetButton() {
     const nextButton = document.createElement('button');
     nextButton.id = 'next-set-btn';
     nextButton.className = 'next-set-btn';
-    nextButton.textContent = '▶️ 次の5問へ';
+    nextButton.textContent = `▶️ 次の${QUESTIONS_PER_SET}問へ`;
     nextButton.style.cssText = 'background: #4caf50; color: white; border: none; padding: 15px 40px; border-radius: 8px; cursor: pointer; font-size: 1.1em; margin: 30px auto; display: block; font-weight: bold;';
     
     nextButton.addEventListener('click', function() {
@@ -314,7 +317,7 @@ function showNextSetButton() {
         }
         
         const partQuestionCount = partEndIndex - partStartIndex + 1;
-        const totalSets = Math.ceil(partQuestionCount / 5);
+        const totalSets = Math.ceil(partQuestionCount / QUESTIONS_PER_SET);
         
         let nextUrl = `${currentPage}.html`;
         const params = [];
@@ -339,6 +342,7 @@ function checkAnswer(button, correctAnswer) {
     const selected = question.querySelector('.options li.selected');
     const result = question.querySelector('.result');
     const options = question.querySelectorAll('.options li');
+    const wasAlreadyAnswered = question.classList.contains('answered-correct') || question.classList.contains('answered-incorrect');
     
     if (!selected) {
         alert('選択肢を選んでください');
@@ -390,12 +394,11 @@ function checkAnswer(button, correctAnswer) {
     button.textContent = isCorrect ? '✓ 正解しました！' : '✗ 不正解';
     
     // 回答数をカウント（既に回答済みでない場合のみ）
-    const wasAlreadyAnswered = question.classList.contains('answered-correct') || question.classList.contains('answered-incorrect');
     if (!wasAlreadyAnswered) {
         currentQuestionSet.answeredCount++;
     }
     
-    // 5問解いたら「次へ」ボタンを表示
+    // セット分解いたら「次へ」ボタンを表示
     checkAndShowNextButton();
     
     // 次の問題へのボタンを追加
