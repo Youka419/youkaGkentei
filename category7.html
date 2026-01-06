@@ -1,369 +1,468 @@
-<div class="section quiz-section">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
-        <h2 style="margin: 0;">📝 問題演習（スペシャル版：全30問）</h2>
-        <div style="display: flex; gap: 10px;">
-            <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
-            <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⑦ AIの社会実装に向けて - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        
+        <h1>⑦ AIの社会実装に向けて</h1>
+        
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>AIプロジェクトをどのように進めるか全体像と各フェーズで注意すべき点などを理解する</li>
+                    <li>AIの学習対象となるデータを取得・利用する時に注意すべきことを理解する</li>
+                    <li>集めたデータを加工・分析・学習させる時の注意点を理解する</li>
+                    <li>AIの運用に必要となるモデルのヘルスモニタリングやライフサイクル管理等を理解する</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item"><strong>アジャイル開発</strong>システムソフトウェア開発において計画・設計・実装・テストといった開発工程を小さいサイクルで繰り返す手法</div>
+                <div class="keyword-item"><strong>POC</strong>概念実証。新しいアイデアや技術の実現可能性を検証するための施策や実験</div>
+                <div class="keyword-item"><strong>データサイエンティスト</strong>AIを利用してデータの分析やモデル作成を行う役割</div>
+                <div class="keyword-item"><strong>アノテーション</strong>データや画像と呼ばれる情報を付与する作業</div>
+                <div class="keyword-item"><strong>オープンデータセット</strong>企業や政府などが提供する自由に利用できるデータの集合体</div>
+                <div class="keyword-item"><strong>サンプリングバイアス</strong>調査や分析の対象となる集団から無作為にサンプルを選ばないことで結果に偏りが生じてしまうこと</div>
+                <div class="keyword-item"><strong>データリーク</strong>予測モデルを作成する際に予測するために知り得ない情報を含めてしまうこと</div>
+                <div class="keyword-item"><strong>転移学習</strong>別のタスクで学習された知識を別の領域の学習に適用させる技術</div>
+            </div>
+        </div>
+        
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習（スペシャル版：全30問）</h2>
+                <div style="display: flex; gap: 10px;">
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="pauseLearning()" style="background: #2196F3; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">⏸️ 一時停止</button>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 リセット</button>
+                </div>
+            </div>
+
+            <div class="question" id="question-0">
+                <div class="question-text">Q1. AIプロジェクトにおける「PoC（概念実証）」の最大の目的は？</div>
+                <ul class="options">
+                    <li data-option="A">A）完成したシステムを顧客に納品すること。</li>
+                    <li data-option="B">B）本格開発の前に、AIの精度や費用対効果、実現可能性を小規模に検証すること。</li>
+                    <li data-option="C">C）契約書を作成し、予算を確定させること。</li>
+                    <li data-option="D">D）運用保守の体制を構築すること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>AIは「やってみないとわからない」要素が強いため、いきなり多額の投資をするのではなく、まずは小規模に「使い物になるか」を試すPoCが必須です。</div>
+            </div>
+
+            <div class="question" id="question-1">
+                <div class="question-text">Q2. 「PoC疲れ（PoC貧乏）」とはどのような状態か？</div>
+                <ul class="options">
+                    <li data-option="A">A）PoCを繰り返すばかりで、実用化や本格開発に進まず、予算と時間だけが浪費される状態。</li>
+                    <li data-option="B">B）AI開発エンジニアが過労で倒れてしまうこと。</li>
+                    <li data-option="C">C）PoCの費用が安すぎること。</li>
+                    <li data-option="D">D）データが集まらないこと。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>日本企業でよく見られる課題です。目的が曖昧だったり、実用化の判断基準が決まっていない場合に陥りやすいです。</div>
+            </div>
+
+            <div class="question" id="question-2">
+                <div class="question-text">Q3. 「アジャイル開発」が従来の「ウォーターフォール開発」よりAIに向いている理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）仕様を最初から完全に固定できるから。</li>
+                    <li data-option="B">B）試行錯誤（学習→評価→改善）を繰り返しながら精度を上げていくAIのプロセスと相性が良いから。</li>
+                    <li data-option="C">C）ドキュメント作成を重視するから。</li>
+                    <li data-option="D">D）開発期間が確実に短くなるから。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>AI開発は不確実性が高いため、一度決めた計画通りに進めるウォーターフォール型よりも、柔軟に修正を繰り返すアジャイル型が適しています。</div>
+            </div>
+
+            <div class="question" id="question-3">
+                <div class="question-text">Q4. AI開発における「アノテーション」作業の説明は？</div>
+                <ul class="options">
+                    <li data-option="A">A）プログラムのコードに注釈を書くこと。</li>
+                    <li data-option="B">B）学習データ（画像やテキスト等）に正解ラベル（タグ）を付与すること。</li>
+                    <li data-option="C">C）データを圧縮すること。</li>
+                    <li data-option="D">D）モデルをクラウドにアップロードすること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「教師あり学習」の品質を左右する最も泥臭く、かつ重要な工程です。人手で行うことが多く、コストもかかります。</div>
+            </div>
+
+            <div class="question" id="question-4">
+                <div class="question-text">Q5. 「エッジAI」のメリットとして正しいのは？</div>
+                <ul class="options">
+                    <li data-option="A">A）通信遅延（レイテンシ）が小さく、リアルタイム処理が可能。またプライバシー情報が外部に出にくい。</li>
+                    <li data-option="B">B）クラウドAIよりも計算能力が圧倒的に高い。</li>
+                    <li data-option="C">C）学習データの蓄積が容易である。</li>
+                    <li data-option="D">D）モデルの更新（アップデート）が非常に簡単である。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>端末（エッジ）側で処理するため、通信待ち時間がなく、自動運転や工場ロボットなど即応性が求められる現場に適しています。</div>
+            </div>
+
+            <div class="question" id="question-5">
+                <div class="question-text">Q6. 「クラウドAI」を利用するメリットは？</div>
+                <ul class="options">
+                    <li data-option="A">A）通信環境がなくても使える。</li>
+                    <li data-option="B">B）膨大な計算リソース（GPU等）を利用でき、大規模モデルの学習や推論が可能。</li>
+                    <li data-option="C">C）セキュリティリスクがゼロである。</li>
+                    <li data-option="D">D）通信コストがかからない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>スケーラビリティ（拡張性）があり、必要に応じて性能を増強できるのが強みです。</div>
+            </div>
+
+            <div class="question" id="question-6">
+                <div class="question-text">Q7. AIの運用段階における「推論（Inference）」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習データを使ってモデルを作ること。</li>
+                    <li data-option="B">B）完成したモデルに新しいデータを入力し、予測結果を出力させること。</li>
+                    <li data-option="C">C）モデルのパラメータを調整すること。</li>
+                    <li data-option="D">D）データを収集すること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>開発フェーズが「学習」、実社会で使うフェーズが「推論」です。</div>
+            </div>
+
+            <div class="question" id="question-7">
+                <div class="question-text">Q8. 「MLOps（Machine Learning Operations）」が必要とされる理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）一度作ったAIモデルは永久に使えるから。</li>
+                    <li data-option="B">B）データの傾向変化（ドリフト）や精度の劣化に対応し、継続的にモデルを再学習・デプロイする仕組みが必要だから。</li>
+                    <li data-option="C">C）AIエンジニアを減らすため。</li>
+                    <li data-option="D">D）開発コストをゼロにするため。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>DevOpsのAI版です。AIは「作って終わり」ではなく、社会の変化に合わせて育て続ける必要があります。</div>
+            </div>
+
+            <div class="question" id="question-8">
+                <div class="question-text">Q9. 運用中のAIモデルの精度が徐々に下がってしまう現象を何と呼ぶか？</div>
+                <ul class="options">
+                    <li data-option="A">A）モデル崩壊</li>
+                    <li data-option="B">B）コンセプトドリフト（Concept Drift）</li>
+                    <li data-option="C">C）オーバーフィッティング</li>
+                    <li data-option="D">D）勾配消失</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>市場環境やユーザーの嗜好の変化により、学習時のデータと現在のデータの傾向がズレてしまう現象です。再学習が必要です。</div>
+            </div>
+
+            <div class="question" id="question-9">
+                <div class="question-text">Q10. データマイニングの標準プロセス「CRISP-DM」の最初のフェーズは？</div>
+                <ul class="options">
+                    <li data-option="A">A）データの理解</li>
+                    <li data-option="B">B）ビジネスの理解（Business Understanding）</li>
+                    <li data-option="C">C）モデリング</li>
+                    <li data-option="D">D）評価</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>いきなりデータを集めるのではなく、「解決したい課題は何か」「ビジネス上のゴールは何か」を定義することから始まります。</div>
+            </div>
+
+            <div class="question" id="question-10">
+                <div class="question-text">Q11. AI開発における「ドメイン知識（ドメインエキスパート）」の重要性は？</div>
+                <ul class="options">
+                    <li data-option="A">A）AIがあれば専門知識は不要になるため、重要ではない。</li>
+                    <li data-option="B">B）データの特徴を理解したり、適切な特徴量を作成するために、その業務領域（医療、製造、金融など）の知識が不可欠である。</li>
+                    <li data-option="C">C）プログラミング能力の方が重要である。</li>
+                    <li data-option="D">D）契約書の作成に必要である。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>データサイエンティストだけでは「データの意味」が分かりません。現場の専門家（ドメインエキスパート）との協力が成功の鍵です。</div>
+            </div>
+
+            <div class="question" id="question-11">
+                <div class="question-text">Q12. 「A/Bテスト」の説明として正しいのは？</div>
+                <ul class="options">
+                    <li data-option="A">A）開発環境と本番環境を比較するテスト。</li>
+                    <li data-option="B">B）ユーザーを2つのグループに分け、新モデルAと旧モデルB（または別パターン）を実際に利用してもらい、どちらが優れているかを検証する手法。</li>
+                    <li data-option="C">C）AIと人間を戦わせるテスト。</li>
+                    <li data-option="D">D）バグがないか確認するテスト。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>オンライン検証の代表的な手法です。精度の高さだけでなく、クリック率や売上などのビジネス指標で評価します。</div>
+            </div>
+
+            <div class="question" id="question-12">
+                <div class="question-text">Q13. 不均衡データ（Imbalanced Data）への対処法として適切なのは？</div>
+                <ul class="options">
+                    <li data-option="A">A）何もしない。</li>
+                    <li data-option="B">B）オーバーサンプリング（少ないデータを水増し）やアンダーサンプリング（多いデータを減らす）を行う。</li>
+                    <li data-option="C">C）データを全て削除する。</li>
+                    <li data-option="D">D）評価指標に「正解率（Accuracy）」だけを使う。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「異常検知」のように異常データが極端に少ない場合、そのまま学習するとすべて「正常」と答えるモデルになってしまうため、データのバランスを調整します。</div>
+            </div>
+
+            <div class="question" id="question-13">
+                <div class="question-text">Q14. 偽陽性（False Positive）のリスクが高い「スパムメール判定」において重視すべき指標は？</div>
+                <ul class="options">
+                    <li data-option="A">A）再現率（Recall）</li>
+                    <li data-option="B">B）適合率（Precision）</li>
+                    <li data-option="C">C）特異度</li>
+                    <li data-option="D">D）正解率</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>重要なメールを間違えてスパム判定（偽陽性）してしまうと困るため、「スパムと判定したものが本当にスパムか」という精度（適合率）を重視します。</div>
+            </div>
+
+            <div class="question" id="question-14">
+                <div class="question-text">Q15. 偽陰性（False Negative）のリスクが高い「がん検診」において重視すべき指標は？</div>
+                <ul class="options">
+                    <li data-option="A">A）再現率（Recall）</li>
+                    <li data-option="B">B）適合率（Precision）</li>
+                    <li data-option="C">C）正解率</li>
+                    <li data-option="D">D）適合率と再現率の平均</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>病気の人を見逃す（偽陰性）ことが命に関わるため、多少誤診（健康な人を要検査とする）が増えても、取りこぼしをなくす（再現率を上げる）設定にします。</div>
+            </div>
+
+            <div class="question" id="question-15">
+                <div class="question-text">Q16. 「API（Application Programming Interface）」を利用したAI導入のメリットは？</div>
+                <ul class="options">
+                    <li data-option="A">A）自社でゼロからモデルを開発する必要がなく、GoogleやAWSなどが提供する高性能な学習済みモデルをすぐに機能として組み込める。</li>
+                    <li data-option="B">B）無料で使える。</li>
+                    <li data-option="C">C）通信が発生しない。</li>
+                    <li data-option="D">D）カスタマイズ性が無限大である。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>「車輪の再発明」を避け、画像認識や音声認識などのコモディティ化した機能はAPIを利用するのが効率的です。</div>
+            </div>
+
+            <div class="question" id="question-16">
+                <div class="question-text">Q17. 「人間参加型（Human-in-the-loop）」のAIシステムとは？</div>
+                <ul class="options">
+                    <li data-option="A">A）人間がAIのフリをするシステム。</li>
+                    <li data-option="B">B）AIが自信がない（予測確率が低い）判断を人間にエスカレーションしたり、人間がAIの判断を修正して再学習に活かしたりする仕組み。</li>
+                    <li data-option="C">C）人間が手動で計算するシステム。</li>
+                    <li data-option="D">D）AIが人間に命令するシステム。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>完全自動化が難しい業務でも、AIと人間が協調することで実用化が可能になります。</div>
+            </div>
+
+            <div class="question" id="question-17">
+                <div class="question-text">Q18. プライバシー保護技術「連合学習（Federated Learning）」の特徴は？</div>
+                <ul class="options">
+                    <li data-option="A">A）各ユーザーの端末（スマホ等）で学習を行い、生データをサーバーに送らず、「重みの更新情報（パラメータ）」だけを集約する。</li>
+                    <li data-option="B">B）全てのデータを一箇所に集めて学習する。</li>
+                    <li data-option="C">C）データを暗号化せずに公開する。</li>
+                    <li data-option="D">D）学習を行わない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>個人のプライベートなデータを外に出さずに、全体のAIモデルを賢くできる画期的な技術です（Googleのキーボード入力予測などで使用）。</div>
+            </div>
+
+            <div class="question" id="question-18">
+                <div class="question-text">Q19. 「蒸留（Distillation）」の実装上のメリットは？</div>
+                <ul class="options">
+                    <li data-option="A">A）モデルが軽量化され、エッジデバイス（スマホやIoT機器）でも高速に動作するようになる。</li>
+                    <li data-option="B">B）精度が必ず向上する。</li>
+                    <li data-option="C">C）学習時間が長くなる。</li>
+                    <li data-option="D">D）サーバの容量を圧迫する。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>巨大な「教師モデル」の知識を、小さな「生徒モデル」に教え込むことで、軽くて賢いモデルを作ります。</div>
+            </div>
+
+            <div class="question" id="question-19">
+                <div class="question-text">Q20. 「Docker」などのコンテナ技術がAI開発で重宝される理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）OSやライブラリのバージョンなどの実行環境をパッケージ化でき、開発環境と本番環境の差異によるトラブルを防げるから。</li>
+                    <li data-option="B">B）処理速度が倍になるから。</li>
+                    <li data-option="C">C）デザインが綺麗になるから。</li>
+                    <li data-option="D">D）データが増えるから。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>「私のPCでは動いたのに、本番サーバでは動かない」という問題を解決する環境構築ツールです。</div>
+            </div>
+
+            <div class="question" id="question-20">
+                <div class="question-text">Q21. AI開発の契約形態について、「準委任契約」の特徴は？</div>
+                <ul class="options">
+                    <li data-option="A">A）「仕事の完成」を約束し、完成しなければ報酬がもらえない（バグがあれば無償修正）。</li>
+                    <li data-option="B">B）「善管注意義務」をもって業務を行うことを約束するが、仕事の完成までは義務負わない。試行錯誤が必要なAI開発に適している。</li>
+                    <li data-option="C">C）完成品に対して瑕疵担保責任を負う。</li>
+                    <li data-option="D">D）ウォーターフォール開発に適している。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>AIは精度が保証できないため、完成責任を負う「請負契約」ではなく、プロセスに対して対価を払う「準委任契約」が一般的です。</div>
+            </div>
+
+            <div class="question" id="question-21">
+                <div class="question-text">Q22. データの匿名化手法「k-匿名化」の説明は？</div>
+                <ul class="options">
+                    <li data-option="A">A）データをk個にコピーする。</li>
+                    <li data-option="B">B）同じ属性を持つデータが少なくともk個以上存在するように加工し、個人を特定されにくくする。</li>
+                    <li data-option="C">C）名前をイニシャルにする。</li>
+                    <li data-option="D">D）データを削除する。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>例えばk=3なら、どんなに絞り込んでも必ず3人以上の候補が残り、特定の1人に絞り込めない状態にします。</div>
+            </div>
+
+            <div class="question" id="question-22">
+                <div class="question-text">Q23. 「XAI（説明可能なAI）」が社会実装で求められる理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）AIの計算ミスを見つけるため。</li>
+                    <li data-option="B">B）融資審査や医療診断など、なぜその判断になったかの理由説明（アカウンタビリティ）が不可欠な分野があるから。</li>
+                    <li data-option="C">C）計算速度を上げるため。</li>
+                    <li data-option="D">D）エンジニアの自己満足のため。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>ブラックボックスのままでは、AIが差別的な判断をしていても気づけず、社会的な信頼が得られません。SHAPやLIMEなどの技術が使われます。</div>
+            </div>
+
+            <div class="question" id="question-23">
+                <div class="question-text">Q24. 「コールドスタート問題」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）コンピュータの起動が遅いこと。</li>
+                    <li data-option="B">B）レコメンドシステムなどで、新規ユーザーや新規アイテムのデータ（履歴）がないため、適切な推薦ができない問題。</li>
+                    <li data-option="C">C）冬場にAIの精度が落ちること。</li>
+                    <li data-option="D">D）冷却ファンの故障。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>導入初期のデータ不足をどう乗り切るか（ルールベースで補う、人気ランキングを出すなど）が実装上の課題になります。</div>
+            </div>
+
+            <div class="question" id="question-24">
+                <div class="question-text">Q25. 「Shadow AI（シャドーAI）」のリスクとは？</div>
+                <ul class="options">
+                    <li data-option="A">A）AIが自意識を持つこと。</li>
+                    <li data-option="B">B）企業が管理していない（許可していない）AIツールを、社員が勝手に業務利用し、情報漏洩などを引き起こすこと。</li>
+                    <li data-option="C">C）影を認識できないこと。</li>
+                    <li data-option="D">D）AIの電源が切れること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>ChatGPTなどを社員が勝手に使い、機密データを入力してしまうリスクなどが該当します。ガバナンス（管理体制）が必要です。</div>
+            </div>
+
+            <div class="question" id="question-25">
+                <div class="question-text">Q26. 「データクレンジング（前処理）」に含まれない作業は？</div>
+                <ul class="options">
+                    <li data-option="A">A）欠損値の補完や除去。</li>
+                    <li data-option="B">B）外れ値の処理。</li>
+                    <li data-option="C">C）表記ゆれの統一（全角半角など）。</li>
+                    <li data-option="D">D）ディープラーニングモデルの設計。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'D')">答えを確認</button>
+                <div class="result correct"><strong>正解：D）</strong><br>Dはモデル構築フェーズです。データクレンジングは「Garbage In, Garbage Out（ゴミを入れたらゴミしか出ない）」を防ぐためのデータの掃除です。</div>
+            </div>
+
+            <div class="question" id="question-26">
+                <div class="question-text">Q27. 「RPA（Robotic Process Automation）」とAIの違いは？</div>
+                <ul class="options">
+                    <li data-option="A">A）RPAは「定型業務の自動化（ルールベース）」が得意で、AIは「非定型業務（判断が必要なもの）」が得意。</li>
+                    <li data-option="B">B）RPAはロボット、AIはソフト。</li>
+                    <li data-option="C">C）RPAの方が高価である。</li>
+                    <li data-option="D">D）違いはない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>RPAとAI（OCRなど）を組み合わせることで、より高度な業務自動化（Intelligent Automation）が可能になります。</div>
+            </div>
+
+            <div class="question" id="question-27">
+                <div class="question-text">Q28. 自動運転レベル3（条件付運転自動化）における「権限委譲（ハンドオーバー）」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）システムが継続困難になった際、運転操作をシステムから人間に戻すこと。</li>
+                    <li data-option="B">B）運転免許を更新すること。</li>
+                    <li data-option="C">C）車を売却すること。</li>
+                    <li data-option="D">D）AIが他のAIに命令すること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>システムから「運転代わって！」と言われたら、人間はすぐに運転に戻らなければなりません。これがレベル3の最大の課題です。</div>
+            </div>
+
+            <div class="question" id="question-28">
+                <div class="question-text">Q29. 「モデル圧縮」の手法の一つ「プルーニング（枝刈り）」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）ニューラルネットワークの重みのうち、寄与の小さい（値が0に近い）結合を削除してスカスカ（疎）にすること。</li>
+                    <li data-option="B">B）決定木を短くすること。</li>
+                    <li data-option="C">C）データを削除すること。</li>
+                    <li data-option="D">D）学習率を下げること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>モデルの精度をほとんど落とさずに、サイズを劇的に小さくし、計算速度を上げることができます。</div>
+            </div>
+
+            <div class="question" id="question-29">
+                <div class="question-text">Q30. プロジェクト終了後の「検収」フェーズでの注意点は？</div>
+                <ul class="options">
+                    <li data-option="A">A）事前に定めた「検収基準（精度の目標値など）」に基づいて合否を判定する。曖昧だとトラブルの元になる。</li>
+                    <li data-option="B">B）なんとなく良さそうならOKとする。</li>
+                    <li data-option="C">C）検収は行わない。</li>
+                    <li data-option="D">D）開発者が勝手に決める。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>PoCの段階で「正解率〇〇%以上なら実用化」といった基準（クライテリア）を握っておくことが重要です。</div>
+            </div>
         </div>
     </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // 回答リセット機能
+        function resetAnswers() {
+            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
+                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+                const history = StudyHistory.getHistory();
+                if (history[currentPage]) {
+                    delete history[currentPage];
+                    StudyHistory.saveHistory(history);
+                }
+                location.reload();
+            }
+        }
 
-    <div class="question" id="question-0">
-        <div class="question-text">Q1. AIプロジェクトにおける「PoC（概念実証）」の最大の目的は？</div>
-        <ul class="options">
-            <li data-option="A">A）完成したシステムを顧客に納品すること。</li>
-            <li data-option="B">B）本格開発の前に、AIの精度や費用対効果、実現可能性を小規模に検証すること。</li>
-            <li data-option="C">C）契約書を作成し、予算を確定させること。</li>
-            <li data-option="D">D）運用保守の体制を構築すること。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>AIは「やってみないとわからない」要素が強いため、いきなり多額の投資をするのではなく、まずは小規模に「使い物になるか」を試すPoCが必須です。</div>
-    </div>
-
-    <div class="question" id="question-1">
-        <div class="question-text">Q2. 「PoC疲れ（PoC貧乏）」とはどのような状態か？</div>
-        <ul class="options">
-            <li data-option="A">A）PoCを繰り返すばかりで、実用化や本格開発に進まず、予算と時間だけが浪費される状態。</li>
-            <li data-option="B">B）AI開発エンジニアが過労で倒れてしまうこと。</li>
-            <li data-option="C">C）PoCの費用が安すぎること。</li>
-            <li data-option="D">D）データが集まらないこと。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>日本企業でよく見られる課題です。目的が曖昧だったり、実用化の判断基準が決まっていない場合に陥りやすいです。</div>
-    </div>
-
-    <div class="question" id="question-2">
-        <div class="question-text">Q3. 「アジャイル開発」が従来の「ウォーターフォール開発」よりAIに向いている理由は？</div>
-        <ul class="options">
-            <li data-option="A">A）仕様を最初から完全に固定できるから。</li>
-            <li data-option="B">B）試行錯誤（学習→評価→改善）を繰り返しながら精度を上げていくAIのプロセスと相性が良いから。</li>
-            <li data-option="C">C）ドキュメント作成を重視するから。</li>
-            <li data-option="D">D）開発期間が確実に短くなるから。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>AI開発は不確実性が高いため、一度決めた計画通りに進めるウォーターフォール型よりも、柔軟に修正を繰り返すアジャイル型が適しています。</div>
-    </div>
-
-    <div class="question" id="question-3">
-        <div class="question-text">Q4. AI開発における「アノテーション」作業の説明は？</div>
-        <ul class="options">
-            <li data-option="A">A）プログラムのコードに注釈を書くこと。</li>
-            <li data-option="B">B）学習データ（画像やテキスト等）に正解ラベル（タグ）を付与すること。</li>
-            <li data-option="C">C）データを圧縮すること。</li>
-            <li data-option="D">D）モデルをクラウドにアップロードすること。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>「教師あり学習」の品質を左右する最も泥臭く、かつ重要な工程です。人手で行うことが多く、コストもかかります。</div>
-    </div>
-
-    <div class="question" id="question-4">
-        <div class="question-text">Q5. 「エッジAI」のメリットとして正しいのは？</div>
-        <ul class="options">
-            <li data-option="A">A）通信遅延（レイテンシ）が小さく、リアルタイム処理が可能。またプライバシー情報が外部に出にくい。</li>
-            <li data-option="B">B）クラウドAIよりも計算能力が圧倒的に高い。</li>
-            <li data-option="C">C）学習データの蓄積が容易である。</li>
-            <li data-option="D">D）モデルの更新（アップデート）が非常に簡単である。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>端末（エッジ）側で処理するため、通信待ち時間がなく、自動運転や工場ロボットなど即応性が求められる現場に適しています。</div>
-    </div>
-
-    <div class="question" id="question-5">
-        <div class="question-text">Q6. 「クラウドAI」を利用するメリットは？</div>
-        <ul class="options">
-            <li data-option="A">A）通信環境がなくても使える。</li>
-            <li data-option="B">B）膨大な計算リソース（GPU等）を利用でき、大規模モデルの学習や推論が可能。</li>
-            <li data-option="C">C）セキュリティリスクがゼロである。</li>
-            <li data-option="D">D）通信コストがかからない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>スケーラビリティ（拡張性）があり、必要に応じて性能を増強できるのが強みです。</div>
-    </div>
-
-    <div class="question" id="question-6">
-        <div class="question-text">Q7. AIの運用段階における「推論（Inference）」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）学習データを使ってモデルを作ること。</li>
-            <li data-option="B">B）完成したモデルに新しいデータを入力し、予測結果を出力させること。</li>
-            <li data-option="C">C）モデルのパラメータを調整すること。</li>
-            <li data-option="D">D）データを収集すること。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>開発フェーズが「学習」、実社会で使うフェーズが「推論」です。</div>
-    </div>
-
-    <div class="question" id="question-7">
-        <div class="question-text">Q8. 「MLOps（Machine Learning Operations）」が必要とされる理由は？</div>
-        <ul class="options">
-            <li data-option="A">A）一度作ったAIモデルは永久に使えるから。</li>
-            <li data-option="B">B）データの傾向変化（ドリフト）や精度の劣化に対応し、継続的にモデルを再学習・デプロイする仕組みが必要だから。</li>
-            <li data-option="C">C）AIエンジニアを減らすため。</li>
-            <li data-option="D">D）開発コストをゼロにするため。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>DevOpsのAI版です。AIは「作って終わり」ではなく、社会の変化に合わせて育て続ける必要があります。</div>
-    </div>
-
-    <div class="question" id="question-8">
-        <div class="question-text">Q9. 運用中のAIモデルの精度が徐々に下がってしまう現象を何と呼ぶか？</div>
-        <ul class="options">
-            <li data-option="A">A）モデル崩壊</li>
-            <li data-option="B">B）コンセプトドリフト（Concept Drift）</li>
-            <li data-option="C">C）オーバーフィッティング</li>
-            <li data-option="D">D）勾配消失</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>市場環境やユーザーの嗜好の変化により、学習時のデータと現在のデータの傾向がズレてしまう現象です。再学習が必要です。</div>
-    </div>
-
-    <div class="question" id="question-9">
-        <div class="question-text">Q10. データマイニングの標準プロセス「CRISP-DM」の最初のフェーズは？</div>
-        <ul class="options">
-            <li data-option="A">A）データの理解</li>
-            <li data-option="B">B）ビジネスの理解（Business Understanding）</li>
-            <li data-option="C">C）モデリング</li>
-            <li data-option="D">D）評価</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>いきなりデータを集めるのではなく、「解決したい課題は何か」「ビジネス上のゴールは何か」を定義することから始まります。</div>
-    </div>
-
-    <div class="question" id="question-10">
-        <div class="question-text">Q11. AI開発における「ドメイン知識（ドメインエキスパート）」の重要性は？</div>
-        <ul class="options">
-            <li data-option="A">A）AIがあれば専門知識は不要になるため、重要ではない。</li>
-            <li data-option="B">B）データの特徴を理解したり、適切な特徴量を作成するために、その業務領域（医療、製造、金融など）の知識が不可欠である。</li>
-            <li data-option="C">C）プログラミング能力の方が重要である。</li>
-            <li data-option="D">D）契約書の作成に必要である。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>データサイエンティストだけでは「データの意味」が分かりません。現場の専門家（ドメインエキスパート）との協力が成功の鍵です。</div>
-    </div>
-
-    <div class="question" id="question-11">
-        <div class="question-text">Q12. 「A/Bテスト」の説明として正しいのは？</div>
-        <ul class="options">
-            <li data-option="A">A）開発環境と本番環境を比較するテスト。</li>
-            <li data-option="B">B）ユーザーを2つのグループに分け、新モデルAと旧モデルB（または別パターン）を実際に利用してもらい、どちらが優れているかを検証する手法。</li>
-            <li data-option="C">C）AIと人間を戦わせるテスト。</li>
-            <li data-option="D">D）バグがないか確認するテスト。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>オンライン検証の代表的な手法です。精度の高さだけでなく、クリック率や売上などのビジネス指標で評価します。</div>
-    </div>
-
-    <div class="question" id="question-12">
-        <div class="question-text">Q13. 不均衡データ（Imbalanced Data）への対処法として適切なのは？</div>
-        <ul class="options">
-            <li data-option="A">A）何もしない。</li>
-            <li data-option="B">B）オーバーサンプリング（少ないデータを水増し）やアンダーサンプリング（多いデータを減らす）を行う。</li>
-            <li data-option="C">C）データを全て削除する。</li>
-            <li data-option="D">D）評価指標に「正解率（Accuracy）」だけを使う。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>「異常検知」のように異常データが極端に少ない場合、そのまま学習するとすべて「正常」と答えるモデルになってしまうため、データのバランスを調整します。</div>
-    </div>
-
-    <div class="question" id="question-13">
-        <div class="question-text">Q14. 偽陽性（False Positive）のリスクが高い「スパムメール判定」において重視すべき指標は？</div>
-        <ul class="options">
-            <li data-option="A">A）再現率（Recall）</li>
-            <li data-option="B">B）適合率（Precision）</li>
-            <li data-option="C">C）特異度</li>
-            <li data-option="D">D）正解率</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>重要なメールを間違えてスパム判定（偽陽性）してしまうと困るため、「スパムと判定したものが本当にスパムか」という精度（適合率）を重視します。</div>
-    </div>
-
-    <div class="question" id="question-14">
-        <div class="question-text">Q15. 偽陰性（False Negative）のリスクが高い「がん検診」において重視すべき指標は？</div>
-        <ul class="options">
-            <li data-option="A">A）再現率（Recall）</li>
-            <li data-option="B">B）適合率（Precision）</li>
-            <li data-option="C">C）正解率</li>
-            <li data-option="D">D）適合率と再現率の平均</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>病気の人を見逃す（偽陰性）ことが命に関わるため、多少誤診（健康な人を要検査とする）が増えても、取りこぼしをなくす（再現率を上げる）設定にします。</div>
-    </div>
-
-    <div class="question" id="question-15">
-        <div class="question-text">Q16. 「API（Application Programming Interface）」を利用したAI導入のメリットは？</div>
-        <ul class="options">
-            <li data-option="A">A）自社でゼロからモデルを開発する必要がなく、GoogleやAWSなどが提供する高性能な学習済みモデルをすぐに機能として組み込める。</li>
-            <li data-option="B">B）無料で使える。</li>
-            <li data-option="C">C）通信が発生しない。</li>
-            <li data-option="D">D）カスタマイズ性が無限大である。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>「車輪の再発明」を避け、画像認識や音声認識などのコモディティ化した機能はAPIを利用するのが効率的です。</div>
-    </div>
-
-    <div class="question" id="question-16">
-        <div class="question-text">Q17. 「人間参加型（Human-in-the-loop）」のAIシステムとは？</div>
-        <ul class="options">
-            <li data-option="A">A）人間がAIのフリをするシステム。</li>
-            <li data-option="B">B）AIが自信がない（予測確率が低い）判断を人間にエスカレーションしたり、人間がAIの判断を修正して再学習に活かしたりする仕組み。</li>
-            <li data-option="C">C）人間が手動で計算するシステム。</li>
-            <li data-option="D">D）AIが人間に命令するシステム。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>完全自動化が難しい業務でも、AIと人間が協調することで実用化が可能になります。</div>
-    </div>
-
-    <div class="question" id="question-17">
-        <div class="question-text">Q18. プライバシー保護技術「連合学習（Federated Learning）」の特徴は？</div>
-        <ul class="options">
-            <li data-option="A">A）各ユーザーの端末（スマホ等）で学習を行い、生データをサーバーに送らず、「重みの更新情報（パラメータ）」だけを集約する。</li>
-            <li data-option="B">B）全てのデータを一箇所に集めて学習する。</li>
-            <li data-option="C">C）データを暗号化せずに公開する。</li>
-            <li data-option="D">D）学習を行わない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>個人のプライベートなデータを外に出さずに、全体のAIモデルを賢くできる画期的な技術です（Googleのキーボード入力予測などで使用）。</div>
-    </div>
-
-    <div class="question" id="question-18">
-        <div class="question-text">Q19. 「蒸留（Distillation）」の実装上のメリットは？</div>
-        <ul class="options">
-            <li data-option="A">A）モデルが軽量化され、エッジデバイス（スマホやIoT機器）でも高速に動作するようになる。</li>
-            <li data-option="B">B）精度が必ず向上する。</li>
-            <li data-option="C">C）学習時間が長くなる。</li>
-            <li data-option="D">D）サーバの容量を圧迫する。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>巨大な「教師モデル」の知識を、小さな「生徒モデル」に教え込むことで、軽くて賢いモデルを作ります。</div>
-    </div>
-
-    <div class="question" id="question-19">
-        <div class="question-text">Q20. 「Docker」などのコンテナ技術がAI開発で重宝される理由は？</div>
-        <ul class="options">
-            <li data-option="A">A）OSやライブラリのバージョンなどの実行環境をパッケージ化でき、開発環境と本番環境の差異によるトラブルを防げるから。</li>
-            <li data-option="B">B）処理速度が倍になるから。</li>
-            <li data-option="C">C）デザインが綺麗になるから。</li>
-            <li data-option="D">D）データが増えるから。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>「私のPCでは動いたのに、本番サーバでは動かない」という問題を解決する環境構築ツールです。</div>
-    </div>
-
-    <div class="question" id="question-20">
-        <div class="question-text">Q21. AI開発の契約形態について、「準委任契約」の特徴は？</div>
-        <ul class="options">
-            <li data-option="A">A）「仕事の完成」を約束し、完成しなければ報酬がもらえない（バグがあれば無償修正）。</li>
-            <li data-option="B">B）「善管注意義務」をもって業務を行うことを約束するが、仕事の完成までは義務負わない。試行錯誤が必要なAI開発に適している。</li>
-            <li data-option="C">C）完成品に対して瑕疵担保責任を負う。</li>
-            <li data-option="D">D）ウォーターフォール開発に適している。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>AIは精度が保証できないため、完成責任を負う「請負契約」ではなく、プロセスに対して対価を払う「準委任契約」が一般的です。</div>
-    </div>
-
-    <div class="question" id="question-21">
-        <div class="question-text">Q22. データの匿名化手法「k-匿名化」の説明は？</div>
-        <ul class="options">
-            <li data-option="A">A）データをk個にコピーする。</li>
-            <li data-option="B">B）同じ属性を持つデータが少なくともk個以上存在するように加工し、個人を特定されにくくする。</li>
-            <li data-option="C">C）名前をイニシャルにする。</li>
-            <li data-option="D">D）データを削除する。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>例えばk=3なら、どんなに絞り込んでも必ず3人以上の候補が残り、特定の1人に絞り込めない状態にします。</div>
-    </div>
-
-    <div class="question" id="question-22">
-        <div class="question-text">Q23. 「XAI（説明可能なAI）」が社会実装で求められる理由は？</div>
-        <ul class="options">
-            <li data-option="A">A）AIの計算ミスを見つけるため。</li>
-            <li data-option="B">B）融資審査や医療診断など、なぜその判断になったかの理由説明（アカウンタビリティ）が不可欠な分野があるから。</li>
-            <li data-option="C">C）計算速度を上げるため。</li>
-            <li data-option="D">D）エンジニアの自己満足のため。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>ブラックボックスのままでは、AIが差別的な判断をしていても気づけず、社会的な信頼が得られません。SHAPやLIMEなどの技術が使われます。</div>
-    </div>
-
-    <div class="question" id="question-23">
-        <div class="question-text">Q24. 「コールドスタート問題」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）コンピュータの起動が遅いこと。</li>
-            <li data-option="B">B）レコメンドシステムなどで、新規ユーザーや新規アイテムのデータ（履歴）がないため、適切な推薦ができない問題。</li>
-            <li data-option="C">C）冬場にAIの精度が落ちること。</li>
-            <li data-option="D">D）冷却ファンの故障。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>導入初期のデータ不足をどう乗り切るか（ルールベースで補う、人気ランキングを出すなど）が実装上の課題になります。</div>
-    </div>
-
-    <div class="question" id="question-24">
-        <div class="question-text">Q25. 「Shadow AI（シャドーAI）」のリスクとは？</div>
-        <ul class="options">
-            <li data-option="A">A）AIが自意識を持つこと。</li>
-            <li data-option="B">B）企業が管理していない（許可していない）AIツールを、社員が勝手に業務利用し、情報漏洩などを引き起こすこと。</li>
-            <li data-option="C">C）影を認識できないこと。</li>
-            <li data-option="D">D）AIの電源が切れること。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>ChatGPTなどを社員が勝手に使い、機密データを入力してしまうリスクなどが該当します。ガバナンス（管理体制）が必要です。</div>
-    </div>
-
-    <div class="question" id="question-25">
-        <div class="question-text">Q26. 「データクレンジング（前処理）」に含まれない作業は？</div>
-        <ul class="options">
-            <li data-option="A">A）欠損値の補完や除去。</li>
-            <li data-option="B">B）外れ値の処理。</li>
-            <li data-option="C">C）表記ゆれの統一（全角半角など）。</li>
-            <li data-option="D">D）ディープラーニングモデルの設計。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'D')">答えを確認</button>
-        <div class="result correct"><strong>正解：D）</strong><br>Dはモデル構築フェーズです。データクレンジングは「Garbage In, Garbage Out（ゴミを入れたらゴミしか出ない）」を防ぐためのデータの掃除です。</div>
-    </div>
-
-    <div class="question" id="question-26">
-        <div class="question-text">Q27. 「RPA（Robotic Process Automation）」とAIの違いは？</div>
-        <ul class="options">
-            <li data-option="A">A）RPAは「定型業務の自動化（ルールベース）」が得意で、AIは「非定型業務（判断が必要なもの）」が得意。</li>
-            <li data-option="B">B）RPAはロボット、AIはソフト。</li>
-            <li data-option="C">C）RPAの方が高価である。</li>
-            <li data-option="D">D）違いはない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>RPAとAI（OCRなど）を組み合わせることで、より高度な業務自動化（Intelligent Automation）が可能になります。</div>
-    </div>
-
-    <div class="question" id="question-27">
-        <div class="question-text">Q28. 自動運転レベル3（条件付運転自動化）における「権限委譲（ハンドオーバー）」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）システムが継続困難になった際、運転操作をシステムから人間に戻すこと。</li>
-            <li data-option="B">B）運転免許を更新すること。</li>
-            <li data-option="C">C）車を売却すること。</li>
-            <li data-option="D">D）AIが他のAIに命令すること。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>システムから「運転代わって！」と言われたら、人間はすぐに運転に戻らなければなりません。これがレベル3の最大の課題です。</div>
-    </div>
-
-    <div class="question" id="question-28">
-        <div class="question-text">Q29. 「モデル圧縮」の手法の一つ「プルーニング（枝刈り）」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）ニューラルネットワークの重みのうち、寄与の小さい（値が0に近い）結合を削除してスカスカ（疎）にすること。</li>
-            <li data-option="B">B）決定木を短くすること。</li>
-            <li data-option="C">C）データを削除すること。</li>
-            <li data-option="D">D）学習率を下げること。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>モデルの精度をほとんど落とさずに、サイズを劇的に小さくし、計算速度を上げることができます。</div>
-    </div>
-
-    <div class="question" id="question-29">
-        <div class="question-text">Q30. プロジェクト終了後の「検収」フェーズでの注意点は？</div>
-        <ul class="options">
-            <li data-option="A">A）事前に定めた「検収基準（精度の目標値など）」に基づいて合否を判定する。曖昧だとトラブルの元になる。</li>
-            <li data-option="B">B）なんとなく良さそうならOKとする。</li>
-            <li data-option="C">C）検収は行わない。</li>
-            <li data-option="D">D）開発者が勝手に決める。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>PoCの段階で「正解率〇〇%以上なら実用化」といった基準（クライテリア）を握っておくことが重要です。</div>
-    </div>
-</div>
+        // 学習一時停止機能
+        function pauseLearning() {
+            const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+            const questions = document.querySelectorAll('.question');
+            let currentQuestionIndex = 0;
+            
+            // 未回答の最初の問題を探す
+            for (let i = 0; i < questions.length; i++) {
+                if (!questions[i].classList.contains('answered-correct') && !questions[i].classList.contains('answered-incorrect')) {
+                    currentQuestionIndex = i;
+                    break;
+                }
+            }
+            
+            const scrollPosition = window.scrollY;
+            StudyHistory.saveSession(currentPage, currentQuestionIndex, scrollPosition);
+            alert('学習を一時停止しました。TOPページから「学習を再開」ボタンで続きから始められます。');
+            window.location.href = 'index.html';
+        }
+        
+        // ページ読み込み時に続きから再開する機能
+        document.addEventListener('DOMContentLoaded', function() {
+            const session = StudyHistory.getSession();
+            const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+            
+            // セッション情報があり、かつ同じページの場合のみ復元
+            if (session && session.category === currentPage) {
+                // スクロール位置を復元
+                if (session.scrollPosition) {
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: session.scrollPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

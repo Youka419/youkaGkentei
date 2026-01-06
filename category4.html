@@ -1,369 +1,396 @@
-<div class="section quiz-section">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
-        <h2 style="margin: 0;">📝 問題演習（スペシャル版：全30問）</h2>
-        <div style="display: flex; gap: 10px;">
-            <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
-            <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>④ ディープラーニングの概要 - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        
+        <h1>④ ディープラーニングの概要</h1>
+        
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>ニューラルネットワークの基礎的な知識を理解する</li>
+                    <li>ニューラルネットワークとディープラーニングの関係を説明できる</li>
+                    <li>ディープラーニングの学習に必要なデータ量や計算リソースについて理解する</li>
+                    <li>CPU、GPU、TPUの特徴をそれぞれ説明できる</li>
+                    <li>代表的な活性化関数の定義、使い分け、注意点について説明できる</li>
+                    <li>誤差関数の基礎的な知識を理解する</li>
+                </ul>
+            </div>
         </div>
-    </div>
+        
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item"><strong>ニューラルネットワーク</strong>人間の脳の構造を模倣したアルゴリズム</div>
+                <div class="keyword-item"><strong>単純パーセプトロン</strong>入力層と出力層のみで構成されたシンプルなニューラルネットワーク</div>
+                <div class="keyword-item"><strong>多層パーセプトロン</strong>入力層、隠れ層、出力層の3つ以上の層からなるニューラルネットワーク</div>
+                <div class="keyword-item"><strong>CPU</strong>コンピューターの頭脳に当たる部分で命令の実行や計算制御を行う中核的な装置</div>
+                <div class="keyword-item"><strong>GPU</strong>大量のデータを同時に高速で処理できる並列計算向けのプロセッサ</div>
+                <div class="keyword-item"><strong>TPU</strong>Googleが開発した機械学習専用の高性能プロセッサ</div>
+                <div class="keyword-item"><strong>シグモイド関数</strong>入力を0から1の範囲に変換する滑らかなs型の関数</div>
+                <div class="keyword-item"><strong>ReLU関数</strong>入力が0以下なら0、0より大きければそのまま出力する活性化関数</div>
+                <div class="keyword-item"><strong>交差エントロピー誤差</strong>分類モデルが出した確率と正解ラベルのずれを測る関数</div>
+                <div class="keyword-item"><strong>正則化</strong>モデルが訓練データに過剰に適合することを防ぐために複雑さにペナルティを加える手法</div>
+            </div>
+        </div>
+        
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習（スペシャル版：全30問）</h2>
+                <div style="display: flex; gap: 10px;">
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="pauseLearning()" style="background: #2196F3; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">⏸️ 一時停止</button>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 リセット</button>
+                </div>
+            </div>
 
-    <div class="question" id="question-0">
-        <div class="question-text">Q1. 「単純パーセプトロン」で解くことができない問題は？</div>
-        <ul class="options">
-            <li data-option="A">A）線形分離可能な問題（ANDゲートなど）</li>
-            <li data-option="B">B）線形分離不可能な問題（XORゲートなど）</li>
-            <li data-option="C">C）2値分類問題</li>
-            <li data-option="D">D）論理和（OR）の問題</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>単純パーセプトロンは直線の境界線しか引けないため、排他的論理和（XOR）のような曲がった境界線が必要な問題は解けません。</div>
-    </div>
+            <div class="question" id="question-0">
+                <div class="question-text">Q1. 「単純パーセプトロン」で解くことができない問題は？</div>
+                <ul class="options">
+                    <li data-option="A">A）線形分離可能な問題（ANDゲートなど）</li>
+                    <li data-option="B">B）線形分離不可能な問題（XORゲートなど）</li>
+                    <li data-option="C">C）2値分類問題</li>
+                    <li data-option="D">D）論理和（OR）の問題</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>単純パーセプトロンは直線の境界線しか引けないため、排他的論理和（XOR）のような曲がった境界線が必要な問題は解けません。</div>
+            </div>
 
-    <div class="question" id="question-1">
-        <div class="question-text">Q2. 「多層パーセプトロン」がXOR問題を解けるようになった理由は？</div>
-        <ul class="options">
-            <li data-option="A">A）入力層を増やしたから。</li>
-            <li data-option="B">B）隠れ層（中間層）を追加し、非線形な活性化関数を導入したから。</li>
-            <li data-option="C">C）データ量を増やしたから。</li>
-            <li data-option="D">D）コンピュータの性能が上がったから。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>隠れ層と「シグモイド関数」などの非線形関数を組み合わせることで、複雑な形の境界線を表現できるようになりました。</div>
-    </div>
+            <div class="question" id="question-1">
+                <div class="question-text">Q2. 「多層パーセプトロン」がXOR問題を解けるようになった理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）入力層を増やしたから。</li>
+                    <li data-option="B">B）隠れ層（中間層）を追加し、非線形な活性化関数を導入したから。</li>
+                    <li data-option="C">C）データ量を増やしたから。</li>
+                    <li data-option="D">D）コンピュータの性能が上がったから。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>隠れ層と「シグモイド関数」などの非線形関数を組み合わせることで、複雑な形の境界線を表現できるようになりました。</div>
+            </div>
 
-    <div class="question" id="question-2">
-        <div class="question-text">Q3. ディープラーニングにおける「誤差逆伝播法（バックプロパゲーション）」の役割は？</div>
-        <ul class="options">
-            <li data-option="A">A）入力データを加工する。</li>
-            <li data-option="B">B）出力と正解の誤差（ズレ）を後ろから前へ伝えて、パラメータ（重み）を修正する。</li>
-            <li data-option="C">C）ニューロンをランダムに削除する。</li>
-            <li data-option="D">D）層の数を自動で決める。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>「期待外れの答え」が出たときに、誰（どの重み）がどれくらい悪かったのかを逆算して責任を取らせる（修正する）仕組みです。</div>
-    </div>
+            <div class="question" id="question-2">
+                <div class="question-text">Q3. ディープラーニングにおける「誤差逆伝播法（バックプロパゲーション）」の役割は？</div>
+                <ul class="options">
+                    <li data-option="A">A）入力データを加工する。</li>
+                    <li data-option="B">B）出力と正解の誤差（ズレ）を後ろから前へ伝えて、パラメータ（重み）を修正する。</li>
+                    <li data-option="C">C）ニューロンをランダムに削除する。</li>
+                    <li data-option="D">D）層の数を自動で決める。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「期待外れの答え」が出たときに、誰（どの重み）がどれくらい悪かったのかを逆算して責任を取らせる（修正する）仕組みです。</div>
+            </div>
 
-    <div class="question" id="question-3">
-        <div class="question-text">Q4. 「活性化関数」として「ReLU関数」がよく使われる理由は？</div>
-        <ul class="options">
-            <li data-option="A">A）0〜1の確率を出力できるから。</li>
-            <li data-option="B">B）勾配消失問題が起きにくく、計算が単純で速いから。</li>
-            <li data-option="C">C）負の値も扱えるから。</li>
-            <li data-option="D">D）微分不可能だから。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>シグモイド関数は層が深くなると勾配が消えてしまいますが、ReLUは入力がプラスならそのまま通すため、深くても学習が進みやすいです。</div>
-    </div>
+            <div class="question" id="question-3">
+                <div class="question-text">Q4. 「活性化関数」として「ReLU関数」がよく使われる理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）0〜1の確率を出力できるから。</li>
+                    <li data-option="B">B）勾配消失問題が起きにくく、計算が単純で速いから。</li>
+                    <li data-option="C">C）負の値も扱えるから。</li>
+                    <li data-option="D">D）微分不可能だから。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>シグモイド関数は層が深くなると勾配が消えてしまいますが、ReLUは入力がプラスならそのまま通すため、深くても学習が進みやすいです。</div>
+            </div>
 
-    <div class="question" id="question-4">
-        <div class="question-text">Q5. 「勾配消失問題」とはどのような現象か？</div>
-        <ul class="options">
-            <li data-option="A">A）学習が進むにつれて誤差が0になってしまう現象。</li>
-            <li data-option="B">B）層を深くすると、入力側に近づくにつれて誤差の情報が小さくなり、学習が進まなくなる現象。</li>
-            <li data-option="C">C）重みの値が無限大に発散してしまう現象。</li>
-            <li data-option="D">D）データが足りなくなる現象。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>「伝言ゲーム」のように、層が深いと最後の人（出力層）の声が最初の人（入力層付近）に届かなくなり、修正ができなくなります。</div>
-    </div>
+            <div class="question" id="question-4">
+                <div class="question-text">Q5. 「勾配消失問題」とはどのような現象か？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習が進むにつれて誤差が0になってしまう現象。</li>
+                    <li data-option="B">B）層を深くすると、入力側に近づくにつれて誤差の情報が小さくなり、学習が進まなくなる現象。</li>
+                    <li data-option="C">C）重みの値が無限大に発散してしまう現象。</li>
+                    <li data-option="D">D）データが足りなくなる現象。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「伝言ゲーム」のように、層が深いと最後の人（出力層）の声が最初の人（入力層付近）に届かなくなり、修正ができなくなります。</div>
+            </div>
 
-    <div class="question" id="question-5">
-        <div class="question-text">Q6. 「勾配降下法」で学習が局所解（ローカルミニマム）に留まってしまうことを防ぐ工夫は？</div>
-        <ul class="options">
-            <li data-option="A">A）学習率を0にする。</li>
-            <li data-option="B">B）SGD（確率的勾配降下法）やミニバッチ学習を使う。</li>
-            <li data-option="C">C）層を減らす。</li>
-            <li data-option="D">D）活性化関数を使わない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>毎回少しずつ違うデータ（ミニバッチ）を使って計算することで、ランダムな揺らぎが生まれ、小さな窪み（局所解）から脱出しやすくなります。</div>
-    </div>
+            <div class="question" id="question-5">
+                <div class="question-text">Q6. 「勾配降下法」で学習が局所解（ローカルミニマム）に留まってしまうことを防ぐ工夫は？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習率を0にする。</li>
+                    <li data-option="B">B）SGD（確率的勾配降下法）やミニバッチ学習を使う。</li>
+                    <li data-option="C">C）層を減らす。</li>
+                    <li data-option="D">D）活性化関数を使わない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>毎回少しずつ違うデータ（ミニバッチ）を使って計算することで、ランダムな揺らぎが生まれ、小さな窪み（局所解）から脱出しやすくなります。</div>
+            </div>
 
-    <div class="question" id="question-6">
-        <div class="question-text">Q7. 「ドロップアウト」の目的は？</div>
-        <ul class="options">
-            <li data-option="A">A）計算速度を上げる。</li>
-            <li data-option="B">B）過学習を防ぐために、学習時にランダムにニューロンを無効化する。</li>
-            <li data-option="C">C）勾配消失を防ぐ。</li>
-            <li data-option="D">D）データを増やす。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>毎回違うメンバー（ニューロン）でチームを組ませることで、特定のメンバーに頼りすぎる（過学習）のを防ぎます。</div>
-    </div>
+            <div class="question" id="question-6">
+                <div class="question-text">Q7. 「ドロップアウト」の目的は？</div>
+                <ul class="options">
+                    <li data-option="A">A）計算速度を上げる。</li>
+                    <li data-option="B">B）過学習を防ぐために、学習時にランダムにニューロンを無効化する。</li>
+                    <li data-option="C">C）勾配消失を防ぐ。</li>
+                    <li data-option="D">D）データを増やす。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>毎回違うメンバー（ニューロン）でチームを組ませることで、特定のメンバーに頼りすぎる（過学習）のを防ぎます。</div>
+            </div>
 
-    <div class="question" id="question-7">
-        <div class="question-text">Q8. ディープラーニングにおける「事前学習」と「ファインチューニング」の説明は？</div>
-        <ul class="options">
-            <li data-option="A">A）最初から全てのデータを学習させること。</li>
-            <li data-option="B">B）大規模データで学習済みモデルの重みを初期値とし、自分のタスクのデータで微調整すること。</li>
-            <li data-option="C">C）教師なし学習のみを行うこと。</li>
-            <li data-option="D">D）モデルの構造を自動探索すること。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>「賢い人（学習済みモデル）」に「新しい仕事（タスク）」を教える方が、一から教えるより早くて正確です。</div>
-    </div>
+            <div class="question" id="question-7">
+                <div class="question-text">Q8. ディープラーニングにおける「事前学習」と「ファインチューニング」の説明は？</div>
+                <ul class="options">
+                    <li data-option="A">A）最初から全てのデータを学習させること。</li>
+                    <li data-option="B">B）大規模データで学習済みモデルの重みを初期値とし、自分のタスクのデータで微調整すること。</li>
+                    <li data-option="C">C）教師なし学習のみを行うこと。</li>
+                    <li data-option="D">D）モデルの構造を自動探索すること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「賢い人（学習済みモデル）」に「新しい仕事（タスク）」を教える方が、一から教えるより早くて正確です。</div>
+            </div>
 
-    <div class="question" id="question-8">
-        <div class="question-text">Q9. 「オートエンコーダ」の特徴は？</div>
-        <ul class="options">
-            <li data-option="A">A）入力と同じものを出力するように学習し、特徴抽出や次元圧縮を行う教師なし学習。</li>
-            <li data-option="B">B）画像を分類する教師あり学習。</li>
-            <li data-option="C">C）音声を生成するモデル。</li>
-            <li data-option="D">D）強化学習の一種。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>データをギュッと圧縮してから元に戻す訓練をすることで、データの本質的な特徴（ボトルネック特徴量）を学習します。異常検知にも使われます。</div>
-    </div>
+            <div class="question" id="question-8">
+                <div class="question-text">Q9. 「オートエンコーダ」の特徴は？</div>
+                <ul class="options">
+                    <li data-option="A">A）入力と同じものを出力するように学習し、特徴抽出や次元圧縮を行う教師なし学習。</li>
+                    <li data-option="B">B）画像を分類する教師あり学習。</li>
+                    <li data-option="C">C）音声を生成するモデル。</li>
+                    <li data-option="D">D）強化学習の一種。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>データをギュッと圧縮してから元に戻す訓練をすることで、データの本質的な特徴（ボトルネック特徴量）を学習します。異常検知にも使われます。</div>
+            </div>
 
-    <div class="question" id="question-9">
-        <div class="question-text">Q10. 「GPU」がディープラーニングに適している理由は？</div>
-        <ul class="options">
-            <li data-option="A">A）複雑な条件分岐処理が得意だから。</li>
-            <li data-option="B">B）大量の単純な行列計算を並列処理するのが得意だから。</li>
-            <li data-option="C">C）消費電力が少ないから。</li>
-            <li data-option="D">D）OSを動かすのに適しているから。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>ディープラーニングの中身は巨大な行列の掛け算の塊なので、単純計算を同時に何千個もできるGPUが最強です。</div>
-    </div>
+            <div class="question" id="question-9">
+                <div class="question-text">Q10. 「GPU」がディープラーニングに適している理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）複雑な条件分岐処理が得意だから。</li>
+                    <li data-option="B">B）大量の単純な行列計算を並列処理するのが得意だから。</li>
+                    <li data-option="C">C）消費電力が少ないから。</li>
+                    <li data-option="D">D）OSを動かすのに適しているから。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>ディープラーニングの中身は巨大な行列の掛け算の塊なので、単純計算を同時に何千個もできるGPUが最強です。</div>
+            </div>
 
-    <div class="question" id="question-10">
-        <div class="question-text">Q11. ニューラルネットワークにおける「重み」と「バイアス」の役割は？</div>
-        <ul class="options">
-            <li data-option="A">A）重みは入力の重要度を調整し、バイアスは発火のしやすさを調整する。</li>
-            <li data-option="B">B）重みは計算速度を調整し、バイアスは学習率を調整する。</li>
-            <li data-option="C">C）重みとバイアスは同じ役割である。</li>
-            <li data-option="D">D）重みは出力層にのみ存在する。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>重みは入力信号の強さを変え、バイアスはニューロンが次の層へ信号を送る（発火する）閾値を調整します。</div>
-    </div>
+            <div class="question" id="question-10">
+                <div class="question-text">Q11. ニューラルネットワークにおける「重み」と「バイアス」の役割は？</div>
+                <ul class="options">
+                    <li data-option="A">A）重みは入力の重要度を調整し、バイアスは発火のしやすさを調整する。</li>
+                    <li data-option="B">B）重みは計算速度を調整し、バイアスは学習率を調整する。</li>
+                    <li data-option="C">C）重みとバイアスは同じ役割である。</li>
+                    <li data-option="D">D）重みは出力層にのみ存在する。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>重みは入力信号の強さを変え、バイアスはニューロンが次の層へ信号を送る（発火する）閾値を調整します。</div>
+            </div>
 
-    <div class="question" id="question-11">
-        <div class="question-text">Q12. 「ソフトマックス関数」が主に出力層で使われる目的は？</div>
-        <ul class="options">
-            <li data-option="A">A）値を-1から1の範囲にするため。</li>
-            <li data-option="B">B）出力の合計が1になるようにし、多クラス分類の「確率」として扱えるようにするため。</li>
-            <li data-option="C">C）勾配消失を防ぐため。</li>
-            <li data-option="D">D）計算を省略するため。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>例えば「犬：0.7、猫：0.2、鳥：0.1」のように、合計100%になる確率を出力したい場合に使います。</div>
-    </div>
+            <div class="question" id="question-11">
+                <div class="question-text">Q12. 「ソフトマックス関数」が主に出力層で使われる目的は？</div>
+                <ul class="options">
+                    <li data-option="A">A）値を-1から1の範囲にするため。</li>
+                    <li data-option="B">B）出力の合計が1になるようにし、多クラス分類の「確率」として扱えるようにするため。</li>
+                    <li data-option="C">C）勾配消失を防ぐため。</li>
+                    <li data-option="D">D）計算を省略するため。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>例えば「犬：0.7、猫：0.2、鳥：0.1」のように、合計100%になる確率を出力したい場合に使います。</div>
+            </div>
 
-    <div class="question" id="question-12">
-        <div class="question-text">Q13. 「イテレーション（Iteration）」と「エポック（Epoch）」の違いは？</div>
-        <ul class="options">
-            <li data-option="A">A）イテレーションは学習全体の回数、エポックはミニバッチの回数。</li>
-            <li data-option="B">B）エポックは訓練データセットを一周すること、イテレーションは重みを更新した回数（ミニバッチの数）。</li>
-            <li data-option="C">C）両者は全く同じ意味である。</li>
-            <li data-option="D">D）イテレーションはテストデータを使う回数。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>1000個のデータでバッチサイズが100なら、1エポック回るのに10回のイテレーション（更新）が必要です。</div>
-    </div>
+            <div class="question" id="question-12">
+                <div class="question-text">Q13. 「イテレーション（Iteration）」と「エポック（Epoch）」の違いは？</div>
+                <ul class="options">
+                    <li data-option="A">A）イテレーションは学習全体の回数、エポックはミニバッチの回数。</li>
+                    <li data-option="B">B）エポックは訓練データセットを一周すること、イテレーションは重みを更新した回数（ミニバッチの数）。</li>
+                    <li data-option="C">C）両者は全く同じ意味である。</li>
+                    <li data-option="D">D）イテレーションはテストデータを使う回数。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>1000個のデータでバッチサイズが100なら、1エポック回るのに10回のイテレーション（更新）が必要です。</div>
+            </div>
 
-    <div class="question" id="question-13">
-        <div class="question-text">Q14. 「過学習（Overfitting）」を検知するために確認すべきものは？</div>
-        <ul class="options">
-            <li data-option="A">A）訓練データの誤差のみ。</li>
-            <li data-option="B">B）訓練データの誤差と、検証（テスト）データの誤差の推移。</li>
-            <li data-option="C">C）学習時間。</li>
-            <li data-option="D">D）GPUの温度。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>訓練データの誤差は減り続けているのに、検証データの誤差が増え始めたら（乖離したら）、過学習が起きています。</div>
-    </div>
+            <div class="question" id="question-13">
+                <div class="question-text">Q14. 「過学習（Overfitting）」を検知するために確認すべきものは？</div>
+                <ul class="options">
+                    <li data-option="A">A）訓練データの誤差のみ。</li>
+                    <li data-option="B">B）訓練データの誤差と、検証（テスト）データの誤差の推移。</li>
+                    <li data-option="C">C）学習時間。</li>
+                    <li data-option="D">D）GPUの温度。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>訓練データの誤差は減り続けているのに、検証データの誤差が増え始めたら（乖離したら）、過学習が起きています。</div>
+            </div>
 
-    <div class="question" id="question-14">
-        <div class="question-text">Q15. 「アーリーストッピング（Early Stopping）」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）学習が安定しないときに強制終了すること。</li>
-            <li data-option="B">B）過学習が始まる兆候が見えた時点（検証誤差が悪化し始めた時点）で学習を打ち切ること。</li>
-            <li data-option="C">C）朝早く起きて学習させること。</li>
-            <li data-option="D">D）学習率を急激に下げること。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>「これ以上勉強しても逆効果（暗記に走るだけ）」というタイミングを見計らってストップさせる正則化テクニックです。</div>
-    </div>
+            <div class="question" id="question-14">
+                <div class="question-text">Q15. 「アーリーストッピング（Early Stopping）」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習が安定しないときに強制終了すること。</li>
+                    <li data-option="B">B）過学習が始まる兆候が見えた時点（検証誤差が悪化し始めた時点）で学習を打ち切ること。</li>
+                    <li data-option="C">C）朝早く起きて学習させること。</li>
+                    <li data-option="D">D）学習率を急激に下げること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「これ以上勉強しても逆効果（暗記に走るだけ）」というタイミングを見計らってストップさせる正則化テクニックです。</div>
+            </div>
 
-    <div class="question" id="question-15">
-        <div class="question-text">Q16. ディープラーニングのフレームワークとして適切でないものは？</div>
-        <ul class="options">
-            <li data-option="A">A）TensorFlow / Keras</li>
-            <li data-option="B">B）PyTorch</li>
-            <li data-option="C">C）Excel</li>
-            <li data-option="D">D）Chainer</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'C')">答えを確認</button>
-        <div class="result correct"><strong>正解：C）</strong><br>Excelでも計算は可能ですが、ディープラーニングの開発用フレームワークではありません。現在はPyTorchとTensorFlowが主流です。</div>
-    </div>
+            <div class="question" id="question-15">
+                <div class="question-text">Q16. ディープラーニングのフレームワークとして適切でないものは？</div>
+                <ul class="options">
+                    <li data-option="A">A）TensorFlow / Keras</li>
+                    <li data-option="B">B）PyTorch</li>
+                    <li data-option="C">C）Excel</li>
+                    <li data-option="D">D）Chainer</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'C')">答えを確認</button>
+                <div class="result correct"><strong>正解：C）</strong><br>Excelでも計算は可能ですが、ディープラーニングの開発用フレームワークではありません。現在はPyTorchとTensorFlowが主流です。</div>
+            </div>
 
-    <div class="question" id="question-16">
-        <div class="question-text">Q17. 「転移学習（Transfer Learning）」のメリットは？</div>
-        <ul class="options">
-            <li data-option="A">A）学習データが少なくても、学習済みモデルの知識を借りることで高精度なモデルが作れる。</li>
-            <li data-option="B">B）どんなデータでも必ず精度100%になる。</li>
-            <li data-option="C">C）学習時間が長くなる。</li>
-            <li data-option="D">D）新しい層を作らなくて済む。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>例えば「犬猫分類」で学習したモデルは、「ライオンと虎」の分類にもその「目の見え方」などの知識を応用できます。</div>
-    </div>
+            <div class="question" id="question-16">
+                <div class="question-text">Q17. 「転移学習（Transfer Learning）」のメリットは？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習データが少なくても、学習済みモデルの知識を借りることで高精度なモデルが作れる。</li>
+                    <li data-option="B">B）どんなデータでも必ず精度100%になる。</li>
+                    <li data-option="C">C）学習時間が長くなる。</li>
+                    <li data-option="D">D）新しい層を作らなくて済む。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>例えば「犬猫分類」で学習したモデルは、「ライオンと虎」の分類にもその「目の見え方」などの知識を応用できます。</div>
+            </div>
 
-    <div class="question" id="question-17">
-        <div class="question-text">Q18. 「蒸留（Distillation）」の目的は？</div>
-        <ul class="options">
-            <li data-option="A">A）モデルを加熱してバグを取り除く。</li>
-            <li data-option="B">B）巨大で高精度なモデル（教師）の知識を、軽量なモデル（生徒）に継承させ、軽量化・高速化する。</li>
-            <li data-option="C">C）データを水増しする。</li>
-            <li data-option="D">D）画像を鮮明にする。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>スマホなどの計算力が低いデバイスでAIを動かしたい時に、精度を保ちつつモデルを小さくするために使います。</div>
-    </div>
+            <div class="question" id="question-17">
+                <div class="question-text">Q18. 「蒸留（Distillation）」の目的は？</div>
+                <ul class="options">
+                    <li data-option="A">A）モデルを加熱してバグを取り除く。</li>
+                    <li data-option="B">B）巨大で高精度なモデル（教師）の知識を、軽量なモデル（生徒）に継承させ、軽量化・高速化する。</li>
+                    <li data-option="C">C）データを水増しする。</li>
+                    <li data-option="D">D）画像を鮮明にする。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>スマホなどの計算力が低いデバイスでAIを動かしたい時に、精度を保ちつつモデルを小さくするために使います。</div>
+            </div>
 
-    <div class="question" id="question-18">
-        <div class="question-text">Q19. 「データ拡張（Data Augmentation）」の手法として適切でないものは？</div>
-        <ul class="options">
-            <li data-option="A">A）画像の回転、反転、拡大縮小。</li>
-            <li data-option="B">B）画像にノイズを加える。</li>
-            <li data-option="C">C）全く関係のない画像をごちゃ混ぜにする。</li>
-            <li data-option="D">D）画像の一部を切り抜く（Crop）。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'C')">答えを確認</button>
-        <div class="result correct"><strong>正解：C）</strong><br>データ拡張は「ラベルの意味が変わらない範囲」で加工してデータを増やす手法です。関係ない画像を混ぜるとノイズになります。</div>
-    </div>
+            <div class="question" id="question-18">
+                <div class="question-text">Q19. 「データ拡張（Data Augmentation）」の手法として適切でないものは？</div>
+                <ul class="options">
+                    <li data-option="A">A）画像の回転、反転、拡大縮小。</li>
+                    <li data-option="B">B）画像にノイズを加える。</li>
+                    <li data-option="C">C）全く関係のない画像をごちゃ混ぜにする。</li>
+                    <li data-option="D">D）画像の一部を切り抜く（Crop）。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'C')">答えを確認</button>
+                <div class="result correct"><strong>正解：C）</strong><br>データ拡張は「ラベルの意味が変わらない範囲」で加工してデータを増やす手法です。関係ない画像を混ぜるとノイズになります。</div>
+            </div>
 
-    <div class="question" id="question-19">
-        <div class="question-text">Q20. 「ハイパーパラメータ」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）学習によって自動的に最適化されるパラメータ（重みやバイアス）。</li>
-            <li data-option="B">B）人間が学習前に手動で設定する必要があるパラメータ（学習率、バッチサイズ、層の数など）。</li>
-            <li data-option="C">C）非常に値が大きいパラメータ。</li>
-            <li data-option="D">D）最終的な出力結果。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>AI自身が決めるのが「パラメータ」、人間が決めてあげるのが「ハイパーパラメータ」です。これの調整が腕の見せ所です。</div>
-    </div>
+            <div class="question" id="question-19">
+                <div class="question-text">Q20. 「ハイパーパラメータ」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習によって自動的に最適化されるパラメータ（重みやバイアス）。</li>
+                    <li data-option="B">B）人間が学習前に手動で設定する必要があるパラメータ（学習率、バッチサイズ、層の数など）。</li>
+                    <li data-option="C">C）非常に値が大きいパラメータ。</li>
+                    <li data-option="D">D）最終的な出力結果。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>AI自身が決めるのが「パラメータ」、人間が決めてあげるのが「ハイパーパラメータ」です。これの調整が腕の見せ所です。</div>
+            </div>
 
-    <div class="question" id="question-20">
-        <div class="question-text">Q21. 福島邦彦が提唱した、現在のCNNの原型となったモデルは？</div>
-        <ul class="options">
-            <li data-option="A">A）ネオコグニトロン</li>
-            <li data-option="B">B）パーセプトロン</li>
-            <li data-option="C">C）トランスフォーマー</li>
-            <li data-option="D">D）ボルツマンマシン</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>視覚野の「単純型細胞（S細胞）」と「複雑型細胞（C細胞）」をモデル化したもので、畳み込みとプーリングの基礎となりました。</div>
-    </div>
+            <div class="question" id="question-20">
+                <div class="question-text">Q21. 福島邦彦が提唱した、現在のCNNの原型となったモデルは？</div>
+                <ul class="options">
+                    <li data-option="A">A）ネオコグニトロン</li>
+                    <li data-option="B">B）パーセプトロン</li>
+                    <li data-option="C">C）トランスフォーマー</li>
+                    <li data-option="D">D）ボルツマンマシン</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>視覚野の「単純型細胞（S細胞）」と「複雑型細胞（C細胞）」をモデル化したもので、畳み込みとプーリングの基礎となりました。</div>
+            </div>
 
-    <div class="question" id="question-21">
-        <div class="question-text">Q22. 「万能近似定理（Universal Approximation Theorem）」が示していることは？</div>
-        <ul class="options">
-            <li data-option="A">A）隠れ層が1層でもあれば、ニューラルネットワークは（適切なユニット数があれば）どんな連続関数でも近似できる。</li>
-            <li data-option="B">B）AIはどんな問題でも解決できる。</li>
-            <li data-option="C">C）層を深くしないと関数は近似できない。</li>
-            <li data-option="D">D）線形関数しか近似できない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>ニューラルネットワークの高い表現力を数学的に保証する定理です。ただし「学習できるか（最適解が見つかるか）」は別の問題です。</div>
-    </div>
+            <div class="question" id="question-21">
+                <div class="question-text">Q22. 「万能近似定理（Universal Approximation Theorem）」が示していることは？</div>
+                <ul class="options">
+                    <li data-option="A">A）隠れ層が1層でもあれば、ニューラルネットワークは（適切なユニット数があれば）どんな連続関数でも近似できる。</li>
+                    <li data-option="B">B）AIはどんな問題でも解決できる。</li>
+                    <li data-option="C">C）層を深くしないと関数は近似できない。</li>
+                    <li data-option="D">D）線形関数しか近似できない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ニューラルネットワークの高い表現力を数学的に保証する定理です。ただし「学習できるか（最適解が見つかるか）」は別の問題です。</div>
+            </div>
 
-    <div class="question" id="question-22">
-        <div class="question-text">Q23. 学習率（Learning Rate）が大きすぎるとどうなる？</div>
-        <ul class="options">
-            <li data-option="A">A）学習が発散してしまい、いつまでも最適解に辿り着かない。</li>
-            <li data-option="B">B）局所解に陥りやすくなる。</li>
-            <li data-option="C">C）計算時間が長くなる。</li>
-            <li data-option="D">D）精度が良くなる。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>谷底（最小値）に向かいたいのに、歩幅（学習率）が大きすぎて谷を飛び越えて行ったり来たりしてしまいます。</div>
-    </div>
+            <div class="question" id="question-22">
+                <div class="question-text">Q23. 学習率（Learning Rate）が大きすぎるとどうなる？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習が発散してしまい、いつまでも最適解に辿り着かない。</li>
+                    <li data-option="B">B）局所解に陥りやすくなる。</li>
+                    <li data-option="C">C）計算時間が長くなる。</li>
+                    <li data-option="D">D）精度が良くなる。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>谷底（最小値）に向かいたいのに、歩幅（学習率）が大きすぎて谷を飛び越えて行ったり来たりしてしまいます。</div>
+            </div>
 
-    <div class="question" id="question-23">
-        <div class="question-text">Q24. 「内部共変量シフト（Internal Covariate Shift）」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）学習が進むにつれて、各層への入力分布がコロコロ変わってしまい、学習が安定しなくなる現象。</li>
-            <li data-option="B">B）データが足りなくなる現象。</li>
-            <li data-option="C">C）入力データ自体の分布が変わること。</li>
-            <li data-option="D">D）GPUが故障すること。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>これを解決するために導入されたのが「バッチ正規化」です。</div>
-    </div>
+            <div class="question" id="question-23">
+                <div class="question-text">Q24. 「内部共変量シフト（Internal Covariate Shift）」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習が進むにつれて、各層への入力分布がコロコロ変わってしまい、学習が安定しなくなる現象。</li>
+                    <li data-option="B">B）データが足りなくなる現象。</li>
+                    <li data-option="C">C）入力データ自体の分布が変わること。</li>
+                    <li data-option="D">D）GPUが故障すること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>これを解決するために導入されたのが「バッチ正規化」です。</div>
+            </div>
 
-    <div class="question" id="question-24">
-        <div class="question-text">Q25. 最適化手法「Adam」の利点は？</div>
-        <ul class="options">
-            <li data-option="A">A）慣性項（Momentum）と学習率の自動調整（RMSpropの考え方）を組み合わせ、調整が容易で収束が早い。</li>
-            <li data-option="B">B）メモリ消費が最も少ない。</li>
-            <li data-option="C">C）計算が最も単純である。</li>
-            <li data-option="D">D）画像処理専用である。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>現在ディープラーニングで最も標準的に使われているオプティマイザの一つです。</div>
-    </div>
+            <div class="question" id="question-24">
+                <div class="question-text">Q25. 最適化手法「Adam」の利点は？</div>
+                <ul class="options">
+                    <li data-option="A">A）慣性項（Momentum）と学習率の自動調整（RMSpropの考え方）を組み合わせ、調整が容易で収束が早い。</li>
+                    <li data-option="B">B）メモリ消費が最も少ない。</li>
+                    <li data-option="C">C）計算が最も単純である。</li>
+                    <li data-option="D">D）画像処理専用である。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>現在ディープラーニングで最も標準的に使われているオプティマイザの一つです。</div>
+            </div>
 
-    <div class="question" id="question-25">
-        <div class="question-text">Q26. 「学習率スケジューリング」の代表例は？</div>
-        <ul class="options">
-            <li data-option="A">A）学習が進むにつれて学習率を徐々に小さくする（Decay）。</li>
-            <li data-option="B">B）学習率を徐々に大きくする。</li>
-            <li data-option="C">C）学習率をランダムに変える。</li>
-            <li data-option="D">D）学習率を常に一定にする。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>最初は大きく動いて大まかな場所を探し、最後は小さく動いて微調整することで、精度良く収束させます。</div>
-    </div>
+            <div class="question" id="question-25">
+                <div class="question-text">Q26. 「学習率スケジューリング」の代表例は？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習が進むにつれて学習率を徐々に小さくする（Decay）。</li>
+                    <li data-option="B">B）学習率を徐々に大きくする。</li>
+                    <li data-option="C">C）学習率をランダムに変える。</li>
+                    <li data-option="D">D）学習率を常に一定にする。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>最初は大きく動いて大まかな場所を探し、最後は小さく動いて微調整することで、精度良く収束させます。</div>
+            </div>
 
-    <div class="question" id="question-26">
-        <div class="question-text">Q27. 「バッチサイズ」を大きくした時の影響は？</div>
-        <ul class="options">
-            <li data-option="A">A）1エポックあたりの学習時間は短くなるが、メモリ消費量が増え、汎化性能が若干落ちることがある。</li>
-            <li data-option="B">B）学習時間が長くなる。</li>
-            <li data-option="C">C）メモリ消費量が減る。</li>
-            <li data-option="D">D）計算精度が必ず向上する。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>一度にまとめて計算するのでGPUを効率よく使えますが、その分メモリを食います。また、ノイズが減りすぎて局所解にハマりやすくなることもあります。</div>
-    </div>
+            <div class="question" id="question-26">
+                <div class="question-text">Q27. 「バッチサイズ」を大きくした時の影響は？</div>
+                <ul class="options">
+                    <li data-option="A">A）1エポックあたりの学習時間は短くなるが、メモリ消費量が増え、汎化性能が若干落ちることがある。</li>
+                    <li data-option="B">B）学習時間が長くなる。</li>
+                    <li data-option="C">C）メモリ消費量が減る。</li>
+                    <li data-option="D">D）計算精度が必ず向上する。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>一度にまとめて計算するのでGPUを効率よく使えますが、その分メモリを食います。また、ノイズが減りすぎて局所解にハマりやすくなることもあります。</div>
+            </div>
 
-    <div class="question" id="question-27">
-        <div class="question-text">Q28. 「バイアス・バリアンスのトレードオフ」において、モデルが複雑すぎるとどうなる？</div>
-        <ul class="options">
-            <li data-option="A">A）バイアスは下がるが、バリアンスが上がり、過学習しやすくなる。</li>
-            <li data-option="B">B）バイアスが上がり、学習不足になる。</li>
-            <li data-option="C">C）両方とも下がる。</li>
-            <li data-option="D">D）変化しない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>複雑なモデルは訓練データには完璧に合いますが（低バイアス）、データが変わると結果が大きく変わってしまいます（高バリアンス）。</div>
-    </div>
+            <div class="question" id="question-27">
+                <div class="question-text">Q28. 「バイアス・バリアンスのトレードオフ」において、モデルが複雑すぎるとどうなる？</div>
+                <ul class="options">
+                    <li data-option="A">A）バイアスは下がるが、バリアンスが上がり、過学習しやすくなる。</li>
+                    <li data-option="B">B）バイアスが上がり、学習不足になる。</li>
+                    <li data-option="C">C）両方とも下がる。</li>
+                    <li data-option="D">D）変化しない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>複雑なモデルは訓練データには完璧に合いますが（低バイアス）、データが変わると結果が大きく変わってしまいます（高バリアンス）。</div>
+            </div>
 
-    <div class="question" id="question-28">
-        <div class="question-text">Q29. 「オッカムの剃刀」の考え方を機械学習に適用すると？</div>
-        <ul class="options">
-            <li data-option="A">A）同じ性能なら、より単純なモデルの方が良い（汎化性能が高い）。</li>
-            <li data-option="B">B）モデルは複雑であればあるほど良い。</li>
-            <li data-option="C">C）データは多いほど良い。</li>
-            <li data-option="D">D）不要なデータは切り捨てるべき。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>不必要に複雑な仮説（モデル）は過学習の原因になるため、シンプルさを保つことが推奨されます。正則化の根拠でもあります。</div>
-    </div>
-
-    <div class="question" id="question-29">
-        <div class="question-text">Q30. 2012年の画像認識コンペ「ILSVRC」で優勝したAlexNetが証明したことは？</div>
-        <ul class="options">
-            <li data-option="A">A）ディープラーニング（深層学習）が従来の手法を圧倒する性能を持つこと。</li>
-            <li data-option="B">B）CPUの方がGPUより速いこと。</li>
-            <li data-option="C">C）データ量は重要ではないこと。</li>
-            <li data-option="D">D）画像認識は不可能であること。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>第3次AIブームの火付け役となった歴史的な出来事です。ここからディープラーニングの時代が始まりました。</div>
-    </div>
-</div>
+            <div class="question" id="question-28">
+                <div class="question-text">Q29. 「オッカムの剃刀」の考え方を機械学習に適用すると？</div>
+                <ul class="options">
+                    <li data-option="A">A）同じ性能なら、より単純なモデルの方が良い（汎化性能が高い）。</li>
+                    <li data-option="B">B）モデルは複雑であればあるほど良い。</li>
+                    <li data-option="C">C）データは多いほど良い。</li>

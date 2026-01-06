@@ -1,369 +1,471 @@
-<div class="section quiz-section">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
-        <h2 style="margin: 0;">📝 問題演習（強化版：全30問）</h2>
-        <div style="display: flex; gap: 10px;">
-            <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
-            <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⑧ AIに必要な数理・統計知識 - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        
+        <h1>⑧ AIに必要な数理・統計知識</h1>
+        
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>最適化に必要な数学基礎知識や微分を理解する</li>
+                    <li>機械学習で必要となる統計学基礎を理解する</li>
+                    <li>基本的な統計情報を計算できる</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item"><strong>最小二乗法</strong>データ点と予測値の誤差を2乗して合計し、その合計値が最小になるようにモデルのパラメーターを決定する手法</div>
+                <div class="keyword-item"><strong>ユークリッド距離</strong>日常的な直線距離</div>
+                <div class="keyword-item"><strong>マハラノビス距離</strong>データの分布の形を考慮した距離</div>
+                <div class="keyword-item"><strong>cos類似度</strong>ベクトルの向きの近さを角度で評価</div>
+                <div class="keyword-item"><strong>微分</strong>関数がどのように変化するかを測る方法で、入力値をわずかに変えた時の出力の変化量を表す</div>
+                <div class="keyword-item"><strong>勾配降下法</strong>現在地点での最も急な下り坂方向に少しずつ移動することで関数の最小値を探す方法</div>
+                <div class="keyword-item"><strong>平均</strong>データの合計をデータ数で割った値</div>
+                <div class="keyword-item"><strong>中央値</strong>データを小さい順に並べた時の中央の値</div>
+                <div class="keyword-item"><strong>分散</strong>各データと平均の差の2乗の平均</div>
+                <div class="keyword-item"><strong>標準偏差</strong>分散の平方根</div>
+                <div class="keyword-item"><strong>正規分布</strong>データが平均値を中心に左右対称な分布</div>
+                <div class="keyword-item"><strong>相関係数</strong>-1から1の間の値で、2変数間の関係性の強さと方向を示す</div>
+            </div>
+        </div>
+        
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習（強化版：全30問）</h2>
+                <div style="display: flex; gap: 10px;">
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="pauseLearning()" style="background: #2196F3; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">⏸️ 一時停止</button>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 リセット</button>
+                </div>
+            </div>
+
+            <div class="question" id="question-0">
+                <div class="question-text">Q1. 【統計】「平均値」と「中央値」の違いについて、正しい説明は？</div>
+                <ul class="options">
+                    <li data-option="A">A）平均値は外れ値（極端に大きい/小さい値）の影響を受けやすいが、中央値は受けにくい。</li>
+                    <li data-option="B">B）常に平均値と中央値は同じ値になる。</li>
+                    <li data-option="C">C）中央値はデータの合計を個数で割ったものである。</li>
+                    <li data-option="D">D）平均値の方が常に実態を表している。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>例えば年収データで数人の大富豪がいると平均値は跳ね上がりますが、中央値（真ん中の人の年収）はほとんど変わりません。</div>
+            </div>
+
+            <div class="question" id="question-1">
+                <div class="question-text">Q2. 【統計】データの「ばらつき」を表す指標として、単位が元のデータと同じになるものは？</div>
+                <ul class="options">
+                    <li data-option="A">A）分散 (Variance)</li>
+                    <li data-option="B">B）標準偏差 (Standard Deviation)</li>
+                    <li data-option="C">C）共分散</li>
+                    <li data-option="D">D）相関係数</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>分散は2乗しているため単位が変わってしまいます（例：cm²）。標準偏差はルートをとって元の単位（例：cm）に戻したものです。</div>
+            </div>
+
+            <div class="question" id="question-2">
+                <div class="question-text">Q3. 【統計】相関係数が「-0.8」であるとき、どのような関係があるといえるか？</div>
+                <ul class="options">
+                    <li data-option="A">A）強い正の相関（片方が増えればもう片方も増える）。</li>
+                    <li data-option="B">B）強い負の相関（片方が増えればもう片方は減る）。</li>
+                    <li data-option="C">C）相関はない。</li>
+                    <li data-option="D">D）因果関係がある。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>絶対値が1に近いほど相関が強く、マイナスなので「負の相関（右肩下がり）」です。なお、相関があっても因果関係があるとは限りません。</div>
+            </div>
+
+            <div class="question" id="question-3">
+                <div class="question-text">Q4. 【確率】「P値（ピーち）」が有意水準（例えば0.05）より小さい場合、どう判断するか？</div>
+                <ul class="options">
+                    <li data-option="A">A）帰無仮説を棄却し、統計的に有意な差があると判断する。</li>
+                    <li data-option="B">B）帰無仮説を採択し、差は偶然だったと判断する。</li>
+                    <li data-option="C">C）計算間違いと判断する。</li>
+                    <li data-option="D">D）データ不足と判断する。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>「偶然こうなる確率は5%未満と極めて低い」＝「偶然ではない（何か意味がある）」と考えます。</div>
+            </div>
+
+            <div class="question" id="question-4">
+                <div class="question-text">Q5. 【確率】「ベイズの定理」の基本的な考え方は？</div>
+                <ul class="options">
+                    <li data-option="A">A）新しい情報（データ）を得るたびに、事前の確率を更新して事後確率を求める。</li>
+                    <li data-option="B">B）全ての確率は最初から決まっており、変化しない。</li>
+                    <li data-option="C">C）客観的な頻度だけで確率を決める。</li>
+                    <li data-option="D">D）平均値のみを使う。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>迷惑メールフィルタなどで使われます。「怪しい単語が含まれている」という情報を得るたびに、「これは迷惑メールだ」という確率（確信度）を高めていきます。</div>
+            </div>
+
+            <div class="question" id="question-5">
+                <div class="question-text">Q6. 【微分】機械学習における「偏微分」の役割は？</div>
+                <ul class="options">
+                    <li data-option="A">A）複数の変数がある関数において、ある1つの変数だけに注目して傾きを求める。</li>
+                    <li data-option="B">B）全ての変数を同時に0にする。</li>
+                    <li data-option="C">C）関数の最大値を求める。</li>
+                    <li data-option="D">D）データを積分する。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ニューラルネットワークは変数が多数（重みが多数）あるため、それぞれの重みが誤差にどう影響しているかを知るために偏微分を使います。</div>
+            </div>
+
+            <div class="question" id="question-6">
+                <div class="question-text">Q7. 【行列】ディープラーニングで行列（Matrix）計算が多用される理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）大量のデータと重みの計算（積和演算）を一度にまとめて処理できるから。</li>
+                    <li data-option="B">B）計算が遅くなるから。</li>
+                    <li data-option="C">C）メモリを使わないから。</li>
+                    <li data-option="D">D）プログラムが書きにくいから。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ニューラルネットワークの「入力×重み＋バイアス」という計算は、行列を使うと非常にシンプルかつ高速に記述できます。GPUはこの計算が得意です。</div>
+            </div>
+
+            <div class="question" id="question-7">
+                <div class="question-text">Q8. 【行列】「単位行列」の特徴は？</div>
+                <ul class="options">
+                    <li data-option="A">A）対角成分が全て1で、それ以外が0の行列。掛けても値が変わらない（数字の1のような役割）。</li>
+                    <li data-option="B">B）全ての成分が1の行列。</li>
+                    <li data-option="C">C）全ての成分が0の行列。</li>
+                    <li data-option="D">D）行と列を入れ替えた行列。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>正方行列において、掛けても相手を変えない行列です。逆行列の定義（Aと掛けると単位行列になる）などで重要です。</div>
+            </div>
+
+            <div class="question" id="question-8">
+                <div class="question-text">Q9. 【情報理論】「エントロピー（平均情報量）」が大きい状態とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）何が起こるか予測がつかない、不確実性が高い状態（乱雑な状態）。</li>
+                    <li data-option="B">B）何が起こるか完全に決まっている状態。</li>
+                    <li data-option="C">C）データ量が少ない状態。</li>
+                    <li data-option="D">D）情報価値がない状態。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>例えばコイン投げ（表裏が1/2ずつ）は結果が分からずエントロピーが高いですが、両面表のコインなら結果は確実でエントロピーは0です。</div>
+            </div>
+
+            <div class="question" id="question-9">
+                <div class="question-text">Q10. 【情報理論】2つの確率分布の「違い（距離のようなもの）」を測る指標は？</div>
+                <ul class="options">
+                    <li data-option="A">A）KLダイバージェンス（カルバック・ライブラー情報量）</li>
+                    <li data-option="B">B）ユークリッド距離</li>
+                    <li data-option="C">C）ジニ係数</li>
+                    <li data-option="D">D）標準偏差</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>GANやVAEなどの生成モデルで、「本物のデータの分布」と「生成したデータの分布」を近づける際などの誤差関数として登場します。</div>
+            </div>
+
+            <div class="question" id="question-10">
+                <div class="question-text">Q11. 【評価指標】混同行列における「真陽性（TP）」の意味は？</div>
+                <ul class="options">
+                    <li data-option="A">A）正解が陽性で、予測も陽性だった（正しく当てた）。</li>
+                    <li data-option="B">B）正解が陰性で、予測は陽性だった（誤って陽性とした）。</li>
+                    <li data-option="C">C）正解が陽性で、予測は陰性だった（見逃した）。</li>
+                    <li data-option="D">D）正解が陰性で、予測も陰性だった。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>True（正解）Positive（予測が陽性）という意味です。Bは偽陽性（FP）、Cは偽陰性（FN）、Dは真陰性（TN）です。</div>
+            </div>
+
+            <div class="question" id="question-11">
+                <div class="question-text">Q12. 【評価指標】「適合率（Precision）」の計算式は？</div>
+                <ul class="options">
+                    <li data-option="A">A）TP / (TP + FP) （陽性と予測したもののうち、本当に陽性だった割合）</li>
+                    <li data-option="B">B）TP / (TP + FN) （本当に陽性のもののうち、陽性と予測できた割合）</li>
+                    <li data-option="C">C）(TP + TN) / 全体</li>
+                    <li data-option="D">D）2PR / (P + R)</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>「予測の正確さ」です。スパムメール判定など、誤検知（冤罪）を減らしたいときに重視します。Bは再現率（Recall）です。</div>
+            </div>
+
+            <div class="question" id="question-12">
+                <div class="question-text">Q13. 【評価指標】「再現率（Recall）」の計算式は？</div>
+                <ul class="options">
+                    <li data-option="A">A）TP / (TP + FN) （本当に陽性のもののうち、陽性と予測できた割合）</li>
+                    <li data-option="B">B）TP / (TP + FP)</li>
+                    <li data-option="C">C）TN / (TN + FP)</li>
+                    <li data-option="D">D）TP / 全体</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>「取りこぼしのなさ」です。がん検診など、見逃しが許されない場合に重視します。感度（Sensitivity）とも呼ばれます。</div>
+            </div>
+
+            <div class="question" id="question-13">
+                <div class="question-text">Q14. 【評価指標】「F値（F1スコア）」とは何か？</div>
+                <ul class="options">
+                    <li data-option="A">A）適合率と再現率の調和平均。トレードオフにある両者のバランスを見る指標。</li>
+                    <li data-option="B">B）適合率と再現率の算術平均（足して2で割る）。</li>
+                    <li data-option="C">C）正解率のこと。</li>
+                    <li data-option="D">D）AUCのこと。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>極端に低い値に引っ張られる「調和平均」を使うことで、適合率と再現率のどちらかが低ければF値も低くなるようになっています。</div>
+            </div>
+
+            <div class="question" id="question-14">
+                <div class="question-text">Q15. 【評価指標】「ROC曲線」の縦軸と横軸は？</div>
+                <ul class="options">
+                    <li data-option="A">A）縦軸：真陽性率（TPR）、横軸：偽陽性率（FPR）</li>
+                    <li data-option="B">B）縦軸：適合率、横軸：再現率</li>
+                    <li data-option="C">C）縦軸：正解率、横軸：データ数</li>
+                    <li data-option="D">D）縦軸：損失、横軸：エポック数</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>閾値を変化させたときのモデルの性能変化をプロットしたものです。左上に膨らんでいるほど良いモデルです。BはPR曲線です。</div>
+            </div>
+
+            <div class="question" id="question-15">
+                <div class="question-text">Q16. 【評価指標】「AUC（Area Under the Curve）」の説明として正しいのは？</div>
+                <ul class="options">
+                    <li data-option="A">A）ROC曲線の下側の面積。1に近いほど性能が良い。</li>
+                    <li data-option="B">B）ROC曲線の上側の面積。0に近いほど性能が良い。</li>
+                    <li data-option="C">C）損失関数の値。</li>
+                    <li data-option="D">D）F値の最大値。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ランダムな予測だと0.5になり、完璧な予測だと1.0になります。不均衡データなどの評価によく使われます。</div>
+            </div>
+
+            <div class="question" id="question-16">
+                <div class="question-text">Q17. 【次元削減】「主成分分析（PCA）」の目的は？</div>
+                <ul class="options">
+                    <li data-option="A">A）データの情報をなるべく損なわずに、変数の数（次元）を減らすこと。</li>
+                    <li data-option="B">B）データをクラス分けすること。</li>
+                    <li data-option="C">C）欠損値を埋めること。</li>
+                    <li data-option="D">D）データを増やすこと。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>分散が最大になる方向（第1主成分）を見つけ、そこにデータを射影することで、情報のロスを最小限に抑えて要約します。</div>
+            </div>
+
+            <div class="question" id="question-17">
+                <div class="question-text">Q18. 【次元削減】「寄与率」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）各主成分が元のデータの情報をどれくらい説明できているかの割合。</li>
+                    <li data-option="B">B）学習データの正解率。</li>
+                    <li data-option="C">C）モデルの貢献度。</li>
+                    <li data-option="D">D）外れ値の割合。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>第1主成分、第2主成分...と足していった「累積寄与率」を見て、どのくらいの次元数まで採用するかを決めます（例：80%を超えるまで）。</div>
+            </div>
+
+            <div class="question" id="question-18">
+                <div class="question-text">Q19. 【次元削減】t-SNEの特徴は？</div>
+                <ul class="options">
+                    <li data-option="A">A）高次元データの構造を保ったまま、2次元や3次元に圧縮して可視化するのに優れた手法。非線形な関係も捉えられる。</li>
+                    <li data-option="B">B）線形な関係しか捉えられない。</li>
+                    <li data-option="C">C）新しいデータを追加して変換するのが得意。</li>
+                    <li data-option="D">D）教師あり学習である。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>PCAでは潰れてしまうような複雑な分布でも、t-SNEなら綺麗に分離して可視化できることが多いです。ただし計算は重めです。</div>
+            </div>
+
+            <div class="question" id="question-19">
+                <div class="question-text">Q20. 【最適化】「局所解（ローカルミニマム）」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）ある狭い範囲では最小だが、全体で見ると最小（大域解）ではない点。</li>
+                    <li data-option="B">B）全体の中で最も小さい点（グローバルミニマム）。</li>
+                    <li data-option="C">C）計算が止まる点。</li>
+                    <li data-option="D">D）最大値のこと。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>山の「小さなくぼみ」にハマってしまい、そこが一番低いと勘違いして学習が止まってしまう問題です。</div>
+            </div>
+
+            <div class="question" id="question-20">
+                <div class="question-text">Q21. 【距離】「マンハッタン距離（L1ノルム）」の説明は？</div>
+                <ul class="options">
+                    <li data-option="A">A）碁盤の目の道路を進むように、座標軸に沿って移動する距離の合計。</li>
+                    <li data-option="B">B）2点間を直線で結んだ距離（ユークリッド距離）。</li>
+                    <li data-option="C">C）データの分布を考慮した距離。</li>
+                    <li data-option="D">D）角度による距離。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>L1正則化（ラッソ）とも関連が深いです。BはL2ノルムです。</div>
+            </div>
+
+            <div class="question" id="question-21">
+                <div class="question-text">Q22. 【距離】「コサイン類似度」がよく使われる分野は？</div>
+                <ul class="options">
+                    <li data-option="A">A）文章や単語ベクトルの類似度判定（長さよりも方向を重視する場合）。</li>
+                    <li data-option="B">B）地理的な距離の測定。</li>
+                    <li data-option="C">C）画像の画素値の比較。</li>
+                    <li data-option="D">D）音声の波形の比較。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>文章の長さが違っても、使われている単語の傾向（ベクトルの向き）が似ていれば類似していると判断できるため、NLPで多用されます。</div>
+            </div>
+
+            <div class="question" id="question-22">
+                <div class="question-text">Q23. 【統計】「中心極限定理」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）サンプルサイズが大きくなれば、標本平均の分布は「正規分布」に近づく。</li>
+                    <li data-option="B">B）全てのデータは中心に集まる。</li>
+                    <li data-option="C">C）平均値と中央値は一致する。</li>
+                    <li data-option="D">D）データの分布は常に一様になる。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>元のデータがどんな変な分布であっても、そこから何度もデータを取って平均を出せば、その平均値たちは正規分布に従うという強力な定理です。</div>
+            </div>
+
+            <div class="question" id="question-23">
+                <div class="question-text">Q24. 【数学】「シグモイド関数」の出力範囲は？</div>
+                <ul class="options">
+                    <li data-option="A">A）0 から 1 の間</li>
+                    <li data-option="B">B）-1 から 1 の間</li>
+                    <li data-option="C">C）0 から 無限大</li>
+                    <li data-option="D">D）-無限大 から 無限大</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>確率（0〜100%）として扱いたいとき（2値分類の出力層など）に便利です。</div>
+            </div>
+
+            <div class="question" id="question-24">
+                <div class="question-text">Q25. 【数学】「ロジット」とは何か？</div>
+                <ul class="options">
+                    <li data-option="A">A）確率pに対して、log(p / (1-p)) で表される値（オッズの対数）。</li>
+                    <li data-option="B">B）確率そのもの。</li>
+                    <li data-option="C">C）損失関数の値。</li>
+                    <li data-option="D">D）活性化関数の出力。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ロジスティック回帰では、このロジット（対数オッズ）を線形回帰するようにモデル化します。逆関数がシグモイド関数です。</div>
+            </div>
+
+            <div class="question" id="question-25">
+                <div class="question-text">Q26. 【最適化】「鞍点（サドルポイント）」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）ある方向で見れば極小だが、別の方向で見れば極大になっている点。勾配が0になるため学習が停滞する原因になる。</li>
+                    <li data-option="B">B）最小値の点。</li>
+                    <li data-option="C">C）最大値の点。</li>
+                    <li data-option="D">D）勾配が無限大になる点。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>馬の鞍（くら）のような形です。高次元空間でのディープラーニングでは、局所解よりもこの鞍点の方が問題になりやすいと言われています。</div>
+            </div>
+
+            <div class="question" id="question-26">
+                <div class="question-text">Q27. 【統計】「尤度（ゆうど）」の意味は？</div>
+                <ul class="options">
+                    <li data-option="A">A）あるデータが得られたときに、それが「あるパラメータ（確率分布）」から発生したもっともらしさ。</li>
+                    <li data-option="B">B）確率と同じ意味。</li>
+                    <li data-option="C">C）誤差の大きさ。</li>
+                    <li data-option="D">D）データの個数。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>「結果（データ）」から「原因（パラメータ）」を推測する際に、この尤度を最大にするパラメータを選ぶのが「最尤推定」です。</div>
+            </div>
+
+            <div class="question" id="question-27">
+                <div class="question-text">Q28. 【情報理論】「交差エントロピー誤差」がゼロになるとき、どのような状態か？</div>
+                <ul class="options">
+                    <li data-option="A">A）予測した確率分布が、正解の分布と完全に一致している状態。</li>
+                    <li data-option="B">B）全く予測が外れている状態。</li>
+                    <li data-option="C">C）エントロピーが最大の状態。</li>
+                    <li data-option="D">D）学習が始まっていない状態。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>分類問題の損失関数として使われます。正解ラベル（確率1.0）に対して、予測も1.0を出せば誤差は0になります。</div>
+            </div>
+
+            <div class="question" id="question-28">
+                <div class="question-text">Q29. 【数学】「テンソル」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）スカラー（0階）、ベクトル（1階）、行列（2階）を一般化した概念。多次元配列のこと。</li>
+                    <li data-option="B">B）10個の数字の集まり。</li>
+                    <li data-option="C">C）物理学専用の用語でAIには関係ない。</li>
+                    <li data-option="D">D）関数の一種。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>カラー画像は「高さ×幅×色（3）」の3階テンソル、動画はさらに時間軸を加えた4階テンソルとして扱います。TensorFlowの名前の由来です。</div>
+            </div>
+
+            <div class="question" id="question-29">
+                <div class="question-text">Q30. 【統計】「外れ値」の処理として適切でないものは？</div>
+                <ul class="options">
+                    <li data-option="A">A）何も確認せずに全て自動で削除する。</li>
+                    <li data-option="B">B）入力ミスなのか、本当に珍しい現象なのかを確認して対処を決める。</li>
+                    <li data-option="C">C）中央値など、外れ値に強い指標を使う。</li>
+                    <li data-option="D">D）スミルノフ・グラブス検定などで統計的に判定する。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>「異常検知」のように、その外れ値こそが発見したい重要なデータである場合もあるため、安易な削除は禁物です。</div>
+            </div>
         </div>
     </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // 回答リセット機能
+        function resetAnswers() {
+            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
+                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+                const history = StudyHistory.getHistory();
+                if (history[currentPage]) {
+                    delete history[currentPage];
+                    StudyHistory.saveHistory(history);
+                }
+                location.reload();
+            }
+        }
 
-    <div class="question" id="question-0">
-        <div class="question-text">Q1. 【統計】「平均値」と「中央値」の違いについて、正しい説明は？</div>
-        <ul class="options">
-            <li data-option="A">A）平均値は外れ値（極端に大きい/小さい値）の影響を受けやすいが、中央値は受けにくい。</li>
-            <li data-option="B">B）常に平均値と中央値は同じ値になる。</li>
-            <li data-option="C">C）中央値はデータの合計を個数で割ったものである。</li>
-            <li data-option="D">D）平均値の方が常に実態を表している。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>例えば年収データで数人の大富豪がいると平均値は跳ね上がりますが、中央値（真ん中の人の年収）はほとんど変わりません。</div>
-    </div>
-
-    <div class="question" id="question-1">
-        <div class="question-text">Q2. 【統計】データの「ばらつき」を表す指標として、単位が元のデータと同じになるものは？</div>
-        <ul class="options">
-            <li data-option="A">A）分散 (Variance)</li>
-            <li data-option="B">B）標準偏差 (Standard Deviation)</li>
-            <li data-option="C">C）共分散</li>
-            <li data-option="D">D）相関係数</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>分散は2乗しているため単位が変わってしまいます（例：cm²）。標準偏差はルートをとって元の単位（例：cm）に戻したものです。</div>
-    </div>
-
-    <div class="question" id="question-2">
-        <div class="question-text">Q3. 【統計】相関係数が「-0.8」であるとき、どのような関係があるといえるか？</div>
-        <ul class="options">
-            <li data-option="A">A）強い正の相関（片方が増えればもう片方も増える）。</li>
-            <li data-option="B">B）強い負の相関（片方が増えればもう片方は減る）。</li>
-            <li data-option="C">C）相関はない。</li>
-            <li data-option="D">D）因果関係がある。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-        <div class="result correct"><strong>正解：B）</strong><br>絶対値が1に近いほど相関が強く、マイナスなので「負の相関（右肩下がり）」です。なお、相関があっても因果関係があるとは限りません。</div>
-    </div>
-
-    <div class="question" id="question-3">
-        <div class="question-text">Q4. 【確率】「P値（ピーち）」が有意水準（例えば0.05）より小さい場合、どう判断するか？</div>
-        <ul class="options">
-            <li data-option="A">A）帰無仮説を棄却し、統計的に有意な差があると判断する。</li>
-            <li data-option="B">B）帰無仮説を採択し、差は偶然だったと判断する。</li>
-            <li data-option="C">C）計算間違いと判断する。</li>
-            <li data-option="D">D）データ不足と判断する。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>「偶然こうなる確率は5%未満と極めて低い」＝「偶然ではない（何か意味がある）」と考えます。</div>
-    </div>
-
-    <div class="question" id="question-4">
-        <div class="question-text">Q5. 【確率】「ベイズの定理」の基本的な考え方は？</div>
-        <ul class="options">
-            <li data-option="A">A）新しい情報（データ）を得るたびに、事前の確率を更新して事後確率を求める。</li>
-            <li data-option="B">B）全ての確率は最初から決まっており、変化しない。</li>
-            <li data-option="C">C）客観的な頻度だけで確率を決める。</li>
-            <li data-option="D">D）平均値のみを使う。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>迷惑メールフィルタなどで使われます。「怪しい単語が含まれている」という情報を得るたびに、「これは迷惑メールだ」という確率（確信度）を高めていきます。</div>
-    </div>
-
-    <div class="question" id="question-5">
-        <div class="question-text">Q6. 【微分】機械学習における「偏微分」の役割は？</div>
-        <ul class="options">
-            <li data-option="A">A）複数の変数がある関数において、ある1つの変数だけに注目して傾きを求める。</li>
-            <li data-option="B">B）全ての変数を同時に0にする。</li>
-            <li data-option="C">C）関数の最大値を求める。</li>
-            <li data-option="D">D）データを積分する。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>ニューラルネットワークは変数が多数（重みが多数）あるため、それぞれの重みが誤差にどう影響しているかを知るために偏微分を使います。</div>
-    </div>
-
-    <div class="question" id="question-6">
-        <div class="question-text">Q7. 【行列】ディープラーニングで行列（Matrix）計算が多用される理由は？</div>
-        <ul class="options">
-            <li data-option="A">A）大量のデータと重みの計算（積和演算）を一度にまとめて処理できるから。</li>
-            <li data-option="B">B）計算が遅くなるから。</li>
-            <li data-option="C">C）メモリを使わないから。</li>
-            <li data-option="D">D）プログラムが書きにくいから。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>ニューラルネットワークの「入力×重み＋バイアス」という計算は、行列を使うと非常にシンプルかつ高速に記述できます。GPUはこの計算が得意です。</div>
-    </div>
-
-    <div class="question" id="question-7">
-        <div class="question-text">Q8. 【行列】「単位行列」の特徴は？</div>
-        <ul class="options">
-            <li data-option="A">A）対角成分が全て1で、それ以外が0の行列。掛けても値が変わらない（数字の1のような役割）。</li>
-            <li data-option="B">B）全ての成分が1の行列。</li>
-            <li data-option="C">C）全ての成分が0の行列。</li>
-            <li data-option="D">D）行と列を入れ替えた行列。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>正方行列において、掛けても相手を変えない行列です。逆行列の定義（Aと掛けると単位行列になる）などで重要です。</div>
-    </div>
-
-    <div class="question" id="question-8">
-        <div class="question-text">Q9. 【情報理論】「エントロピー（平均情報量）」が大きい状態とは？</div>
-        <ul class="options">
-            <li data-option="A">A）何が起こるか予測がつかない、不確実性が高い状態（乱雑な状態）。</li>
-            <li data-option="B">B）何が起こるか完全に決まっている状態。</li>
-            <li data-option="C">C）データ量が少ない状態。</li>
-            <li data-option="D">D）情報価値がない状態。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>例えばコイン投げ（表裏が1/2ずつ）は結果が分からずエントロピーが高いですが、両面表のコインなら結果は確実でエントロピーは0です。</div>
-    </div>
-
-    <div class="question" id="question-9">
-        <div class="question-text">Q10. 【情報理論】2つの確率分布の「違い（距離のようなもの）」を測る指標は？</div>
-        <ul class="options">
-            <li data-option="A">A）KLダイバージェンス（カルバック・ライブラー情報量）</li>
-            <li data-option="B">B）ユークリッド距離</li>
-            <li data-option="C">C）ジニ係数</li>
-            <li data-option="D">D）標準偏差</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>GANやVAEなどの生成モデルで、「本物のデータの分布」と「生成したデータの分布」を近づける際などの誤差関数として登場します。</div>
-    </div>
-
-    <div class="question" id="question-10">
-        <div class="question-text">Q11. 【評価指標】混同行列における「真陽性（TP）」の意味は？</div>
-        <ul class="options">
-            <li data-option="A">A）正解が陽性で、予測も陽性だった（正しく当てた）。</li>
-            <li data-option="B">B）正解が陰性で、予測は陽性だった（誤って陽性とした）。</li>
-            <li data-option="C">C）正解が陽性で、予測は陰性だった（見逃した）。</li>
-            <li data-option="D">D）正解が陰性で、予測も陰性だった。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>True（正解）Positive（予測が陽性）という意味です。Bは偽陽性（FP）、Cは偽陰性（FN）、Dは真陰性（TN）です。</div>
-    </div>
-
-    <div class="question" id="question-11">
-        <div class="question-text">Q12. 【評価指標】「適合率（Precision）」の計算式は？</div>
-        <ul class="options">
-            <li data-option="A">A）TP / (TP + FP) （陽性と予測したもののうち、本当に陽性だった割合）</li>
-            <li data-option="B">B）TP / (TP + FN) （本当に陽性のもののうち、陽性と予測できた割合）</li>
-            <li data-option="C">C）(TP + TN) / 全体</li>
-            <li data-option="D">D）2PR / (P + R)</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>「予測の正確さ」です。スパムメール判定など、誤検知（冤罪）を減らしたいときに重視します。Bは再現率（Recall）です。</div>
-    </div>
-
-    <div class="question" id="question-12">
-        <div class="question-text">Q13. 【評価指標】「再現率（Recall）」の計算式は？</div>
-        <ul class="options">
-            <li data-option="A">A）TP / (TP + FN) （本当に陽性のもののうち、陽性と予測できた割合）</li>
-            <li data-option="B">B）TP / (TP + FP)</li>
-            <li data-option="C">C）TN / (TN + FP)</li>
-            <li data-option="D">D）TP / 全体</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>「取りこぼしのなさ」です。がん検診など、見逃しが許されない場合に重視します。感度（Sensitivity）とも呼ばれます。</div>
-    </div>
-
-    <div class="question" id="question-13">
-        <div class="question-text">Q14. 【評価指標】「F値（F1スコア）」とは何か？</div>
-        <ul class="options">
-            <li data-option="A">A）適合率と再現率の調和平均。トレードオフにある両者のバランスを見る指標。</li>
-            <li data-option="B">B）適合率と再現率の算術平均（足して2で割る）。</li>
-            <li data-option="C">C）正解率のこと。</li>
-            <li data-option="D">D）AUCのこと。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>極端に低い値に引っ張られる「調和平均」を使うことで、適合率と再現率のどちらかが低ければF値も低くなるようになっています。</div>
-    </div>
-
-    <div class="question" id="question-14">
-        <div class="question-text">Q15. 【評価指標】「ROC曲線」の縦軸と横軸は？</div>
-        <ul class="options">
-            <li data-option="A">A）縦軸：真陽性率（TPR）、横軸：偽陽性率（FPR）</li>
-            <li data-option="B">B）縦軸：適合率、横軸：再現率</li>
-            <li data-option="C">C）縦軸：正解率、横軸：データ数</li>
-            <li data-option="D">D）縦軸：損失、横軸：エポック数</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>閾値を変化させたときのモデルの性能変化をプロットしたものです。左上に膨らんでいるほど良いモデルです。BはPR曲線です。</div>
-    </div>
-
-    <div class="question" id="question-15">
-        <div class="question-text">Q16. 【評価指標】「AUC（Area Under the Curve）」の説明として正しいのは？</div>
-        <ul class="options">
-            <li data-option="A">A）ROC曲線の下側の面積。1に近いほど性能が良い。</li>
-            <li data-option="B">B）ROC曲線の上側の面積。0に近いほど性能が良い。</li>
-            <li data-option="C">C）損失関数の値。</li>
-            <li data-option="D">D）F値の最大値。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>ランダムな予測だと0.5になり、完璧な予測だと1.0になります。不均衡データなどの評価によく使われます。</div>
-    </div>
-
-    <div class="question" id="question-16">
-        <div class="question-text">Q17. 【次元削減】「主成分分析（PCA）」の目的は？</div>
-        <ul class="options">
-            <li data-option="A">A）データの情報をなるべく損なわずに、変数の数（次元）を減らすこと。</li>
-            <li data-option="B">B）データをクラス分けすること。</li>
-            <li data-option="C">C）欠損値を埋めること。</li>
-            <li data-option="D">D）データを増やすこと。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>分散が最大になる方向（第1主成分）を見つけ、そこにデータを射影することで、情報のロスを最小限に抑えて要約します。</div>
-    </div>
-
-    <div class="question" id="question-17">
-        <div class="question-text">Q18. 【次元削減】「寄与率」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）各主成分が元のデータの情報をどれくらい説明できているかの割合。</li>
-            <li data-option="B">B）学習データの正解率。</li>
-            <li data-option="C">C）モデルの貢献度。</li>
-            <li data-option="D">D）外れ値の割合。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>第1主成分、第2主成分...と足していった「累積寄与率」を見て、どのくらいの次元数まで採用するかを決めます（例：80%を超えるまで）。</div>
-    </div>
-
-    <div class="question" id="question-18">
-        <div class="question-text">Q19. 【次元削減】t-SNEの特徴は？</div>
-        <ul class="options">
-            <li data-option="A">A）高次元データの構造を保ったまま、2次元や3次元に圧縮して可視化するのに優れた手法。非線形な関係も捉えられる。</li>
-            <li data-option="B">B）線形な関係しか捉えられない。</li>
-            <li data-option="C">C）新しいデータを追加して変換するのが得意。</li>
-            <li data-option="D">D）教師あり学習である。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>PCAでは潰れてしまうような複雑な分布でも、t-SNEなら綺麗に分離して可視化できることが多いです。ただし計算は重めです。</div>
-    </div>
-
-    <div class="question" id="question-19">
-        <div class="question-text">Q20. 【最適化】「局所解（ローカルミニマム）」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）ある狭い範囲では最小だが、全体で見ると最小（大域解）ではない点。</li>
-            <li data-option="B">B）全体の中で最も小さい点（グローバルミニマム）。</li>
-            <li data-option="C">C）計算が止まる点。</li>
-            <li data-option="D">D）最大値のこと。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>山の「小さなくぼみ」にハマってしまい、そこが一番低いと勘違いして学習が止まってしまう問題です。</div>
-    </div>
-
-    <div class="question" id="question-20">
-        <div class="question-text">Q21. 【距離】「マンハッタン距離（L1ノルム）」の説明は？</div>
-        <ul class="options">
-            <li data-option="A">A）碁盤の目の道路を進むように、座標軸に沿って移動する距離の合計。</li>
-            <li data-option="B">B）2点間を直線で結んだ距離（ユークリッド距離）。</li>
-            <li data-option="C">C）データの分布を考慮した距離。</li>
-            <li data-option="D">D）角度による距離。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>L1正則化（ラッソ）とも関連が深いです。BはL2ノルムです。</div>
-    </div>
-
-    <div class="question" id="question-21">
-        <div class="question-text">Q22. 【距離】「コサイン類似度」がよく使われる分野は？</div>
-        <ul class="options">
-            <li data-option="A">A）文章や単語ベクトルの類似度判定（長さよりも方向を重視する場合）。</li>
-            <li data-option="B">B）地理的な距離の測定。</li>
-            <li data-option="C">C）画像の画素値の比較。</li>
-            <li data-option="D">D）音声の波形の比較。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>文章の長さが違っても、使われている単語の傾向（ベクトルの向き）が似ていれば類似していると判断できるため、NLPで多用されます。</div>
-    </div>
-
-    <div class="question" id="question-22">
-        <div class="question-text">Q23. 【統計】「中心極限定理」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）サンプルサイズが大きくなれば、標本平均の分布は「正規分布」に近づく。</li>
-            <li data-option="B">B）全てのデータは中心に集まる。</li>
-            <li data-option="C">C）平均値と中央値は一致する。</li>
-            <li data-option="D">D）データの分布は常に一様になる。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>元のデータがどんな変な分布であっても、そこから何度もデータを取って平均を出せば、その平均値たちは正規分布に従うという強力な定理です。</div>
-    </div>
-
-    <div class="question" id="question-23">
-        <div class="question-text">Q24. 【数学】「シグモイド関数」の出力範囲は？</div>
-        <ul class="options">
-            <li data-option="A">A）0 から 1 の間</li>
-            <li data-option="B">B）-1 から 1 の間</li>
-            <li data-option="C">C）0 から 無限大</li>
-            <li data-option="D">D）-無限大 から 無限大</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>確率（0〜100%）として扱いたいとき（2値分類の出力層など）に便利です。</div>
-    </div>
-
-    <div class="question" id="question-24">
-        <div class="question-text">Q25. 【数学】「ロジット」とは何か？</div>
-        <ul class="options">
-            <li data-option="A">A）確率pに対して、log(p / (1-p)) で表される値（オッズの対数）。</li>
-            <li data-option="B">B）確率そのもの。</li>
-            <li data-option="C">C）損失関数の値。</li>
-            <li data-option="D">D）活性化関数の出力。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>ロジスティック回帰では、このロジット（対数オッズ）を線形回帰するようにモデル化します。逆関数がシグモイド関数です。</div>
-    </div>
-
-    <div class="question" id="question-25">
-        <div class="question-text">Q26. 【最適化】「鞍点（サドルポイント）」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）ある方向で見れば極小だが、別の方向で見れば極大になっている点。勾配が0になるため学習が停滞する原因になる。</li>
-            <li data-option="B">B）最小値の点。</li>
-            <li data-option="C">C）最大値の点。</li>
-            <li data-option="D">D）勾配が無限大になる点。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>馬の鞍（くら）のような形です。高次元空間でのディープラーニングでは、局所解よりもこの鞍点の方が問題になりやすいと言われています。</div>
-    </div>
-
-    <div class="question" id="question-26">
-        <div class="question-text">Q27. 【統計】「尤度（ゆうど）」の意味は？</div>
-        <ul class="options">
-            <li data-option="A">A）あるデータが得られたときに、それが「あるパラメータ（確率分布）」から発生したもっともらしさ。</li>
-            <li data-option="B">B）確率と同じ意味。</li>
-            <li data-option="C">C）誤差の大きさ。</li>
-            <li data-option="D">D）データの個数。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>「結果（データ）」から「原因（パラメータ）」を推測する際に、この尤度を最大にするパラメータを選ぶのが「最尤推定」です。</div>
-    </div>
-
-    <div class="question" id="question-27">
-        <div class="question-text">Q28. 【情報理論】「交差エントロピー誤差」がゼロになるとき、どのような状態か？</div>
-        <ul class="options">
-            <li data-option="A">A）予測した確率分布が、正解の分布と完全に一致している状態。</li>
-            <li data-option="B">B）全く予測が外れている状態。</li>
-            <li data-option="C">C）エントロピーが最大の状態。</li>
-            <li data-option="D">D）学習が始まっていない状態。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>分類問題の損失関数として使われます。正解ラベル（確率1.0）に対して、予測も1.0を出せば誤差は0になります。</div>
-    </div>
-
-    <div class="question" id="question-28">
-        <div class="question-text">Q29. 【数学】「テンソル」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）スカラー（0階）、ベクトル（1階）、行列（2階）を一般化した概念。多次元配列のこと。</li>
-            <li data-option="B">B）10個の数字の集まり。</li>
-            <li data-option="C">C）物理学専用の用語でAIには関係ない。</li>
-            <li data-option="D">D）関数の一種。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>カラー画像は「高さ×幅×色（3）」の3階テンソル、動画はさらに時間軸を加えた4階テンソルとして扱います。TensorFlowの名前の由来です。</div>
-    </div>
-
-    <div class="question" id="question-29">
-        <div class="question-text">Q30. 【統計】「外れ値」の処理として適切でないものは？</div>
-        <ul class="options">
-            <li data-option="A">A）何も確認せずに全て自動で削除する。</li>
-            <li data-option="B">B）入力ミスなのか、本当に珍しい現象なのかを確認して対処を決める。</li>
-            <li data-option="C">C）中央値など、外れ値に強い指標を使う。</li>
-            <li data-option="D">D）スミルノフ・グラブス検定などで統計的に判定する。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>「異常検知」のように、その外れ値こそが発見したい重要なデータである場合もあるため、安易な削除は禁物です。</div>
-    </div>
-</div>
+        // 学習一時停止機能
+        function pauseLearning() {
+            const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+            const questions = document.querySelectorAll('.question');
+            let currentQuestionIndex = 0;
+            
+            // 未回答の最初の問題を探す
+            for (let i = 0; i < questions.length; i++) {
+                if (!questions[i].classList.contains('answered-correct') && !questions[i].classList.contains('answered-incorrect')) {
+                    currentQuestionIndex = i;
+                    break;
+                }
+            }
+            
+            const scrollPosition = window.scrollY;
+            StudyHistory.saveSession(currentPage, currentQuestionIndex, scrollPosition);
+            alert('学習を一時停止しました。TOPページから「学習を再開」ボタンで続きから始められます。');
+            window.location.href = 'index.html';
+        }
+        
+        // ページ読み込み時に続きから再開する機能
+        document.addEventListener('DOMContentLoaded', function() {
+            const session = StudyHistory.getSession();
+            const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+            
+            // セッション情報があり、かつ同じページの場合のみ復元
+            if (session && session.category === currentPage) {
+                // スクロール位置を復元
+                if (session.scrollPosition) {
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: session.scrollPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
