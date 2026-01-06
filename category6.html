@@ -1,163 +1,369 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⑥ ディープラーニングの応用例 - G検定 学習アプリ</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <a href="index.html" class="back-link">← トップページに戻る</a>
-        <h1>⑥ ディープラーニングの応用例</h1>
-        <div class="section">
-            <div class="goals">
-                <h3>🎯 到達目標</h3>
-                <ul>
-                    <li>画像認識タスクの種類とその概要について理解する</li>
-                    <li>代表的な画像認識モデルについて理解する</li>
-                    <li>自然言語処理タスクの種類とその概要について理解する</li>
-                    <li>代表的な自然言語処理モデルについて理解する</li>
-                    <li>音声処理タスクの種類とその概要について理解する</li>
-                    <li>代表的な強化学習モデルについて理解する</li>
-                </ul>
-            </div>
-        </div>
-        <div class="section">
-            <h2>📚 重要キーワード</h2>
-            <div class="keywords">
-                <div class="keyword-item"><strong>物体認識</strong>画像内の主要な物体を特定するタスク</div>
-                <div class="keyword-item"><strong>物体検出</strong>画像内の複数の物体の位置を特定するタスク</div>
-                <div class="keyword-item"><strong>セグメンテーション</strong>ピクセルレベルでの分類を行うタスク</div>
-                <div class="keyword-item"><strong>AlexNet</strong>2012年のILSVRCで圧倒的な精度を達成した深層畳み込みニューラルネットワーク</div>
-                <div class="keyword-item"><strong>VGG</strong>全ての畳み込み層に3×3の小さなフィルターを使い層を深く積み重ねる構造が特徴</div>
-                <div class="keyword-item"><strong>Word2Vec</strong>単語を数値ベクトルで表現し、単語間の関係性を数学的に扱うことを可能にした手法</div>
-                <div class="keyword-item"><strong>BERT</strong>文脈を考慮して単語の意味を理解するモデル</div>
-                <div class="keyword-item"><strong>GPT</strong>文章生成に特化したモデルで大量のテキストデータによる事前学習と特定タスクへの調整により自然な文章を生成</div>
-                <div class="keyword-item"><strong>音声認識</strong>人間の話し声をテキストに変換する技術</div>
-                <div class="keyword-item"><strong>音声合成</strong>テキストデータから人の声のような音を人工的に生成する技術</div>
-                <div class="keyword-item"><strong>DQN</strong>強化学習とディープラーニングを融合させた手法</div>
-            </div>
-        </div>
-        <div class="section quiz-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
-                <h2 style="margin: 0;">📝 問題演習</h2>
-                <div style="display: flex; gap: 10px;">
-                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
-                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
-                </div>
-            </div>
-
-            <div class="question" id="question-0">
-                <div class="question-text">Q1. 2015年に登場し、152層もの深さを実現した「ResNet」の技術的特徴は？</div>
-                <ul class="options">
-                    <li data-option="A">A）スキップ結合（ショートカット接続）</li>
-                    <li data-option="B">B）ドロップアウト</li>
-                    <li data-option="C">C）蒸留</li>
-                    <li data-option="D">D）敵対的生成</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-                <div class="result correct"><strong>正解：A）</strong><br>入力を迂回させて出力に足し合わせることで、層を深くしても勾配が消えず、性能が落ちないようにしました。</div>
-            </div>
-
-            <div class="question" id="question-1">
-                <div class="question-text">Q2. 「セマンティック・セグメンテーション」の説明は？</div>
-                <ul class="options">
-                    <li data-option="A">A）画像を「犬」「猫」などのクラスに分類する。</li>
-                    <li data-option="B">B）画像の全ての画素（ピクセル）に対して、何が写っているかのラベルを付ける。</li>
-                    <li data-option="C">C）物体を四角い枠（バウンディングボックス）で囲む。</li>
-                    <li data-option="D">D）個々の物体（同じ種類の別の犬など）を区別する。</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-                <div class="result correct"><strong>正解：B）</strong><br>画像認識の中で最も細かいタスクです。自動運転で「道路」「歩行者」「空」をピクセル単位で塗り分けるのなどに使われます。</div>
-            </div>
-
-            <div class="question" id="question-2">
-                <div class="question-text">Q3. 物体検出手法「YOLO (You Only Look Once)」の特徴は？</div>
-                <ul class="options">
-                    <li data-option="A">A）精度は高いが処理が遅い。</li>
-                    <li data-option="B">B）画像を一度見るだけで、物体の位置と種類を同時に予測するため、リアルタイム処理が可能。</li>
-                    <li data-option="C">C）セグメンテーションを行うモデルである。</li>
-                    <li data-option="D">D）動画は扱えない。</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-                <div class="result correct"><strong>正解：B）</strong><br>以前の手法は「候補を探す」→「中身を見る」の2段階でしたが、YOLOはこれらを1つのネットワークで一気に行うため爆速です。</div>
-            </div>
-
-            <div class="question" id="question-3">
-                <div class="question-text">Q4. 自然言語処理における「Word2Vec」ができることは？</div>
-                <ul class="options">
-                    <li data-option="A">A）単語をベクトル（数値の列）に変換し、「王様 - 男性 + 女性 = 女王」のような計算ができる。</li>
-                    <li data-option="B">B）長い文章を要約する。</li>
-                    <li data-option="C">C）感情分析を行う。</li>
-                    <li data-option="D">D）文法チェックを行う。</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-                <div class="result correct"><strong>正解：A）</strong><br>単語の意味の近さを、ベクトル空間上の距離で表現できるようになりました。</div>
-            </div>
-
-            <div class="question" id="question-4">
-                <div class="question-text">Q5. 「BERT」の特徴として正しいものは？</div>
-                <ul class="options">
-                    <li data-option="A">A）文の先頭から順番に予測する。</li>
-                    <li data-option="B">B）文の「穴埋め問題（マスク）」を解くことで、文脈を双方向から事前学習する。</li>
-                    <li data-option="C">C）画像生成モデルである。</li>
-                    <li data-option="D">D）RNNベースのモデルである。</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-                <div class="result correct"><strong>正解：B）</strong><br>左右両方の文脈を見て単語の意味を理解するため、検索や質問応答などで非常に高い精度を出しました。</div>
-            </div>
-
-            <div class="question" id="question-5">
-                <div class="question-text">Q6. 「GPT」シリーズの特徴は？</div>
-                <ul class="options">
-                    <li data-option="A">A）特定タスク専用のモデルである。</li>
-                    <li data-option="B">B）次に来る単語を予測することで学習する生成モデルで、多様なタスクに対応可能。</li>
-                    <li data-option="C">C）画像認識モデルである。</li>
-                    <li data-option="D">D）教師あり学習のみを用いる。</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-                <div class="result correct"><strong>正解：B）</strong><br>ChatGPTの基盤です。大量のテキストから「続きを書く」訓練をすることで、驚異的な言語能力を獲得しました。</div>
-            </div>
-
-            <div class="question" id="question-6">
-                <div class="question-text">Q7. 画像生成技術「GAN（敵対的生成ネットワーク）」の仕組みは？</div>
-                <ul class="options">
-                    <li data-option="A">A）「偽物を作る生成器」と「本物か見抜く識別器」が競い合って学習する。</li>
-                    <li data-option="B">B）画像を圧縮して復元する。</li>
-                    <li data-option="C">C）画像にノイズを加える。</li>
-                    <li data-option="D">D）画素の色を平均化する。</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-                <div class="result correct"><strong>正解：A）</strong><br>「偽札作り」と「警察」のいたちごっこに例えられます。結果として、警察も見破れないほど精巧な偽物（画像）が作れるようになります。</div>
-            </div>
-
-            <div class="question" id="question-7">
-                <div class="question-text">Q8. 深層強化学習「DQN (Deep Q-Network)」がブレイクスルーとなった点は？</div>
-                <ul class="options">
-                    <li data-option="A">A）Q学習のQテーブル（価値関数）をディープニューラルネットワークで近似した。</li>
-                    <li data-option="B">B）囲碁のルールを教え込んだ。</li>
-                    <li data-option="C">C）人間のプロゲーマーのデータを学習させた。</li>
-                    <li data-option="D">D）CPUのみで動作するようにした。</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-                <div class="result correct"><strong>正解：A）</strong><br>それまでは巨大な表（テーブル）で管理していた情報を、AIの脳（ニューラルネット）に圧縮して覚えさせたことで、複雑なゲーム画面も扱えるようになりました。</div>
-            </div>
+<div class="section quiz-section">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+        <h2 style="margin: 0;">📝 問題演習（スペシャル版：全30問）</h2>
+        <div style="display: flex; gap: 10px;">
+            <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+            <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
         </div>
     </div>
-    <script src="script.js"></script>
-    <script>
-        function resetAnswers() {
-            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
-                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
-                const history = StudyHistory.getHistory();
-                if (history[currentPage]) {
-                    delete history[currentPage];
-                    StudyHistory.saveHistory(history);
-                }
-                location.reload();
-            }
-        }
-    </script>
-</body>
-</html>
+
+    <div class="question" id="question-0">
+        <div class="question-text">Q1. 2015年に登場し、152層もの深さを実現した「ResNet」の技術的特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）スキップ結合（ショートカット接続）</li>
+            <li data-option="B">B）ドロップアウト</li>
+            <li data-option="C">C）蒸留</li>
+            <li data-option="D">D）敵対的生成</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>入力を迂回させて出力に足し合わせることで、層を深くしても勾配が消えず、性能が落ちないようにしました。</div>
+    </div>
+
+    <div class="question" id="question-1">
+        <div class="question-text">Q2. 「セマンティック・セグメンテーション」の説明は？</div>
+        <ul class="options">
+            <li data-option="A">A）画像を「犬」「猫」などのクラスに分類する。</li>
+            <li data-option="B">B）画像の全ての画素（ピクセル）に対して、何が写っているかのラベルを付ける。</li>
+            <li data-option="C">C）物体を四角い枠（バウンディングボックス）で囲む。</li>
+            <li data-option="D">D）個々の物体（同じ種類の別の犬など）を区別する。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+        <div class="result correct"><strong>正解：B）</strong><br>画像認識の中で最も細かいタスクです。自動運転で「道路」「歩行者」「空」をピクセル単位で塗り分けるのなどに使われます。</div>
+    </div>
+
+    <div class="question" id="question-2">
+        <div class="question-text">Q3. 物体検出手法「YOLO (You Only Look Once)」の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）精度は高いが処理が遅い。</li>
+            <li data-option="B">B）画像を一度見るだけで、物体の位置と種類を同時に予測するため、リアルタイム処理が可能。</li>
+            <li data-option="C">C）セグメンテーションを行うモデルである。</li>
+            <li data-option="D">D）動画は扱えない。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+        <div class="result correct"><strong>正解：B）</strong><br>以前の手法は「候補を探す」→「中身を見る」の2段階でしたが、YOLOはこれらを1つのネットワークで一気に行うため爆速です。</div>
+    </div>
+
+    <div class="question" id="question-3">
+        <div class="question-text">Q4. 自然言語処理における「Word2Vec」ができることは？</div>
+        <ul class="options">
+            <li data-option="A">A）単語をベクトル（数値の列）に変換し、「王様 - 男性 + 女性 = 女王」のような計算ができる。</li>
+            <li data-option="B">B）長い文章を要約する。</li>
+            <li data-option="C">C）感情分析を行う。</li>
+            <li data-option="D">D）文法チェックを行う。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>単語の意味の近さを、ベクトル空間上の距離で表現できるようになりました。</div>
+    </div>
+
+    <div class="question" id="question-4">
+        <div class="question-text">Q5. 「BERT」の特徴として正しいものは？</div>
+        <ul class="options">
+            <li data-option="A">A）文の先頭から順番に予測する。</li>
+            <li data-option="B">B）文の「穴埋め問題（マスク）」を解くことで、文脈を双方向から事前学習する。</li>
+            <li data-option="C">C）画像生成モデルである。</li>
+            <li data-option="D">D）RNNベースのモデルである。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+        <div class="result correct"><strong>正解：B）</strong><br>左右両方の文脈を見て単語の意味を理解するため、検索や質問応答などで非常に高い精度を出しました。</div>
+    </div>
+
+    <div class="question" id="question-5">
+        <div class="question-text">Q6. 「GPT」シリーズの特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）特定タスク専用のモデルである。</li>
+            <li data-option="B">B）次に来る単語を予測することで学習する生成モデルで、多様なタスクに対応可能。</li>
+            <li data-option="C">C）画像認識モデルである。</li>
+            <li data-option="D">D）教師あり学習のみを用いる。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+        <div class="result correct"><strong>正解：B）</strong><br>ChatGPTの基盤です。大量のテキストから「続きを書く」訓練をすることで、驚異的な言語能力を獲得しました。</div>
+    </div>
+
+    <div class="question" id="question-6">
+        <div class="question-text">Q7. 画像生成技術「GAN（敵対的生成ネットワーク）」の仕組みは？</div>
+        <ul class="options">
+            <li data-option="A">A）「偽物を作る生成器」と「本物か見抜く識別器」が競い合って学習する。</li>
+            <li data-option="B">B）画像を圧縮して復元する。</li>
+            <li data-option="C">C）画像にノイズを加える。</li>
+            <li data-option="D">D）画素の色を平均化する。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>「偽札作り」と「警察」のいたちごっこに例えられます。結果として、警察も見破れないほど精巧な偽物（画像）が作れるようになります。</div>
+    </div>
+
+    <div class="question" id="question-7">
+        <div class="question-text">Q8. 深層強化学習「DQN (Deep Q-Network)」がブレイクスルーとなった点は？</div>
+        <ul class="options">
+            <li data-option="A">A）Q学習のQテーブル（価値関数）をディープニューラルネットワークで近似した。</li>
+            <li data-option="B">B）囲碁のルールを教え込んだ。</li>
+            <li data-option="C">C）人間のプロゲーマーのデータを学習させた。</li>
+            <li data-option="D">D）CPUのみで動作するようにした。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>それまでは巨大な表（テーブル）で管理していた情報を、AIの脳（ニューラルネット）に圧縮して覚えさせたことで、複雑なゲーム画面も扱えるようになりました。</div>
+    </div>
+
+    <div class="question" id="question-8">
+        <div class="question-text">Q9. AlphaGoが採用した手法に含まれないものは？</div>
+        <ul class="options">
+            <li data-option="A">A）モンテカルロ木探索</li>
+            <li data-option="B">B）方策関数（Policy Network）と価値関数（Value Network）</li>
+            <li data-option="C">C）自己対局による強化学習</li>
+            <li data-option="D">D）遺伝的アルゴリズム</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'D')">答えを確認</button>
+        <div class="result correct"><strong>正解：D）</strong><br>AlphaGoはディープラーニングとモンテカルロ木探索を組み合わせたことで、プロ棋士に勝利しました。</div>
+    </div>
+
+    <div class="question" id="question-9">
+        <div class="question-text">Q10. 「マルチモーダルAI」とは？</div>
+        <ul class="options">
+            <li data-option="A">A）画像とテキスト、音声など、複数の種類のデータを組み合わせて処理できるAI。</li>
+            <li data-option="B">B）複数の言語を話せるAI。</li>
+            <li data-option="C">C）複数のPCで動くAI。</li>
+            <li data-option="D">D）複数のモデルをアンサンブルするAI。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>人間が見て（画像）、聞いて（音声）、読む（テキスト）ように、複数の感覚を統合して理解する技術です（例：画像を見て説明文を生成する）。</div>
+    </div>
+
+    <div class="question" id="question-10">
+        <div class="question-text">Q11. 「A3C」や「Rainbow」は何の分野のアルゴリズムか？</div>
+        <ul class="options">
+            <li data-option="A">A）画像生成</li>
+            <li data-option="B">B）自然言語処理</li>
+            <li data-option="C">C）深層強化学習</li>
+            <li data-option="D">D）音声認識</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'C')">答えを確認</button>
+        <div class="result correct"><strong>正解：C）</strong><br>DQNの欠点を改良し、より効率的に学習できるようにした発展系の強化学習アルゴリズムです。</div>
+    </div>
+
+    <div class="question" id="question-11">
+        <div class="question-text">Q12. 自然言語処理における「Attention（注意機構）」の説明として正しいのは？</div>
+        <ul class="options">
+            <li data-option="A">A）入力データの中で、出力に関連が深い重要な部分に「重みづけ」をして注目する仕組み。</li>
+            <li data-option="B">B）エラーが出たときに警告を出す仕組み。</li>
+            <li data-option="C">C）人間が画面を見ているかを判定する仕組み。</li>
+            <li data-option="D">D）データを圧縮する仕組み。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>翻訳で「彼」という単語が出たとき、元の文の「Tom」に注目する、といった人間のような認知プロセスを再現します。</div>
+    </div>
+
+    <div class="question" id="question-12">
+        <div class="question-text">Q13. 「StyleGAN」の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）画風（スタイル）を詳細にコントロールして高画質な画像を生成できる。</li>
+            <li data-option="B">B）文字を生成する。</li>
+            <li data-option="C">C）動画を圧縮する。</li>
+            <li data-option="D">D）音声を変換する。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>本物の人間と見分けがつかないレベルの顔画像を生成できることで有名になったモデルです。</div>
+    </div>
+
+    <div class="question" id="question-13">
+        <div class="question-text">Q14. 自動翻訳における「ニューラル機械翻訳（NMT）」の利点は？</div>
+        <ul class="options">
+            <li data-option="A">A）文全体をひとつの単位として捉え、流暢な訳文を生成できる。</li>
+            <li data-option="B">B）単語ごとに辞書で置き換えるため正確である。</li>
+            <li data-option="C">C）ルールベースなので文法が完璧である。</li>
+            <li data-option="D">D）学習データが不要である。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>従来の統計的翻訳やルールベース翻訳に比べ、文脈を考慮した自然な翻訳が可能になりました。</div>
+    </div>
+
+    <div class="question" id="question-14">
+        <div class="question-text">Q15. セマンティック・セグメンテーションのモデルで、医療画像診断などでよく使われるU字型の構造を持つモデルは？</div>
+        <ul class="options">
+            <li data-option="A">A）U-Net</li>
+            <li data-option="B">B）VGG</li>
+            <li data-option="C">C）YOLO</li>
+            <li data-option="D">D）BERT</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>少ない学習データでも高い精度のセグメンテーションが可能で、エンコーダとデコーダをスキップ結合で繋いだ形が特徴です。</div>
+    </div>
+
+    <div class="question" id="question-15">
+        <div class="question-text">Q16. 「VAE（変分オートエンコーダ）」と「GAN」の違いとして正しいのは？</div>
+        <ul class="options">
+            <li data-option="A">A）VAEは潜在変数の確率分布を学習し、GANは生成器と識別器の競争で学習する。</li>
+            <li data-option="B">B）VAEは画像専用、GANは音声専用。</li>
+            <li data-option="C">C）VAEは教師あり学習、GANは強化学習。</li>
+            <li data-option="D">D）VAEは敵対的生成を行う。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>VAEは入力データを確率分布（平均と分散）に圧縮して再構成する手法で、GANに比べてぼやけた画像になりやすい傾向があります。</div>
+    </div>
+
+    <div class="question" id="question-16">
+        <div class="question-text">Q17. 物体検出手法「Faster R-CNN」において、候補領域を高速に抽出する仕組みは？</div>
+        <ul class="options">
+            <li data-option="A">A）RPN (Region Proposal Network)</li>
+            <li data-option="B">B）Selective Search</li>
+            <li data-option="C">C）Sliding Window</li>
+            <li data-option="D">D）Pooling</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>それまでの手法（Fast R-CNNなど）では時間がかかっていた「どこに物体がありそうか」を探す処理（Selective Searchなど）を、ニューラルネットワーク（RPN）に置き換えて高速化しました。</div>
+    </div>
+
+    <div class="question" id="question-17">
+        <div class="question-text">Q18. DeepMindが開発した、生の音声波形を生成することができる音声合成モデルは？</div>
+        <ul class="options">
+            <li data-option="A">A）WaveNet</li>
+            <li data-option="B">B）Word2Vec</li>
+            <li data-option="C">C）ResNet</li>
+            <li data-option="D">D）LSTM</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>畳み込み層を重ねることで長い波形パターンを学習し、従来のロボットボイスとは一線を画す、非常に自然な人間の声を生成できるようになりました。</div>
+    </div>
+
+    <div class="question" id="question-18">
+        <div class="question-text">Q19. 機械翻訳の精度評価によく使われる、生成された文と正解文のn-gramの一致度を見る指標は？</div>
+        <ul class="options">
+            <li data-option="A">A）BLEU</li>
+            <li data-option="B">B）Accuracy</li>
+            <li data-option="C">C）Recall</li>
+            <li data-option="D">D）AUC</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>機械翻訳などの生成タスクでは、正解が一通りではないため、正解文に含まれる単語の並び（n-gram）がどれくらい含まれているかで評価します。</div>
+    </div>
+
+    <div class="question" id="question-19">
+        <div class="question-text">Q20. ロボット制御などの強化学習において、シミュレーション環境で学習したモデルを現実世界（実機）に適用する際の課題を何と呼ぶか？</div>
+        <ul class="options">
+            <li data-option="A">A）Sim2Real問題</li>
+            <li data-option="B">B）フレーム問題</li>
+            <li data-option="C">C）シンボルグラウンディング問題</li>
+            <li data-option="D">D）勾配消失問題</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>シミュレーションと現実では摩擦や照明などの条件が微妙に異なる（Reality Gap）ため、シミュレーションで完璧でも実機では動かないことがあります。</div>
+    </div>
+
+    <div class="question" id="question-20">
+        <div class="question-text">Q21. 画像生成AI「Stable Diffusion」などで使われている「拡散モデル（Diffusion Model）」の仕組みは？</div>
+        <ul class="options">
+            <li data-option="A">A）画像に徐々にノイズを加えて壊していき、その逆の過程（ノイズ除去）を学習することで、完全なノイズから画像を生成する。</li>
+            <li data-option="B">B）2つのネットワークを戦わせる。</li>
+            <li data-option="C">C）画像を圧縮して復元する。</li>
+            <li data-option="D">D）既存の画像を切り貼りする。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>GANよりも学習が安定しやすく、高精細な画像生成が可能になった現在の主流技術です。</div>
+    </div>
+
+    <div class="question" id="question-21">
+        <div class="question-text">Q22. 「Vision Transformer (ViT)」の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）画像をパッチ（小さな断片）に分割し、それを単語の並びのように扱ってTransformerに入力することで、CNNを使わずに高精度な画像認識を行う。</li>
+            <li data-option="B">B）動画専用のモデルである。</li>
+            <li data-option="C">C）CNNを改良したモデルである。</li>
+            <li data-option="D">D）計算量が非常に少ない。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>「画像も言葉と同じように扱える」ことを示し、画像認識のパラダイムシフトを起こしました。</div>
+    </div>
+
+    <div class="question" id="question-22">
+        <div class="question-text">Q23. OpenAIの「CLIP」ができることは？</div>
+        <ul class="options">
+            <li data-option="A">A）画像とテキスト（キャプション）のペアを大量に学習し、「この画像がどんなテキストと合致するか」を予測できる（ゼロショット分類が可能）。</li>
+            <li data-option="B">B）動画を生成する。</li>
+            <li data-option="C">C）音声をテキストにする。</li>
+            <li data-option="D">D）プログラミングコードを書く。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>「犬」というラベルを教えなくても、「犬の写真」と「"A photo of a dog"」というテキストの類似度が高いことを理解できます。</div>
+    </div>
+
+    <div class="question" id="question-23">
+        <div class="question-text">Q24. 物体検出だけでなく、ピクセル単位の領域分割（インスタンス・セグメンテーション）も同時に行うモデルは？</div>
+        <ul class="options">
+            <li data-option="A">A）Mask R-CNN</li>
+            <li data-option="B">B）YOLO</li>
+            <li data-option="C">C）VGG</li>
+            <li data-option="D">D）ResNet</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>Faster R-CNNにマスク予測用の枝を追加した構造で、物体検出とセグメンテーションを同時にこなします。</div>
+    </div>
+
+    <div class="question" id="question-24">
+        <div class="question-text">Q25. 「ELMo」と「BERT」の大きな違いは？</div>
+        <ul class="options">
+            <li data-option="A">A）ELMoはLSTMベースだが、BERTはTransformerベースであり、BERTは文脈を双方向から同時に学習できる。</li>
+            <li data-option="B">B）ELMoの方が新しい。</li>
+            <li data-option="C">C）BERTは画像用である。</li>
+            <li data-option="D">D）違いはない。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>BERTの登場により、文脈理解の精度が飛躍的に向上しました。</div>
+    </div>
+
+    <div class="question" id="question-25">
+        <div class="question-text">Q26. GANの派生形「CycleGAN」の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）ペアになっていないデータ（例：馬の画像の集まりと、シマウマの画像の集まり）だけで、相互変換（馬⇔シマウマ）を学習できる。</li>
+            <li data-option="B">B）動画を生成する。</li>
+            <li data-option="C">C）教師あり学習である。</li>
+            <li data-option="D">D）テキストから画像を生成する。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>「変換して戻したときに元の画像に戻るか（サイクル一貫性）」を制約にすることで、ペアデータなしでのスタイル変換を実現しました。</div>
+    </div>
+
+    <div class="question" id="question-26">
+        <div class="question-text">Q27. 大規模言語モデル（LLM）における「ゼロショット学習」とは？</div>
+        <ul class="options">
+            <li data-option="A">A）例題を1つも見せなくても、タスクの説明だけで問題を解ける能力。</li>
+            <li data-option="B">B）1回だけ学習すること。</li>
+            <li data-option="C">C）学習データを全く使わないこと。</li>
+            <li data-option="D">D）ゼロからモデルを作ること。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>GPT-3などで確認された能力です。ちなみに例題を数個見せるのは「フューショット（Few-shot）学習」です。</div>
+    </div>
+
+    <div class="question" id="question-27">
+        <div class="question-text">Q28. XAI（説明可能なAI）の手法「Grad-CAM」は、CNNの判断根拠をどうやって可視化するか？</div>
+        <ul class="options">
+            <li data-option="A">A）判断に寄与した勾配情報を使って、画像のどの部分に注目したかをヒートマップ（熱分布図）で表示する。</li>
+            <li data-option="B">B）決定木に変換する。</li>
+            <li data-option="C">C）言葉で説明させる。</li>
+            <li data-option="D">D）画像を削除する。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>「猫」と判断したときに、画像の「耳」や「目」の部分が赤く表示されれば、正しく特徴を見ていると分かります。</div>
+    </div>
+
+    <div class="question" id="question-28">
+        <div class="question-text">Q29. 強化学習「AlphaGo Zero」が従来のAlphaGoと違う点は？</div>
+        <ul class="options">
+            <li data-option="A">A）人間の棋譜（定石）を一切使わず、自分自身との対戦（自己対局）のみで最強になった。</li>
+            <li data-option="B">B）ルールを教えていない。</li>
+            <li data-option="C">C）計算機を使っていない。</li>
+            <li data-option="D">D）弱くなった。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>人間の知識（バイアス）に頼らない方が、人間には思いつかない独創的な手を編み出し、強くなれることを証明しました。</div>
+    </div>
+
+    <div class="question" id="question-29">
+        <div class="question-text">Q30. 「FCN (Fully Convolutional Network)」の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）全結合層を畳み込み層に置き換えることで、任意のサイズの画像を入力でき、ピクセルごとの予測（セマンティック・セグメンテーション）を可能にした。</li>
+            <li data-option="B">B）全結合層のみで構成されたネットワーク。</li>
+            <li data-option="C">C）画像分類専用のモデル。</li>
+            <li data-option="D">D）計算が非常に遅い。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>セグメンテーションの先駆けとなったモデルです。位置情報を保持したまま出力できます。</div>
+    </div>
+</div>

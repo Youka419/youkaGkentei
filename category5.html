@@ -1,128 +1,369 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⑤ ディープラーニングの要素技術 - G検定 学習アプリ</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <a href="index.html" class="back-link">← トップページに戻る</a>
-        <h1>⑤ ディープラーニングの要素技術</h1>
-        <div class="section">
-            <div class="goals">
-                <h3>🎯 到達目標</h3>
-                <ul>
-                    <li>全結合層の概要を理解する</li>
-                    <li>畳み込み層の基礎的な知識を理解する</li>
-                    <li>正規化の基礎的な知識を理解する</li>
-                    <li>プーリング層の基礎的な知識を理解する</li>
-                    <li>スキップ結合の概要を理解する</li>
-                    <li>リカレント結合層を含むネットワークであるRNNを理解する</li>
-                    <li>アテンションの基礎的な知識を理解する</li>
-                </ul>
-            </div>
-        </div>
-        <div class="section">
-            <h2>📚 重要キーワード</h2>
-            <div class="keywords">
-                <div class="keyword-item"><strong>全結合層</strong>前層の全てのニューロンと自層の全てのニューロンが結合している層</div>
-                <div class="keyword-item"><strong>畳み込み層</strong>フィルターを用いて入力データから特徴マップを生成する処理を行う層</div>
-                <div class="keyword-item"><strong>CNN</strong>畳み込みニューラルネットワーク。画像認識や分類などに特化したディープラーニングモデル</div>
-                <div class="keyword-item"><strong>バッチ正規化</strong>ミニバッチごとに各層の入力の平均と分散で正規化し学習を安定化・加速させる手法</div>
-                <div class="keyword-item"><strong>プーリング層</strong>特徴マップのサイズを縮小し、最大値や平均値を用いて情報を集約する層</div>
-                <div class="keyword-item"><strong>スキップ結合</strong>層を飛び越える結合を指し、ResNetで導入された技術</div>
-                <div class="keyword-item"><strong>ResNet</strong>スキップ結合を導入することで勾配消失問題を解決した深層ニューラルネットワーク</div>
-                <div class="keyword-item"><strong>RNN</strong>リカレントニューラルネットワーク。過去の情報を現在の処理に活用できる再帰結合層を持つ</div>
-                <div class="keyword-item"><strong>LSTM</strong>長期依存関係を扱えるように設計されたRNNの一種</div>
-                <div class="keyword-item"><strong>アテンション</strong>入力の中で重要な部分に注目する仕組み</div>
-                <div class="keyword-item"><strong>Transformer</strong>セルフアテンションとマルチヘッドアテンションを中核とした系列処理モデル</div>
-            </div>
-        </div>
-        <div class="section quiz-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
-                <h2 style="margin: 0;">📝 問題演習</h2>
-                <div style="display: flex; gap: 10px;">
-                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
-                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
-                </div>
-            </div>
-
-            <div class="question" id="question-0">
-                <div class="question-text">Q1. 「CNN（畳み込みニューラルネットワーク）」における「畳み込み層」の役割は？</div>
-                <ul class="options">
-                    <li data-option="A">A）画像サイズを小さくする。</li>
-                    <li data-option="B">B）フィルタ（カーネル）を使って画像の特徴（エッジなど）を抽出する。</li>
-                    <li data-option="C">C）確率を出力する。</li>
-                    <li data-option="D">D）過学習を防ぐ。</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-                <div class="result correct"><strong>正解：B）</strong><br>特定のパターン（縦線、横線など）に反応するフィルタをスライドさせて、特徴マップを作ります。</div>
-            </div>
-
-            <div class="question" id="question-1">
-                <div class="question-text">Q2. 「プーリング層（Max Pooling）」の役割は？</div>
-                <ul class="options">
-                    <li data-option="A">A）特徴マップの解像度を下げて、位置ズレに対する頑健性（ロバスト性）を高める。</li>
-                    <li data-option="B">B）特徴を抽出する。</li>
-                    <li data-option="C">C）重みを更新する。</li>
-                    <li data-option="D">D）データを正規化する。</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-                <div class="result correct"><strong>正解：A）</strong><br>画像を少しぼかすような処理で、対象物が多少動いても「そこに何があるか」という情報は変わらないようにします。計算量も減らせます。</div>
-            </div>
-
-            <div class="question" id="question-2">
-                <div class="question-text">Q3. 「RNN（リカレントニューラルネットワーク）」が抱える問題と、それを解決したモデルは？</div>
-                <ul class="options">
-                    <li data-option="A">A）計算が遅い問題 → CNN</li>
-                    <li data-option="B">B）長期の記憶ができない（勾配消失）問題 → LSTM (Long Short-Term Memory)</li>
-                    <li data-option="C">C）画像が扱えない問題 → GAN</li>
-                    <li data-option="D">D）過学習しやすい問題 → Dropout</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-                <div class="result correct"><strong>正解：B）</strong><br>単純なRNNは昔のことをすぐ忘れてしまいますが、LSTMは「忘却ゲート」などを使って「重要なことは長く覚えておく」ことができます。</div>
-            </div>
-
-            <div class="question" id="question-3">
-                <div class="question-text">Q4. 「Transformer」の核となる技術は？</div>
-                <ul class="options">
-                    <li data-option="A">A）畳み込み演算 (Convolution)</li>
-                    <li data-option="B">B）Attention (注意機構)</li>
-                    <li data-option="C">C）リカレント結合 (Recurrent)</li>
-                    <li data-option="D">D）強化学習 (Reinforcement)</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
-                <div class="result correct"><strong>正解：B）</strong><br>「文中のどの単語に注目すべきか」を計算するSelf-Attention機構により、RNNを使わずに並列処理で文脈を理解できるようになりました。</div>
-            </div>
-
-            <div class="question" id="question-4">
-                <div class="question-text">Q5. 「バッチ正規化（Batch Normalization）」の効果は？</div>
-                <ul class="options">
-                    <li data-option="A">A）学習を安定させ、学習速度を速める。</li>
-                    <li data-option="B">B）モデルの層を減らす。</li>
-                    <li data-option="C">C）データを増やす。</li>
-                    <li data-option="D">D）活性化関数を不要にする。</li>
-                </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-                <div class="result correct"><strong>正解：A）</strong><br>各層に渡すデータの分布を整えることで、重みの初期値にあまり依存せず、スムーズに学習が進むようになります。</div>
-            </div>
+<div class="section quiz-section">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+        <h2 style="margin: 0;">📝 問題演習（スペシャル版：全30問）</h2>
+        <div style="display: flex; gap: 10px;">
+            <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+            <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
         </div>
     </div>
-    <script src="script.js"></script>
-    <script>
-        function resetAnswers() {
-            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
-                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
-                const history = StudyHistory.getHistory();
-                if (history[currentPage]) {
-                    delete history[currentPage];
-                    StudyHistory.saveHistory(history);
-                }
-                location.reload();
-            }
-        }
-    </script>
-</body>
-</html>
+
+    <div class="question" id="question-0">
+        <div class="question-text">Q1. 「CNN（畳み込みニューラルネットワーク）」における「畳み込み層」の主な役割は？</div>
+        <ul class="options">
+            <li data-option="A">A）画像サイズを小さくする。</li>
+            <li data-option="B">B）フィルタ（カーネル）を用いて画像から局所的な特徴（エッジなど）を抽出する。</li>
+            <li data-option="C">C）確率を出力する。</li>
+            <li data-option="D">D）過学習を防ぐ。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+        <div class="result correct"><strong>正解：B）</strong><br>特定のパターン（縦線や横線など）に反応するフィルタをスライドさせ、特徴マップを作成します。</div>
+    </div>
+
+    <div class="question" id="question-1">
+        <div class="question-text">Q2. 「プーリング層（Max Pooling）」の役割として正しいのは？</div>
+        <ul class="options">
+            <li data-option="A">A）特徴マップの解像度を下げ、位置ズレに対する頑健性（ロバスト性）を高める。</li>
+            <li data-option="B">B）特徴を抽出する。</li>
+            <li data-option="C">C）重みを更新する。</li>
+            <li data-option="D">D）データを正規化する。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>画像の微小な位置ズレを吸収し、重要な特徴だけを残すことで計算量も削減します。</div>
+    </div>
+
+    <div class="question" id="question-2">
+        <div class="question-text">Q3. 「RNN（リカレントニューラルネットワーク）」が抱える問題と、それを解決したモデルは？</div>
+        <ul class="options">
+            <li data-option="A">A）計算が遅い問題 → CNN</li>
+            <li data-option="B">B）長期の記憶ができない（勾配消失）問題 → LSTM (Long Short-Term Memory)</li>
+            <li data-option="C">C）画像が扱えない問題 → GAN</li>
+            <li data-option="D">D）過学習しやすい問題 → Dropout</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+        <div class="result correct"><strong>正解：B）</strong><br>単純なRNNは過去の情報をすぐ忘れてしまいますが、LSTMは「ゲート機構」により長期的な依存関係を学習できます。</div>
+    </div>
+
+    <div class="question" id="question-3">
+        <div class="question-text">Q4. 「Transformer」の核となる技術は？</div>
+        <ul class="options">
+            <li data-option="A">A）畳み込み演算 (Convolution)</li>
+            <li data-option="B">B）Attention (注意機構)</li>
+            <li data-option="C">C）リカレント結合 (Recurrent)</li>
+            <li data-option="D">D）強化学習 (Reinforcement)</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+        <div class="result correct"><strong>正解：B）</strong><br>「文中のどの単語に注目すべきか」を計算するSelf-Attention機構により、並列処理が可能となり、RNNを超える性能を実現しました。</div>
+    </div>
+
+    <div class="question" id="question-4">
+        <div class="question-text">Q5. 「バッチ正規化（Batch Normalization）」の効果は？</div>
+        <ul class="options">
+            <li data-option="A">A）学習を安定させ、学習速度を速める。</li>
+            <li data-option="B">B）モデルの層を減らす。</li>
+            <li data-option="C">C）データを増やす。</li>
+            <li data-option="D">D）活性化関数を不要にする。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>各層の入力を正規化（平均0、分散1に近づける）することで、重みの初期値への依存を減らし、学習をスムーズにします。</div>
+    </div>
+
+    <div class="question" id="question-5">
+        <div class="question-text">Q6. CNNにおける「パディング（Padding）」の目的は？</div>
+        <ul class="options">
+            <li data-option="A">A）画像サイズが畳み込みによって小さくなりすぎるのを防ぐため、周囲に0などを埋める。</li>
+            <li data-option="B">B）画像を圧縮する。</li>
+            <li data-option="C">C）カラー画像を白黒にする。</li>
+            <li data-option="D">D）計算速度を上げる。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>畳み込みを行うと端のデータが削られて画像が小さくなってしまうのを防ぐため、外枠を0で埋める（ゼロパディング）処理を行います。</div>
+    </div>
+
+    <div class="question" id="question-6">
+        <div class="question-text">Q7. CNNにおける「ストライド（Stride）」とは？</div>
+        <ul class="options">
+            <li data-option="A">A）フィルタを適用する間隔（ずらす幅）。</li>
+            <li data-option="B">B）フィルタの大きさ。</li>
+            <li data-option="C">C）層の深さ。</li>
+            <li data-option="D">D）学習率の大きさ。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>ストライドを大きくすると（例：2マスずつずらす）、出力される特徴マップのサイズは小さくなります。</div>
+    </div>
+
+    <div class="question" id="question-7">
+        <div class="question-text">Q8. 「Global Average Pooling (GAP)」の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）特徴マップごとの平均値をとり、1つの値にする処理。全結合層の代わりによく使われる。</li>
+            <li data-option="B">B）最大値をとる処理。</li>
+            <li data-option="C">C）最小値をとる処理。</li>
+            <li data-option="D">D）画像を回転させる処理。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>パラメータ数が膨大になる全結合層をGAPに置き換えることで、モデルを軽量化し過学習を防ぐ効果があります。</div>
+    </div>
+
+    <div class="question" id="question-8">
+        <div class="question-text">Q9. 活性化関数「ソフトマックス（Softmax）関数」の出力の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）すべての出力の合計が1になり、確率として扱える。</li>
+            <li data-option="B">B）出力が-1から1の範囲になる。</li>
+            <li data-option="C">C）入力が負のときは0になる。</li>
+            <li data-option="D">D）入力と同じ値を出力する。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>多クラス分類問題の出力層でよく使われます。それぞれのクラスに属する確率を表します。</div>
+    </div>
+
+    <div class="question" id="question-9">
+        <div class="question-text">Q10. 活性化関数「ハイパーボリックタンジェント（tanh）」の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）出力範囲が-1から1で、原点対称（ゼロ中心）である。</li>
+            <li data-option="B">B）出力範囲が0から1である。</li>
+            <li data-option="C">C）微分が常に一定である。</li>
+            <li data-option="D">D）出力が常に正の値になる。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>シグモイド関数と似ていますが、0を中心とするため、学習の収束が早くなりやすいという利点があります。</div>
+    </div>
+
+    <div class="question" id="question-10">
+        <div class="question-text">Q11. 最適化手法「SGD（確率的勾配降下法）」の欠点を改善するために「慣性」の考え方を取り入れた手法は？</div>
+        <ul class="options">
+            <li data-option="A">A）Momentum（モーメンタム）</li>
+            <li data-option="B">B）AdaGrad</li>
+            <li data-option="C">C）Dropout</li>
+            <li data-option="D">D）Ensemble</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>ボールが坂を転がるように、過去の移動方向（慣性）を考慮することで、ジグザグした動きを抑えてスムーズに学習します。</div>
+    </div>
+
+    <div class="question" id="question-11">
+        <div class="question-text">Q12. 最適化手法「Adam」の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）MomentumとRMSpropの利点を組み合わせた手法で、現在最も広く使われている。</li>
+            <li data-option="B">B）学習率を固定する手法である。</li>
+            <li data-option="C">C）計算量が非常に多い。</li>
+            <li data-option="D">D）局所解に陥りやすい。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>「慣性」と「学習率の自動調整」の両方を行うため、調整がしやすく収束も早い優秀なアルゴリズムです。</div>
+    </div>
+
+    <div class="question" id="question-12">
+        <div class="question-text">Q13. 重みの初期化手法である「Heの初期値」は、どの活性化関数と相性が良いか？</div>
+        <ul class="options">
+            <li data-option="A">A）ReLU関数</li>
+            <li data-option="B">B）Sigmoid関数</li>
+            <li data-option="C">C）Tanh関数</li>
+            <li data-option="D">D）Step関数</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>ReLUを使う場合は「Heの初期値」、SigmoidやTanhを使う場合は「Xavier（Glorot）の初期値」を使うのが定石です。</div>
+    </div>
+
+    <div class="question" id="question-13">
+        <div class="question-text">Q14. 過学習を防ぐための「L2正則化（Weight Decay）」の仕組みは？</div>
+        <ul class="options">
+            <li data-option="A">A）損失関数に「重みの2乗の和」を加え、重みが大きくなりすぎるのを防ぐ。</li>
+            <li data-option="B">B）損失関数に「重みの絶対値の和」を加える。</li>
+            <li data-option="C">C）学習データを減らす。</li>
+            <li data-option="D">D）層を削除する。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>重みが極端に大きくなるとデータに過敏に反応（過学習）してしまうため、ペナルティを与えて重みを小さく保ちます。</div>
+    </div>
+
+    <div class="question" id="question-14">
+        <div class="question-text">Q15. RNNの一種である「GRU」は、LSTMと比べてどのような特徴があるか？</div>
+        <ul class="options">
+            <li data-option="A">A）ゲート構造を簡素化し、計算量を減らしつつLSTMと同等の性能を持つ。</li>
+            <li data-option="B">B）LSTMより複雑で計算時間がかかる。</li>
+            <li data-option="C">C）長期記憶が全くできない。</li>
+            <li data-option="D">D）画像処理に特化している。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>LSTMには3つのゲートがありますが、GRUはそれを2つ（更新ゲート・リセットゲート）に統合し、パラメータを減らしました。</div>
+    </div>
+
+    <div class="question" id="question-15">
+        <div class="question-text">Q16. 自然言語処理で用いられる「Seq2Seq（Encoder-Decoder）」モデルの用途は？</div>
+        <ul class="options">
+            <li data-option="A">A）機械翻訳やチャットボット（ある系列データを別の系列データに変換する）。</li>
+            <li data-option="B">B）画像の分類。</li>
+            <li data-option="C">C）クラスタリング。</li>
+            <li data-option="D">D）異常検知。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>入力文を一度固定長ベクトルに圧縮（Encode）し、そこから翻訳文を生成（Decode）する仕組みです。</div>
+    </div>
+
+    <div class="question" id="question-16">
+        <div class="question-text">Q17. 「Layer Normalization（層正規化）」は主にどの分野で使われるか？</div>
+        <ul class="options">
+            <li data-option="A">A）RNNやTransformer（自然言語処理）。</li>
+            <li data-option="B">B）CNN（画像処理）。</li>
+            <li data-option="C">C）線形回帰。</li>
+            <li data-option="D">D）決定木。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>バッチ正規化はデータごとのばらつきに依存するため系列データ（RNN等）には不向きですが、層正規化はデータ単体で正規化を行うためNLPで好まれます。</div>
+    </div>
+
+    <div class="question" id="question-17">
+        <div class="question-text">Q18. 「スキップ結合（Skip Connection）」の主な目的は？</div>
+        <ul class="options">
+            <li data-option="A">A）勾配消失を防ぎ、層を深くできるようにすること。</li>
+            <li data-option="B">B）計算量を減らすこと。</li>
+            <li data-option="C">C）過学習させること。</li>
+            <li data-option="D">D）入力データを削除すること。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>ResNetで提案された技術で、入力を出力に足し合わせることで「恒等写像」を学習しやすくし、超深層モデルの学習を可能にしました。</div>
+    </div>
+
+    <div class="question" id="question-18">
+        <div class="question-text">Q19. 「データ拡張（Data Augmentation）」における「Cutout」とは？</div>
+        <ul class="options">
+            <li data-option="A">A）画像の一部をランダムに黒塗り（マスク）する手法。</li>
+            <li data-option="B">B）画像を切り抜く手法。</li>
+            <li data-option="C">C）画像を回転させる手法。</li>
+            <li data-option="D">D）画質を良くする手法。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>隠された部分を推測して認識しようとするため、モデルの汎化性能が向上します。</div>
+    </div>
+
+    <div class="question" id="question-19">
+        <div class="question-text">Q20. 「アンサンブル学習」における「スタッキング（Stacking）」とは？</div>
+        <ul class="options">
+            <li data-option="A">A）複数のモデルの予測結果を入力として、さらに別のモデル（メタモデル）で最終予測を行う手法。</li>
+            <li data-option="B">B）多数決をとる手法。</li>
+            <li data-option="C">C）モデルを直列につなぐ手法。</li>
+            <li data-option="D">D）データを積み上げる手法。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>異なるモデルの得意分野を組み合わせることで、単体よりも高い精度を目指す高度な手法です。</div>
+    </div>
+
+    <div class="question" id="question-20">
+        <div class="question-text">Q21. 活性化関数「Leaky ReLU」の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）入力が負の場合、0ではなくわずかな傾き（勾配）を持たせることで、ニューロンが死ぬのを防ぐ。</li>
+            <li data-option="B">B）負の値を完全に0にする。</li>
+            <li data-option="C">C）出力範囲が-1から1である。</li>
+            <li data-option="D">D）計算が非常に複雑である。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>通常のReLUは負の値で勾配が0になってしまい学習が進まなくなる（Dying ReLU）問題がありますが、それを回避できます。</div>
+    </div>
+
+    <div class="question" id="question-21">
+        <div class="question-text">Q22. Googleが開発した活性化関数「Swish」の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）x * sigmoid(x) で表され、ReLUよりも滑らかで、深い層でも学習が進みやすい（探索的に発見された）。</li>
+            <li data-option="B">B）階段状の関数である。</li>
+            <li data-option="C">C）最大値が決まっている。</li>
+            <li data-option="D">D）古い関数である。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>AIによる自動探索（NAS）で見つけ出された関数で、多くのタスクでReLUを超える性能を示します。</div>
+    </div>
+
+    <div class="question" id="question-22">
+        <div class="question-text">Q23. 「1x1畳み込み（Pointwise Convolution）」の主な効果は？</div>
+        <ul class="options">
+            <li data-option="A">A）特徴マップのチャンネル数（深さ）を調整（圧縮や拡張）し、計算量を削減すること。</li>
+            <li data-option="B">B）画像サイズを大きくすること。</li>
+            <li data-option="C">C）画像の特徴をぼかすこと。</li>
+            <li data-option="D">D）何も変化させないこと。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>GoogLeNet（Inception）などで採用され、「ボトルネック構造」を作るために重要な技術です。</div>
+    </div>
+
+    <div class="question" id="question-23">
+        <div class="question-text">Q24. 「Dilated Convolution（空洞畳み込み）」のメリットは？</div>
+        <ul class="options">
+            <li data-option="A">A）パラメータ数を増やさずに、受容野（Receptive Field）を広げることができる。</li>
+            <li data-option="B">B）画像を縮小できる。</li>
+            <li data-option="C">C）計算が単純になる。</li>
+            <li data-option="D">D）画像の色を変えられる。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>セグメンテーションやWaveNetなどで、広い範囲の情報を効率よく集めるために使われます。</div>
+    </div>
+
+    <div class="question" id="question-24">
+        <div class="question-text">Q25. 「インスタンス正規化（Instance Normalization）」がよく使われるタスクは？</div>
+        <ul class="options">
+            <li data-option="A">A）画風変換（Style Transfer）などの生成タスク。</li>
+            <li data-option="B">B）画像分類。</li>
+            <li data-option="C">C）音声認識。</li>
+            <li data-option="D">D）自然言語処理。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>画像のコントラスト（スタイル）情報は画像ごとに異なるため、バッチ全体ではなく画像1枚ごとに正規化するこの手法が適しています。</div>
+    </div>
+
+    <div class="question" id="question-25">
+        <div class="question-text">Q26. 最適化手法「RMSprop」の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）過去の勾配の二乗平均を指数移動平均で計算し、学習率をパラメータごとに調整する（AdaGradの改良版）。</li>
+            <li data-option="B">B）学習率を固定する。</li>
+            <li data-option="C">C）慣性項のみを使う。</li>
+            <li data-option="D">D）最も単純な手法である。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>AdaGradは学習が進むと学習率が0になりすぎて止まってしまう問題がありましたが、RMSpropはそれを解決しました。</div>
+    </div>
+
+    <div class="question" id="question-26">
+        <div class="question-text">Q27. ハイパーパラメータ探索手法「ベイズ最適化」の特徴は？</div>
+        <ul class="options">
+            <li data-option="A">A）過去の試行結果から、次に試すべき有望なパラメータを確率的に推定して探索する（効率が良い）。</li>
+            <li data-option="B">B）しらみつぶしに全部試す（グリッドサーチ）。</li>
+            <li data-option="C">C）完全にランダムに試す（ランダムサーチ）。</li>
+            <li data-option="D">D）人間が勘で決める。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>試行回数が限られる重いモデルのチューニングで、少ない回数で良い値を見つけるのに役立ちます。</div>
+    </div>
+
+    <div class="question" id="question-27">
+        <div class="question-text">Q28. 「早期終了（Early Stopping）」を行う基準として適切なのは？</div>
+        <ul class="options">
+            <li data-option="A">A）検証データ（Validation Data）の誤差が下がらなくなり、上がり始めたタイミング。</li>
+            <li data-option="B">B）訓練データ（Train Data）の誤差が0になったタイミング。</li>
+            <li data-option="C">C）テストデータ（Test Data）の誤差を見たタイミング。</li>
+            <li data-option="D">D）気分で決める。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>訓練データの誤差は学習し続けると減り続けますが、検証データの誤差が増え始めたら過学習の合図です。テストデータは最後に一度だけ使います。</div>
+    </div>
+
+    <div class="question" id="question-28">
+        <div class="question-text">Q29. 「AdaGrad」の欠点は？</div>
+        <ul class="options">
+            <li data-option="A">A）学習が進むにつれて学習率が極端に小さくなり、更新が止まってしまうこと。</li>
+            <li data-option="B">B）学習率が大きくなりすぎて発散すること。</li>
+            <li data-option="C">C）計算コストが高すぎる。</li>
+            <li data-option="D">D）メモリを使わないこと。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>過去の勾配の二乗をすべて足し合わせるため、分母が大きくなり続け、最終的に学習率がほぼゼロになってしまいます。</div>
+    </div>
+
+    <div class="question" id="question-29">
+        <div class="question-text">Q30. 活性化関数「シグモイド関数」が深い層で使われなくなった主な理由は？</div>
+        <ul class="options">
+            <li data-option="A">A）微分値の最大が0.25であり、層を重ねると勾配が急速に小さくなってしまう（勾配消失）から。</li>
+            <li data-option="B">B）計算が簡単すぎるから。</li>
+            <li data-option="C">C）出力が0か1しかないから。</li>
+            <li data-option="D">D）負の値を出力するから。</li>
+        </ul>
+        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+        <div class="result correct"><strong>正解：A）</strong><br>これが原因で第2次AIブーム後の「冬の時代」の一因ともなりました。ReLUの登場で解決されました。</div>
+    </div>
+</div>
