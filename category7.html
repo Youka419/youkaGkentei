@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⑦ AIの社会実装に向けて - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        <h1>⑦ AIの社会実装に向けて</h1>
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>AIプロジェクトをどのように進めるか全体像と各フェーズで注意すべき点などを理解する</li>
+                    <li>AIの学習対象となるデータを取得・利用する時に注意すべきことを理解する</li>
+                    <li>集めたデータを加工・分析・学習させる時の注意点を理解する</li>
+                    <li>AIの運用に必要となるモデルのヘルスモニタリングやライフサイクル管理等を理解する</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item"><strong>アジャイル開発</strong>システムソフトウェア開発において計画・設計・実装・テストといった開発工程を小さいサイクルで繰り返す手法</div>
+                <div class="keyword-item"><strong>POC</strong>概念実証。新しいアイデアや技術の実現可能性を検証するための施策や実験</div>
+                <div class="keyword-item"><strong>データサイエンティスト</strong>AIを利用してデータの分析やモデル作成を行う役割</div>
+                <div class="keyword-item"><strong>アノテーション</strong>データや画像と呼ばれる情報を付与する作業</div>
+                <div class="keyword-item"><strong>オープンデータセット</strong>企業や政府などが提供する自由に利用できるデータの集合体</div>
+                <div class="keyword-item"><strong>サンプリングバイアス</strong>調査や分析の対象となる集団から無作為にサンプルを選ばないことで結果に偏りが生じてしまうこと</div>
+                <div class="keyword-item"><strong>データリーク</strong>予測モデルを作成する際に予測するために知り得ない情報を含めてしまうこと</div>
+                <div class="keyword-item"><strong>転移学習</strong>別のタスクで学習された知識を別の領域の学習に適用させる技術</div>
+            </div>
+        </div>
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習</h2>
+                <div style="display: flex; gap: 10px;">
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+                </div>
+            </div>
+            <div class="question" id="question-0">
+                <div class="question-text">AIプロジェクトを進める際のアジャイル開発のメリットとして、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）開発スピードが早く、仕様変更などに柔軟に対応可能</li>
+                    <li data-option="B">B）事前に全ての計画を立てる必要がある</li>
+                    <li data-option="C">C）変更が困難</li>
+                    <li data-option="D">D）開発期間が長くなる</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>アジャイル開発は開発スピードが早く、仕様変更などに柔軟に対応可能というメリットがあります。</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // 回答をリセットする関数
+        function resetAnswers() {
+            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
+                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+                const history = StudyHistory.getHistory();
+                if (history[currentPage]) {
+                    delete history[currentPage];
+                    StudyHistory.saveHistory(history);
+                }
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

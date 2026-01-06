@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⑨ AIに関する法律と契約 - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        <h1>⑨ AIに関する法律と契約</h1>
+        
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>個人情報保護法が適用される場面を理解している</li>
+                    <li>個人情報等の定義に従い基本的な事例について個人情報かの当てはめができる</li>
+                    <li>AI開発における生成物の著作権について具体的な事例で当てはめができる</li>
+                    <li>特許権と著作権の住み分けについてAIの場面に即して基本を理解している</li>
+                    <li>AI開発の各フェーズの内容とそれらのフェーズが置かれている趣旨を理解している</li>
+                    <li>SaaS型における特殊性を理解している</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item"><strong>個人情報</strong>生存する個人に関する情報で、特定の個人を識別できるもの</div>
+                <div class="keyword-item"><strong>個人データ</strong>個人情報のうちデータベースとして構造化された形で管理される情報</div>
+                <div class="keyword-item"><strong>匿名加工情報</strong>個人を特定できないように加工され、さらに元の情報に復元できないようにした情報</div>
+                <div class="keyword-item"><strong>仮名加工情報</strong>個人情報保護法に基づき特定の個人を識別できないように加工された情報</div>
+                <div class="keyword-item"><strong>GDPR</strong>一般データ保護規則。EUの個人情報保護法</div>
+                <div class="keyword-item"><strong>AI生成物</strong>AI技術を用いて生成された文章や画像、音楽、映像などのコンテンツ</div>
+                <div class="keyword-item"><strong>著作権</strong>人間が独自に作った創作物を保護する法律</div>
+                <div class="keyword-item"><strong>特許権</strong>新しい技術やアイデアが新規性と進歩性を持つ場合に認められる権利</div>
+                <div class="keyword-item"><strong>職務発明</strong>従業員や役員が職務上の行為として行った発明</div>
+                <div class="keyword-item"><strong>営業秘密</strong>企業が事業活動上の競争力を保つために秘密として管理する情報</div>
+                <div class="keyword-item"><strong>NDA</strong>秘密保持契約。取引や協議の過程で知り得た秘密情報を第3者に漏洩しないように取り決める契約</div>
+                <div class="keyword-item"><strong>POC</strong>概念実証。新しいアイデアや技術の実現可能性を検証するための施策や実験</div>
+                <div class="keyword-item"><strong>SaaS</strong>インターネット経由でソフトウェアを提供する形態</div>
+            </div>
+        </div>
+        
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習</h2>
+                <div style="display: flex; gap: 10px;">
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+                </div>
+            </div>
+            <div class="question" id="question-0">
+                <div class="question-text">AI開発における生成物の著作権について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）AIが単独で生成したものには著作権が認められず、著作権は発生しないと一般的に考えられている</li>
+                    <li data-option="B">B）AIが生成したものは全て著作権が認められる</li>
+                    <li data-option="C">C）AIが生成したものは自動的に著作権が発生する</li>
+                    <li data-option="D">D）AIが生成したものは特許権として保護される</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>AIが単独で生成したものには著作権が認められず、著作権は発生しないと一般的に考えられています。ただし、人間がAIを道具として使用し創作的関与を加えた場合には著作権が成立する可能性があります。</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // 回答をリセットする関数
+        function resetAnswers() {
+            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
+                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+                const history = StudyHistory.getHistory();
+                if (history[currentPage]) {
+                    delete history[currentPage];
+                    StudyHistory.saveHistory(history);
+                }
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

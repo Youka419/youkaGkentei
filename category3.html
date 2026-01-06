@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>③ 機械学習の概要 - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        
+        <h1>③ 機械学習の概要</h1>
+        
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>機械学習とは何か説明できる</li>
+                    <li>教師あり学習、教師なし学習、強化学習の基本概念を理解する</li>
+                    <li>代表的な機械学習モデルの基本概念を理解する</li>
+                    <li>目的やデータの特性に応じて適切なモデルを選択できる</li>
+                    <li>モデルの選択基準、評価方法、評価指標を理解する</li>
+                    <li>過学習と汎化性能の違いを説明できる</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item">
+                    <strong>機械学習</strong>
+                    コンピューターが大量のデータを使って学び、その学習結果を使って予測や判断をする技術
+                </div>
+                <div class="keyword-item">
+                    <strong>教師あり学習</strong>
+                    特徴量と教師データのペアを用いてモデルを訓練し、新しい入力に対して正確な予測を行う手法
+                </div>
+                <div class="keyword-item">
+                    <strong>回帰問題</strong>
+                    数値を予測するための機械学習の問題。連続的な数値を出力する
+                </div>
+                <div class="keyword-item">
+                    <strong>分類問題</strong>
+                    データをあらかじめ定められたカテゴリーに分類する機械学習の問題
+                </div>
+                <div class="keyword-item">
+                    <strong>線形回帰</strong>
+                    データの関係を直線y=ax+bのような線形関数で表し数値を予測する手法
+                </div>
+                <div class="keyword-item">
+                    <strong>ロジスティック回帰</strong>
+                    0から1の範囲で確率を求め、データを特定のカテゴリーに分類する手法
+                </div>
+                <div class="keyword-item">
+                    <strong>ランダムフォレスト</strong>
+                    複数の決定木を組み合わせ予測精度を向上させる手法
+                </div>
+                <div class="keyword-item">
+                    <strong>教師なし学習</strong>
+                    入力データのみを使用し、正解ラベルを必要としない機械学習手法
+                </div>
+                <div class="keyword-item">
+                    <strong>クラスタリング</strong>
+                    事前にカテゴリーを決めずにデータの特徴に基づいて自動的にグループ分けする手法
+                </div>
+                <div class="keyword-item">
+                    <strong>K-means法</strong>
+                    データを指定した数のクラスタに分けるクラスタリング手法
+                </div>
+                <div class="keyword-item">
+                    <strong>主成分分析（PCA）</strong>
+                    データの特徴を保持しながら次元を圧縮する手法
+                </div>
+                <div class="keyword-item">
+                    <strong>強化学習</strong>
+                    エージェントが環境と相互作用しながら最適な行動を学習する機械学習手法
+                </div>
+                <div class="keyword-item">
+                    <strong>過学習（オーバーフィッティング）</strong>
+                    訓練データに過剰に適合し、未知のデータでの予測精度が下がる現象
+                </div>
+                <div class="keyword-item">
+                    <strong>汎化性能</strong>
+                    モデルが訓練に使っていない新しいデータに対してどれだけ正しく予測できるかを示す能力
+                </div>
+                <div class="keyword-item">
+                    <strong>交差検証</strong>
+                    データを複数の分割に分け、学習と検証を繰り返してモデルの性能を評価する方法
+                </div>
+                <div class="keyword-item">
+                    <strong>正解率・適合率・再現率・F値</strong>
+                    分類モデルの性能を評価する代表的な指標
+                </div>
+            </div>
+        </div>
+        
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習</h2>
+                <div style="display: flex; gap: 10px;">
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+                </div>
+            </div>
+            
+            <div class="question" id="question-0">
+                <div class="question-text">
+                    機械学習における教師あり学習について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）特徴量のみを用いて学習する手法</li>
+                    <li data-option="B">B）特徴量と教師データのペアを用いて学習する手法</li>
+                    <li data-option="C">C）環境との相互作用を通じて学習する手法</li>
+                    <li data-option="D">D）ラベルなしデータのみで学習する手法</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：B）特徴量と教師データのペアを用いて学習する手法</strong><br>
+                    教師あり学習は、特徴量と教師データ（正解ラベル）のペアを用いてモデルを訓練し、新しい入力に対して正確な予測を行う手法です。
+                </div>
+            </div>
+            
+            <div class="question" id="question-1">
+                <div class="question-text">
+                    過学習（オーバーフィッティング）について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）訓練データに過剰に適合し、未知のデータでの予測精度が下がる現象</li>
+                    <li data-option="B">B）訓練データの特徴を十分に捉えられず予測精度が低い状態</li>
+                    <li data-option="C">C）モデルが複雑すぎて計算ができない状態</li>
+                    <li data-option="D">D）データが少なすぎて学習できない状態</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）訓練データに過剰に適合し、未知のデータでの予測精度が下がる現象</strong><br>
+                    過学習は、モデルが訓練データのノイズや例外パターンまで記憶してしまい、未知のデータに対する予測精度が低下する現象です。
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // 回答をリセットする関数
+        function resetAnswers() {
+            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
+                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+                const history = StudyHistory.getHistory();
+                if (history[currentPage]) {
+                    delete history[currentPage];
+                    StudyHistory.saveHistory(history);
+                }
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

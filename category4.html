@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>④ ディープラーニングの概要 - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        <h1>④ ディープラーニングの概要</h1>
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>ニューラルネットワークの基礎的な知識を理解する</li>
+                    <li>ニューラルネットワークとディープラーニングの関係を説明できる</li>
+                    <li>ディープラーニングの学習に必要なデータ量や計算リソースについて理解する</li>
+                    <li>CPU、GPU、TPUの特徴をそれぞれ説明できる</li>
+                    <li>代表的な活性化関数の定義、使い分け、注意点について説明できる</li>
+                    <li>誤差関数の基礎的な知識を理解する</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item"><strong>ニューラルネットワーク</strong>人間の脳の構造を模倣したアルゴリズム</div>
+                <div class="keyword-item"><strong>単純パーセプトロン</strong>入力層と出力層のみで構成されたシンプルなニューラルネットワーク</div>
+                <div class="keyword-item"><strong>多層パーセプトロン</strong>入力層、隠れ層、出力層の3つ以上の層からなるニューラルネットワーク</div>
+                <div class="keyword-item"><strong>CPU</strong>コンピューターの頭脳に当たる部分で命令の実行や計算制御を行う中核的な装置</div>
+                <div class="keyword-item"><strong>GPU</strong>大量のデータを同時に高速で処理できる並列計算向けのプロセッサ</div>
+                <div class="keyword-item"><strong>TPU</strong>Googleが開発した機械学習専用の高性能プロセッサ</div>
+                <div class="keyword-item"><strong>シグモイド関数</strong>入力を0から1の範囲に変換する滑らかなs型の関数</div>
+                <div class="keyword-item"><strong>ReLU関数</strong>入力が0以下なら0、0より大きければそのまま出力する活性化関数</div>
+                <div class="keyword-item"><strong>交差エントロピー誤差</strong>分類モデルが出した確率と正解ラベルのずれを測る関数</div>
+                <div class="keyword-item"><strong>正則化</strong>モデルが訓練データに過剰に適合することを防ぐために複雑さにペナルティを加える手法</div>
+            </div>
+        </div>
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習</h2>
+                <div style="display: flex; gap: 10px;">
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+                </div>
+            </div>
+            <div class="question" id="question-0">
+                <div class="question-text">GPUやTPUがディープラーニングの学習・推論に適する理由として、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）並列計算能力に優れ、大規模な行列演算を高速に処理可能</li>
+                    <li data-option="B">B）順次処理に特化している</li>
+                    <li data-option="C">C）メモリ容量が小さい</li>
+                    <li data-option="D">D）消費電力が少ない</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>GPUやTPUは並列計算能力に優れ、大規模な行列演算を高速に処理可能なため、ディープラーニングの学習・推論に適しています。</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // 回答をリセットする関数
+        function resetAnswers() {
+            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
+                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+                const history = StudyHistory.getHistory();
+                if (history[currentPage]) {
+                    delete history[currentPage];
+                    StudyHistory.saveHistory(history);
+                }
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

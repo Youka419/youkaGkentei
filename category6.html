@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⑥ ディープラーニングの応用例 - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        <h1>⑥ ディープラーニングの応用例</h1>
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>画像認識タスクの種類とその概要について理解する</li>
+                    <li>代表的な画像認識モデルについて理解する</li>
+                    <li>自然言語処理タスクの種類とその概要について理解する</li>
+                    <li>代表的な自然言語処理モデルについて理解する</li>
+                    <li>音声処理タスクの種類とその概要について理解する</li>
+                    <li>代表的な強化学習モデルについて理解する</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item"><strong>物体認識</strong>画像内の主要な物体を特定するタスク</div>
+                <div class="keyword-item"><strong>物体検出</strong>画像内の複数の物体の位置を特定するタスク</div>
+                <div class="keyword-item"><strong>セグメンテーション</strong>ピクセルレベルでの分類を行うタスク</div>
+                <div class="keyword-item"><strong>AlexNet</strong>2012年のILSVRCで圧倒的な精度を達成した深層畳み込みニューラルネットワーク</div>
+                <div class="keyword-item"><strong>VGG</strong>全ての畳み込み層に3×3の小さなフィルターを使い層を深く積み重ねる構造が特徴</div>
+                <div class="keyword-item"><strong>Word2Vec</strong>単語を数値ベクトルで表現し、単語間の関係性を数学的に扱うことを可能にした手法</div>
+                <div class="keyword-item"><strong>BERT</strong>文脈を考慮して単語の意味を理解するモデル</div>
+                <div class="keyword-item"><strong>GPT</strong>文章生成に特化したモデルで大量のテキストデータによる事前学習と特定タスクへの調整により自然な文章を生成</div>
+                <div class="keyword-item"><strong>音声認識</strong>人間の話し声をテキストに変換する技術</div>
+                <div class="keyword-item"><strong>音声合成</strong>テキストデータから人の声のような音を人工的に生成する技術</div>
+                <div class="keyword-item"><strong>DQN</strong>強化学習とディープラーニングを融合させた手法</div>
+            </div>
+        </div>
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習</h2>
+                <div style="display: flex; gap: 10px;">
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+                </div>
+            </div>
+            <div class="question" id="question-0">
+                <div class="question-text">2012年のILSVRCでディープラーニングを初めて用いて圧勝したモデルはどれか</div>
+                <ul class="options">
+                    <li data-option="A">A）AlexNet</li>
+                    <li data-option="B">B）VGG</li>
+                    <li data-option="C">C）ResNet</li>
+                    <li data-option="D">D）GoogleNet</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）AlexNet</strong><br>2012年のILSVRCでジェフリー・ヒントン率いるトロント大学がディープラーニングを初めて用いたAlexNetで圧勝しました。</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // 回答をリセットする関数
+        function resetAnswers() {
+            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
+                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+                const history = StudyHistory.getHistory();
+                if (history[currentPage]) {
+                    delete history[currentPage];
+                    StudyHistory.saveHistory(history);
+                }
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

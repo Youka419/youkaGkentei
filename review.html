@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>間違えた問題を復習 - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .review-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        
+        .review-header {
+            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .review-header h1 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .review-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .review-stat {
+            text-align: center;
+        }
+        
+        .review-stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .review-stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .review-controls {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .review-controls button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+        
+        .review-controls button:hover {
+            background: #5568d3;
+        }
+        
+        .review-controls button.secondary {
+            background: #4caf50;
+        }
+        
+        .review-controls button.secondary:hover {
+            background: #45a049;
+        }
+        
+        .review-controls button.danger {
+            background: #f44336;
+        }
+        
+        .review-controls button.danger:hover {
+            background: #d32f2f;
+        }
+        
+        .review-mode-badge {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .no-wrong-questions {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .no-wrong-questions h2 {
+            color: #4caf50;
+            margin-bottom: 15px;
+        }
+        
+        .question.review-mode {
+            border: 3px solid #f44336;
+        }
+        
+        .question.review-mode.correct-now {
+            border-color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="review-container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        <a href="history.html" class="back-link" style="margin-left: 15px;">← 学習履歴に戻る</a>
+        
+        <div class="review-header">
+            <h1>📚 間違えた問題を復習</h1>
+            <p>過去に間違えた問題を集中的に復習できます</p>
+            <div class="review-stats" id="reviewStats">
+                <!-- 統計情報がここに表示されます -->
+            </div>
+        </div>
+        
+        <div class="review-controls">
+            <button onclick="shuffleQuestions()" class="secondary">🔀 問題をシャッフル</button>
+            <button onclick="resetReviewAnswers()" class="danger">🔄 回答をリセット</button>
+            <span class="review-mode-badge">復習モード</span>
+        </div>
+        
+        <div id="reviewQuestionsContainer">
+            <!-- 間違えた問題がここに表示されます -->
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        const categoryNames = {
+            'category1': '① 人工知能とは',
+            'category2': '② 人工知能をめぐる動向',
+            'category3': '③ 機械学習の概要',
+            'category4': '④ ディープラーニングの概要',
+            'category5': '⑤ ディープラーニングの要素技術',
+            'category6': '⑥ ディープラーニングの応用例',
+            'category7': '⑦ AIの社会実装に向けて',
+            'category8': '⑧ AIに必要な数理・統計知識',
+            'category9': '⑨ AIに関する法律と契約',
+            'category10': '⑩ AI倫理・AIガバナンス'
+        };
+        
+        let wrongQuestions = [];
+        let currentQuestions = [];
+        
+        // 間違えた問題を読み込む
+        function loadWrongQuestions() {
+            const history = StudyHistory.getHistory();
+            wrongQuestions = [];
+            
+            Object.keys(history).forEach(category => {
+                if (history[category] && history[category].questions) {
+                    history[category].questions.forEach((question, index) => {
+                        if (question && !question.isCorrect) {
+                            wrongQuestions.push({
+                                category: category,
+                                categoryName: categoryNames[category] || category,
+                                questionIndex: index,
+                                selectedAnswer: question.selectedAnswer,
+                                correctAnswer: question.correctAnswer,
+                                timestamp: question.timestamp
+                            });
+                        }
+                    });
+                }
+            });
+            
+            // 最新の間違いから順に表示
+            wrongQuestions.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            currentQuestions = [...wrongQuestions];
+            
+            updateStats();
+            displayQuestions();
+        }
+        
+        // 統計情報を更新
+        function updateStats() {
+            const statsDiv = document.getElementById('reviewStats');
+            const totalWrong = wrongQuestions.length;
+            const reviewed = wrongQuestions.filter(q => {
+                const history = StudyHistory.getHistory();
+                if (history[q.category] && history[q.category].questions[q.questionIndex]) {
+                    return history[q.category].questions[q.questionIndex].isCorrect;
+                }
+                return false;
+            }).length;
+            
+            statsDiv.innerHTML = `
+                <div class="review-stat">
+                    <div class="review-stat-number">${totalWrong}</div>
+                    <div class="review-stat-label">間違えた問題数</div>
+                </div>
+                <div class="review-stat">
+                    <div class="review-stat-number">${reviewed}</div>
+                    <div class="review-stat-label">復習済み（正解）</div>
+                </div>
+                <div class="review-stat">
+                    <div class="review-stat-number">${totalWrong - reviewed}</div>
+                    <div class="review-stat-label">残り</div>
+                </div>
+            `;
+        }
+        
+        // 問題を表示
+        function displayQuestions() {
+            const container = document.getElementById('reviewQuestionsContainer');
+            
+            if (currentQuestions.length === 0) {
+                container.innerHTML = `
+                    <div class="no-wrong-questions">
+                        <h2>🎉 素晴らしい！</h2>
+                        <p>間違えた問題はありません。すべて正解できています！</p>
+                        <a href="index.html" class="history-link" style="display: inline-block; margin-top: 20px;">トップページに戻る</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            currentQuestions.forEach((item, idx) => {
+                html += `
+                    <div class="question review-mode" id="review-question-${idx}" data-category="${item.category}" data-index="${item.questionIndex}">
+                        <div style="background: #fff3cd; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 0.9em;">
+                            <strong>${item.categoryName}</strong> - 問題 #${item.questionIndex + 1} | 
+                            前回の回答: <span style="color: #f44336; font-weight: bold;">${item.selectedAnswer}</span> | 
+                            正解: <span style="color: #4caf50; font-weight: bold;">${item.correctAnswer}</span>
+                        </div>
+                        <div class="question-text" id="question-text-${idx}">
+                            <!-- 問題文がここに読み込まれます -->
+                        </div>
+                        <ul class="options" id="options-${idx}">
+                            <!-- 選択肢がここに読み込まれます -->
+                        </ul>
+                        <button class="answer-btn" onclick="checkReviewAnswer(this, ${idx}, '${item.correctAnswer}')">答えを確認</button>
+                        <div class="result" id="result-${idx}">
+                            <!-- 結果がここに表示されます -->
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            // 各問題を読み込む
+            currentQuestions.forEach((item, idx) => {
+                loadQuestionContent(item.category, item.questionIndex, idx);
+            });
+        }
+        
+        // 問題の内容を読み込む
+        function loadQuestionContent(category, questionIndex, displayIndex) {
+            fetch(`${category}.html`)
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const questions = doc.querySelectorAll('.question');
+                    
+                    if (questions[questionIndex]) {
+                        const question = questions[questionIndex];
+                        const questionText = question.querySelector('.question-text');
+                        const options = question.querySelectorAll('.options li');
+                        const result = question.querySelector('.result');
+                        
+                        // 問題文を表示
+                        const questionTextDiv = document.getElementById(`question-text-${displayIndex}`);
+                        if (questionTextDiv && questionText) {
+                            questionTextDiv.innerHTML = questionText.innerHTML;
+                        }
+                        
+                        // 選択肢を表示
+                        const optionsUl = document.getElementById(`options-${displayIndex}`);
+                        if (optionsUl) {
+                            optionsUl.innerHTML = '';
+                            options.forEach(option => {
+                                const li = document.createElement('li');
+                                li.setAttribute('data-option', option.getAttribute('data-option'));
+                                li.textContent = option.textContent;
+                                li.addEventListener('click', function() {
+                                    const questionEl = this.closest('.question');
+                                    questionEl.querySelectorAll('.options li').forEach(li => {
+                                        li.classList.remove('selected');
+                                    });
+                                    this.classList.add('selected');
+                                });
+                                optionsUl.appendChild(li);
+                            });
+                        }
+                        
+                        // 結果を表示（既に回答済みの場合）
+                        const history = StudyHistory.getHistory();
+                        if (history[category] && history[category].questions[questionIndex]) {
+                            const questionData = history[category].questions[questionIndex];
+                            if (questionData.answered) {
+                                const resultDiv = document.getElementById(`result-${displayIndex}`);
+                                const questionEl = document.getElementById(`review-question-${displayIndex}`);
+                                
+                                if (resultDiv && result) {
+                                    resultDiv.innerHTML = result.innerHTML;
+                                    resultDiv.style.display = 'block';
+                                    if (questionData.isCorrect) {
+                                        resultDiv.classList.add('correct');
+                                        resultDiv.classList.remove('incorrect');
+                                        questionEl.classList.add('correct-now');
+                                    } else {
+                                        resultDiv.classList.add('incorrect');
+                                        resultDiv.classList.remove('correct');
+                                    }
+                                }
+                                
+                                // 選択肢の色を設定
+                                const options = questionEl.querySelectorAll('.options li');
+                                options.forEach(option => {
+                                    const optionValue = option.getAttribute('data-option');
+                                    if (optionValue === questionData.correctAnswer) {
+                                        option.classList.add('correct');
+                                    } else if (optionValue === questionData.selectedAnswer && !questionData.isCorrect) {
+                                        option.classList.add('incorrect');
+                                    }
+                                });
+                                
+                                // ボタンを無効化
+                                const button = questionEl.querySelector('.answer-btn');
+                                if (button) {
+                                    button.disabled = true;
+                                    button.style.opacity = '0.6';
+                                    button.textContent = questionData.isCorrect ? '✓ 正解しました！' : '✗ 不正解';
+                                }
+                            }
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading question:', error);
+                });
+        }
+        
+        // 復習モードでの回答確認
+        function checkReviewAnswer(button, displayIndex, correctAnswer) {
+            const question = button.closest('.question');
+            const selected = question.querySelector('.options li.selected');
+            const result = question.querySelector('.result');
+            const options = question.querySelectorAll('.options li');
+            
+            if (!selected) {
+                alert('選択肢を選んでください');
+                return;
+            }
+            
+            const selectedAnswer = selected.getAttribute('data-option');
+            const isCorrect = selectedAnswer === correctAnswer;
+            const category = question.getAttribute('data-category');
+            const questionIndex = parseInt(question.getAttribute('data-index'));
+            
+            // 学習履歴に記録
+            StudyHistory.recordAnswer(category, questionIndex, isCorrect, selectedAnswer, correctAnswer);
+            
+            // 問題全体の背景色を変更
+            question.classList.remove('answered-correct', 'answered-incorrect');
+            if (isCorrect) {
+                question.classList.add('answered-correct', 'correct-now');
+            } else {
+                question.classList.add('answered-incorrect');
+            }
+            
+            // 選択肢の色を変更
+            options.forEach(option => {
+                option.classList.remove('correct', 'incorrect', 'selected');
+                const optionValue = option.getAttribute('data-option');
+                if (optionValue === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (optionValue === selectedAnswer && selectedAnswer !== correctAnswer) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // 答えを表示
+            result.style.display = 'block';
+            if (isCorrect) {
+                result.classList.add('correct');
+                result.classList.remove('incorrect');
+            } else {
+                result.classList.add('incorrect');
+                result.classList.remove('correct');
+            }
+            
+            // 問題の説明を読み込んで表示
+            fetch(`${category}.html`)
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const questions = doc.querySelectorAll('.question');
+                    if (questions[questionIndex]) {
+                        const originalResult = questions[questionIndex].querySelector('.result');
+                        if (originalResult) {
+                            result.innerHTML = originalResult.innerHTML;
+                        }
+                    }
+                });
+            
+            // ボタンを無効化
+            button.disabled = true;
+            button.style.opacity = '0.6';
+            button.textContent = isCorrect ? '✓ 正解しました！' : '✗ 不正解';
+            
+            // 統計を更新
+            updateStats();
+        }
+        
+        // 問題をシャッフル
+        function shuffleQuestions() {
+            currentQuestions = [...wrongQuestions];
+            for (let i = currentQuestions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentQuestions[i], currentQuestions[j]] = [currentQuestions[j], currentQuestions[i]];
+            }
+            displayQuestions();
+        }
+        
+        // 復習の回答をリセット
+        function resetReviewAnswers() {
+            if (confirm('復習モードでの回答をリセットしますか？学習履歴からも削除されます。')) {
+                wrongQuestions.forEach(item => {
+                    const history = StudyHistory.getHistory();
+                    if (history[item.category] && history[item.category].questions[item.questionIndex]) {
+                        // 間違えた問題として残す（isCorrectをfalseに戻す）
+                        history[item.category].questions[item.questionIndex].isCorrect = false;
+                        StudyHistory.saveHistory(history);
+                    }
+                });
+                loadWrongQuestions();
+            }
+        }
+        
+        // ページ読み込み時に間違えた問題を読み込む
+        document.addEventListener('DOMContentLoaded', loadWrongQuestions);
+    </script>
+</body>
+</html>
+

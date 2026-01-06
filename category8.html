@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⑧ AIに必要な数理・統計知識 - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        <h1>⑧ AIに必要な数理・統計知識</h1>
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>最適化に必要な数学基礎知識や微分を理解する</li>
+                    <li>機械学習で必要となる統計学基礎を理解する</li>
+                    <li>基本的な統計情報を計算できる</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item"><strong>最小二乗法</strong>データ点と予測値の誤差を2乗して合計し、その合計値が最小になるようにモデルのパラメーターを決定する手法</div>
+                <div class="keyword-item"><strong>ユークリッド距離</strong>日常的な直線距離</div>
+                <div class="keyword-item"><strong>マハラノビス距離</strong>データの分布の形を考慮した距離</div>
+                <div class="keyword-item"><strong>cos類似度</strong>ベクトルの向きの近さを角度で評価</div>
+                <div class="keyword-item"><strong>微分</strong>関数がどのように変化するかを測る方法で、入力値をわずかに変えた時の出力の変化量を表す</div>
+                <div class="keyword-item"><strong>勾配降下法</strong>現在地点での最も急な下り坂方向に少しずつ移動することで関数の最小値を探す方法</div>
+                <div class="keyword-item"><strong>平均</strong>データの合計をデータ数で割った値</div>
+                <div class="keyword-item"><strong>中央値</strong>データを小さい順に並べた時の中央の値</div>
+                <div class="keyword-item"><strong>分散</strong>各データと平均の差の2乗の平均</div>
+                <div class="keyword-item"><strong>標準偏差</strong>分散の平方根</div>
+                <div class="keyword-item"><strong>正規分布</strong>データが平均値を中心に左右対称な分布</div>
+                <div class="keyword-item"><strong>相関係数</strong>-1から1の間の値で、2変数間の関係性の強さと方向を示す</div>
+            </div>
+        </div>
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習</h2>
+                <div style="display: flex; gap: 10px;">
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+                </div>
+            </div>
+            <div class="question" id="question-0">
+                <div class="question-text">機械学習における勾配降下法について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）現在地点での最も急な下り坂方向に少しずつ移動することで関数の最小値を探す方法</li>
+                    <li data-option="B">B）ランダムに値を選ぶ方法</li>
+                    <li data-option="C">C）全ての組み合わせを試す方法</li>
+                    <li data-option="D">D）最大値を探す方法</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>勾配降下法は、現在地点での最も急な下り坂方向に少しずつ移動することで関数の最小値を探す方法です。ニューラルネットワークの学習でよく使われます。</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // 回答をリセットする関数
+        function resetAnswers() {
+            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
+                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+                const history = StudyHistory.getHistory();
+                if (history[currentPage]) {
+                    delete history[currentPage];
+                    StudyHistory.saveHistory(history);
+                }
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⑩ AI倫理・AIガバナンス - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        <h1>⑩ AI倫理・AIガバナンス</h1>
+        
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>各ガイドラインを通じ共通で議論されている事項を理解している</li>
+                    <li>プライバシー上の問題の所在とプライバシーが問題となった著名な事例を理解している</li>
+                    <li>公平性の問題としてどのような問題が存在するのか理解している</li>
+                    <li>安全性に関する論点の所在と代表的な事例を理解している</li>
+                    <li>セキュリティ上の課題としてどのような攻撃等が存在しているのか理解している</li>
+                    <li>説明可能性や透明性を確保するにあたって考慮すべき事項を理解している</li>
+                    <li>AI倫理アセスメントの必要性について理解している</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item"><strong>AI倫理</strong>人工知能を開発利用する際に守るべき道徳的社会的ルールや考え方</div>
+                <div class="keyword-item"><strong>AIガバナンス</strong>AIを安全かつ適切に運用するための管理体制やルールを整備すること</div>
+                <div class="keyword-item"><strong>ハードロー</strong>政府や公的機関によって制定され、法的拘束力を持つ法律</div>
+                <div class="keyword-item"><strong>ソフトロー</strong>法的拘束力のない指針やガイドライン</div>
+                <div class="keyword-item"><strong>リスクベースアプローチ</strong>AIのリスクの大きさに応じて適切な規制や対策を講じる手法</div>
+                <div class="keyword-item"><strong>プライバシーバイデザイン</strong>システム設計段階からプライバシー保護を考慮する考え方</div>
+                <div class="keyword-item"><strong>公平性</strong>AIが異なる個人やグループに対して公正に判断することを指す</div>
+                <div class="keyword-item"><strong>アルゴリズムバイアス</strong>AIが特定の集団や属性に偏った判断をし不公平な結果を生むこと</div>
+                <div class="keyword-item"><strong>敵対的攻撃（アドバーサリアルアタック）</strong>AIが誤った判断をするように意図的に操作されたデータを用いた攻撃</div>
+                <div class="keyword-item"><strong>データ汚染</strong>学習データの収集作成工程を狙った攻撃</div>
+                <div class="keyword-item"><strong>ディープフェイク</strong>AIのディープラーニング技術を使って映像や音声を本物のように合成改変する技術</div>
+                <div class="keyword-item"><strong>説明可能性（XAI）</strong>AIの判断や予測の根拠を人が理解できる形で説明できること</div>
+                <div class="keyword-item"><strong>ブラックボックス</strong>AIがどのように判断や予測を行ったのか内部の処理過程が不透明で人が理解しにくい状態</div>
+                <div class="keyword-item"><strong>AI倫理アセスメント</strong>AIの開発運用において倫理的なリスクや影響を事前に評価するプロセス</div>
+            </div>
+        </div>
+        
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習</h2>
+                <div style="display: flex; gap: 10px;">
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+                </div>
+            </div>
+            <div class="question" id="question-0">
+                <div class="question-text">AIを用いた顔認識技術については、近年様々な倫理的な問題が指摘されている。この点に関して、最も不適切な選択肢を1つ選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）顔認識技術については、肌の色が濃い人や女性において認識精度が下がるサービスが存在すると指摘されている。この原因として、学習に用いたデータセットの偏りが指摘されている</li>
+                    <li data-option="B">B）顔認識技術の利用にあたっては日本では個人情報保護法を遵守する必要があるが、それだけではなくプライバシーの観点から同法を超えた対応や措置を実施することが重要な場合がある</li>
+                    <li data-option="C">C）IBM社は2020年6月に、顔認識技術を利用することの倫理的課題などを原因として、今後警察に汎用顔認識技術の提供を行わないことを表明した</li>
+                    <li data-option="D">D）アメリカでは都市によっては条例等により顔認識システムの利用を禁止しているが、その禁止対象は民間企業による利用ばかりではなく、警察などの公共性の高い公的機関による利用も含めるものが主流である</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'D')">答えを確認</button>
+                <div class="result correct"><strong>正解：D）</strong><br>アメリカでは都市によっては条例等により顔認識システムの利用を禁止しているが、その禁止対象は主に民間企業による利用であり、警察などの公共性の高い公的機関による利用を禁止するものは主流ではありません。</div>
+            </div>
+            
+            <div class="question" id="question-1">
+                <div class="question-text">AIが与える地球環境への影響などのAIにおけるサステナビリティ上の課題について、最も不適切な選択肢を1つ選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）モデルの巨大化・複雑化に伴い学習に必要な電力の増大がサステナビリティの点から問題となっている</li>
+                    <li data-option="B">B）運搬などの分野で効率の良い経路を導き出すことで、運搬によるエネルギー消費を抑えるというAIを用いた環境保護の取り組みが存在する</li>
+                    <li data-option="C">C）AIに多数のデータを学習させることは、学習効率が向上するため、電力消費量が少数データの学習の場合に比べて低下する</li>
+                    <li data-option="D">D）AIの学習や推論により発生する電力消費を抑えるべく、環境負荷の少ないモデルの開発が進められている</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'C')">答えを確認</button>
+                <div class="result correct"><strong>正解：C）</strong><br>AIに多数のデータを学習させることは、学習効率が向上するものの、データ量が増えるほど計算量も増加するため、電力消費量は増加します。少数データの学習の場合に比べて低下するというのは誤りです。</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // 回答をリセットする関数
+        function resetAnswers() {
+            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
+                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+                const history = StudyHistory.getHistory();
+                if (history[currentPage]) {
+                    delete history[currentPage];
+                    StudyHistory.saveHistory(history);
+                }
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

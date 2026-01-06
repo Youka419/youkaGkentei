@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>問題一覧 - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .question-list-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        
+        .question-list-item {
+            background: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .question-list-item.wrong {
+            border-left-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .question-list-item.correct {
+            border-left-color: #4caf50;
+            background: #e8f5e9;
+        }
+        
+        .question-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .question-text-list {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .answer-section {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .correct-answer {
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .explanation {
+            color: #666;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+        
+        .category-selector {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+        
+        .category-selector select {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 2px solid #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="question-list-container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        
+        <h1>📋 問題一覧</h1>
+        
+        <div class="category-selector">
+            <label for="categorySelect" style="display: block; margin-bottom: 10px; font-weight: bold;">分野を選択：</label>
+            <select id="categorySelect" onchange="loadQuestionList()">
+                <option value="category1">① 人工知能とは</option>
+                <option value="category2">② 人工知能をめぐる動向</option>
+                <option value="category3">③ 機械学習の概要</option>
+                <option value="category4">④ ディープラーニングの概要</option>
+                <option value="category5">⑤ ディープラーニングの要素技術</option>
+                <option value="category6">⑥ ディープラーニングの応用例</option>
+                <option value="category7">⑦ AIの社会実装に向けて</option>
+                <option value="category8">⑧ AIに必要な数理・統計知識</option>
+                <option value="category9">⑨ AIに関する法律と契約</option>
+                <option value="category10">⑩ AI倫理・AIガバナンス</option>
+            </select>
+        </div>
+        
+        <div id="questionList">
+            <!-- 問題一覧がここに表示されます -->
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        const categoryNames = {
+            'category1': '① 人工知能とは',
+            'category2': '② 人工知能をめぐる動向',
+            'category3': '③ 機械学習の概要',
+            'category4': '④ ディープラーニングの概要',
+            'category5': '⑤ ディープラーニングの要素技術',
+            'category6': '⑥ ディープラーニングの応用例',
+            'category7': '⑦ AIの社会実装に向けて',
+            'category8': '⑧ AIに必要な数理・統計知識',
+            'category9': '⑨ AIに関する法律と契約',
+            'category10': '⑩ AI倫理・AIガバナンス'
+        };
+        
+        // URLパラメータからカテゴリーを取得
+        function getCategoryFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('category') || 'category1';
+        }
+        
+        // 問題一覧を読み込む
+        function loadQuestionList() {
+            const category = document.getElementById('categorySelect').value;
+            const questionListDiv = document.getElementById('questionList');
+            
+            // カテゴリーページを読み込んで問題を抽出
+            fetch(`${category}.html`)
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const questions = doc.querySelectorAll('.question');
+                    
+                    let htmlContent = `<h2 style="color: #667eea; margin-bottom: 20px;">${categoryNames[category]} - 問題一覧（全${questions.length}問）</h2>`;
+                    htmlContent += '<p style="margin-bottom: 20px; color: #666;">各問題の正解と説明を確認できます。間違えやすい問題を重点的に復習しましょう。</p>';
+                    
+                    if (questions.length === 0) {
+                        htmlContent += '<div class="no-data">問題が見つかりませんでした。</div>';
+                    } else {
+                        questions.forEach((question, index) => {
+                            const questionText = question.querySelector('.question-text')?.textContent || question.querySelector('.question-text')?.innerHTML || '';
+                            const result = question.querySelector('.result');
+                            const correctAnswer = result?.querySelector('strong')?.textContent || '';
+                            const explanation = result?.textContent?.replace(correctAnswer, '').trim() || '';
+                            
+                            // 学習履歴から回答状況を取得
+                            const history = StudyHistory.getHistory();
+                            const categoryHistory = history[category] || { questions: [] };
+                            const questionHistory = categoryHistory.questions?.[index];
+                            const isWrong = questionHistory && !questionHistory.isCorrect;
+                            const itemClass = isWrong ? 'wrong' : (questionHistory?.isCorrect ? 'correct' : '');
+                            
+                            htmlContent += `
+                                <div class="question-list-item ${itemClass}">
+                                    <div class="question-number">問題 ${index + 1}${isWrong ? ' ❌' : questionHistory?.isCorrect ? ' ✓' : ''}</div>
+                                    <div class="question-text-list">${questionText}</div>
+                                    <div class="answer-section">
+                                        <div class="correct-answer">${correctAnswer || '正解情報なし'}</div>
+                                        <div class="explanation">${explanation || '説明情報なし'}</div>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    }
+                    
+                    questionListDiv.innerHTML = htmlContent;
+                })
+                .catch(error => {
+                    questionListDiv.innerHTML = '<div class="no-data">問題データの読み込みに失敗しました。</div>';
+                    console.error('Error loading questions:', error);
+                });
+        }
+        
+        // ページ読み込み時
+        document.addEventListener('DOMContentLoaded', function() {
+            const category = getCategoryFromURL();
+            document.getElementById('categorySelect').value = category;
+            loadQuestionList();
+        });
+    </script>
+</body>
+</html>
+

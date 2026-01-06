@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>② 人工知能をめぐる動向 - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        <h1>② 人工知能をめぐる動向</h1>
+        
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>探索理論の具体例を説明できる</li>
+                    <li>探索理論を実現する代表的な手法を説明できる</li>
+                    <li>知識表現とは何か説明できる</li>
+                    <li>エキスパートシステムとは何か説明できる</li>
+                    <li>機械学習が注目されるようになった背景を説明できる</li>
+                    <li>ディープラーニングがどのように発展してきたかその歴史を説明できる</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item"><strong>探索理論</strong>迷路のような問題を解くためのツリー構造</div>
+                <div class="keyword-item"><strong>幅優先探索</strong>出発点に近いノードから順に探索するため、最短距離で必ずゴールに到達できる</div>
+                <div class="keyword-item"><strong>深さ優先探索</strong>あるノードから行き止まりまで進み、行き止まりなら1つ前に戻って探索を繰り返す</div>
+                <div class="keyword-item"><strong>ミニマックス法</strong>ゲームにおいて最適な戦略を見つけるためのアルゴリズム</div>
+                <div class="keyword-item"><strong>知識表現</strong>コンピューターが情報を扱いやすい形で知識を表現する方法</div>
+                <div class="keyword-item"><strong>エキスパートシステム</strong>専門家の知識をルール化し、特定分野で専門家並みの判断を行うプログラム</div>
+                <div class="keyword-item"><strong>MYCIN</strong>血液感染症の診断と治療のために設計された初期のエキスパートシステム</div>
+                <div class="keyword-item"><strong>意味ネットワーク</strong>単語や概念同士の関係性をグラフで表したもの</div>
+                <div class="keyword-item"><strong>オントロジー</strong>人間の持つ情報をコンピューターが理解できるように整理記述すること</div>
+                <div class="keyword-item"><strong>ビッグデータ</strong>インターネットの成長と共に蓄積された大量のデータの総称</div>
+                <div class="keyword-item"><strong>次元の呪い</strong>特徴量の数が増えるほど高い精度のモデルを作るために必要なデータ量が指数関数的に増える現象</div>
+                <div class="keyword-item"><strong>ImageNet</strong>画像認識アルゴリズムのトレーニングや評価に使用される大規模な画像データベース</div>
+                <div class="keyword-item"><strong>ILSVRC</strong>2010年から始まった画像認識の精度を競い合う競技会</div>
+                <div class="keyword-item"><strong>AlexNet</strong>2012年のILSVRCでディープラーニングを初めて用いたモデル</div>
+            </div>
+        </div>
+        
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習</h2>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="question-list.html?category=category2" class="wrong-questions-link" style="background: #9c27b0; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">📋 問題一覧</a>
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="pauseSession()" class="wrong-questions-link" style="background: #2196f3; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">⏸️ 一時停止</button>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+                </div>
+            </div>
+            <div class="question" id="question-0">
+                <div class="question-text">探索理論における幅優先探索について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）出発点に近いノードから順に探索するため、最短距離で必ずゴールに到達できる</li>
+                    <li data-option="B">B）あるノードから行き止まりまで進み、行き止まりなら1つ前に戻って探索を繰り返す</li>
+                    <li data-option="C">C）ランダムにノードを選択して探索する</li>
+                    <li data-option="D">D）ゴールから逆方向に探索する</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>幅優先探索は出発点に近いノードから順に探索するため、最短距離で必ずゴールに到達できる利点があります。しかし全てのノードを記憶しながら探索するため、複雑な迷路ではメモリ不足になる可能性があります。</div>
+            </div>
+            
+            <div class="question" id="question-1">
+                <div class="question-text">深さ優先探索について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）あるノードから行き止まりまで進み、行き止まりなら1つ前に戻って探索を繰り返す</li>
+                    <li data-option="B">B）出発点に近いノードから順に探索する</li>
+                    <li data-option="C">C）ランダムにノードを選択して探索する</li>
+                    <li data-option="D">D）ゴールから逆方向に探索する</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>深さ優先探索は、あるノードから行き止まりまで進み、行き止まりなら1つ前に戻って探索を繰り返します。これはメモリをあまり必要としませんが、最短距離でゴールにたどり着く保証はありません。</div>
+            </div>
+            
+            <div class="question" id="question-2">
+                <div class="question-text">ミニマックス法について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）ゲームにおいて最適な戦略を見つけるためのアルゴリズムで、プレイヤーは自分の利益を最大化し相手の利益を最小化するように交互に手を選ぶ</li>
+                    <li data-option="B">B）ランダムに手を選ぶアルゴリズム</li>
+                    <li data-option="C">C）常に最初に見つかった手を選ぶアルゴリズム</li>
+                    <li data-option="D">D）相手の手を真似するアルゴリズム</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ミニマックス法は、ゲームにおいて最適な戦略を見つけるためのアルゴリズムです。プレイヤーは自分の利益を最大化し相手の利益を最小化するように交互に手を選ぶことで、最も有利な手を選択することができます。ミニマックスを活用できる例としては、チェスやオセロ、囲碁などが挙げられます。</div>
+            </div>
+            
+            <div class="question" id="question-3">
+                <div class="question-text">アルファベータ法について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）ミニマックス法を効率化するための手法で、探索を早期に打ち切ることで効率を上げることができる</li>
+                    <li data-option="B">B）全ての手を探索するアルゴリズム</li>
+                    <li data-option="C">C）ランダムに手を選ぶアルゴリズム</li>
+                    <li data-option="D">D）常に最初に見つかった手を選ぶアルゴリズム</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>アルファベータ法は、ミニマックス法を効率化するための手法です。探索を早期に打ち切ることで効率を上げることができます。アルファカットはスコアが最大のものを選ぶ過程で、すでに出現したスコアよりも小さいスコアが出たら探索を打ち切ることです。またベータカットはスコアが最小のものを選ぶ過程で、すでに出現したスコアよりも大きいスコアが出たら探索を打ち切ることです。</div>
+            </div>
+            
+            <div class="question" id="question-4">
+                <div class="question-text">探索木について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）迷路のような問題を解くためのツリー構造で、各ノードは迷路の1地点を示し、枝はその地点から次に進める方向を示す</li>
+                    <li data-option="B">B）データを分類するための構造</li>
+                    <li data-option="C">C）画像を処理するための構造</li>
+                    <li data-option="D">D）音声を処理するための構造</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>探索木は、迷路のような問題を解くためのツリー構造です。各ノードは迷路の1地点を示し、枝はその地点から次に進める方向を示します。探索木を使うことで、スタートからゴールまでの最適な経路を見つけることができます。</div>
+            </div>
+            
+            <div class="question" id="question-5">
+                <div class="question-text">ハノイの塔について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）円盤を3本の棒の間で移動させるパズルで、再帰やアルゴリズムの理解に役立つ</li>
+                    <li data-option="B">B）データを分類するパズル</li>
+                    <li data-option="C">C）画像を処理するパズル</li>
+                    <li data-option="D">D）音声を処理するパズル</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ハノイの塔は、円盤を3本の棒の間で移動させるパズルです。再帰やアルゴリズムの理解に役立ちます。円盤を全て別の棒に移動させることで完成になります。ルールとしては、1度に1枚の円盤しか動かせない、大きい円盤を小さい円盤の上に置いてはいけないの2つです。クリアに必要な最小の手数は、Nを円盤の数とすると2のN乗-1になります。</div>
+            </div>
+            
+            <div class="question" id="question-6">
+                <div class="question-text">モンテカルロ法について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）乱数を使ってシミュレーションや数値計算を行う手法で、数式で解くのが難しい場合に乱数による試行を繰り返して近似解を得る方法</li>
+                    <li data-option="B">B）全ての組み合わせを試す手法</li>
+                    <li data-option="C">C）ランダムに手を選ぶ手法</li>
+                    <li data-option="D">D）常に最初に見つかった解を選ぶ手法</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>モンテカルロ法は、乱数を使ってシミュレーションや数値計算を行う手法です。数式で解くのが難しい場合に、乱数による試行を繰り返して近似解を得る方法です。モンテカルロ法の活用例としては、円周率πを求める方法があります。まず正方形内にランダムに点を配置し、そのうち円内に入る点の割合を使用することを考えます。この点の数を増やせば増やすほどπの値に近づきます。</div>
+            </div>
+            
+            <div class="question" id="question-7">
+                <div class="question-text">ブルートフォースについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）全ての組み合わせを試す手法で、別な技術は不要だが組み合わせが多いと時間がかかる欠点がある</li>
+                    <li data-option="B">B）ランダムに組み合わせを選ぶ手法</li>
+                    <li data-option="C">C）最初に見つかった組み合わせを選ぶ手法</li>
+                    <li data-option="D">D）最適な組み合わせを直接計算する手法</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ブルートフォースは、全ての組み合わせを試す手法です。別な技術は不要ですが、組み合わせが多いと時間がかかる欠点があります。この方法を用いた攻撃には、ブルートフォース攻撃、リバースブルートフォース攻撃、パスワードスプレー攻撃などがあります。</div>
+            </div>
+            
+            <div class="question" id="question-8">
+                <div class="question-text">サイクプロジェクトについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）全ての一般常識をコンピュータに取り込むことを目指して1984年に始まったプロジェクトで、30年以上続いており人間の一般常識が膨大であることを示している</li>
+                    <li data-option="B">B）画像認識のためのプロジェクト</li>
+                    <li data-option="C">C）音声認識のためのプロジェクト</li>
+                    <li data-option="D">D）機械翻訳のためのプロジェクト</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>サイクプロジェクトは、全ての一般常識をコンピュータに取り込むことを目指して1984年に始まったプロジェクトです。このプロジェクトは30年以上続いており、人間の一般常識が膨大であることを示しています。形式化する一般常識の例としては、水はH2Oで構成されています、犬は哺乳類です、パリはフランスの首都ですなどが挙げられます。</div>
+            </div>
+            
+            <div class="question" id="question-9">
+                <div class="question-text">デンドラルについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）1960年代にスタンフォード大学で開発された未知の有機化合物を特定する人工知能で、世界初のエキスパートシステムとされている</li>
+                    <li data-option="B">B）画像認識のためのシステム</li>
+                    <li data-option="C">C）音声認識のためのシステム</li>
+                    <li data-option="D">D）機械翻訳のためのシステム</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>デンドラルは、1960年代にスタンフォード大学で開発された未知の有機化合物を特定する人工知能です。質量分析の結果と有機科学の知識を用いて物質を同定することができ、専門家が行う判断を行えるということで、世界初のエキスパートシステムとされています。</div>
+            </div>
+            
+            <div class="question" id="question-10">
+                <div class="question-text">意味ネットワークについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）単語や概念同士の関係性をグラフで表したもので、関係性には「AはBである」を示すイザや「AはBの一部である」を示すパート部などがある</li>
+                    <li data-option="B">B）画像を処理するネットワーク</li>
+                    <li data-option="C">C）音声を処理するネットワーク</li>
+                    <li data-option="D">D）データを分類するネットワーク</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>意味ネットワークは、単語や概念同士の関係性をグラフで表したものです。関係性には「AはBである」を示すイザや「AはBの一部である」を示すパート部などがあり、矢印の向いている方が上位の概念です。機械学習分野では、人間の言語や知識をコンピュータに理解させるために用いられます。</div>
+            </div>
+            
+            <div class="question" id="question-11">
+                <div class="question-text">イザの関係について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）意味ネットワークにおいて「AはBである」と示す関係で、AがBというカテゴリに属することを示す</li>
+                    <li data-option="B">B）「AはBの一部である」を示す関係</li>
+                    <li data-option="C">C）「AはBを所有している」を示す関係</li>
+                    <li data-option="D">D）「AはBと等しい」を示す関係</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>イザの関係は、意味ネットワークにおいて「AはBである」と示す関係で、AがBというカテゴリに属することを示します。例えば、猫は哺乳類である、哺乳類は動物である、動物は生物であるといった関係です。この関係は意味ネットワーク内で概念間の階層構造を形成し、人間の知識を整理するのに役立ちます。</div>
+            </div>
+            
+            <div class="question" id="question-12">
+                <div class="question-text">ハザの関係について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）意味ネットワークにおけるハザはパート部と逆の関係をし、パート部は「一部である」という属性を示しているのに対して、ハザは「所有」を示している</li>
+                    <li data-option="B">B）「AはBである」を示す関係</li>
+                    <li data-option="C">C）「AはBの一部である」を示す関係</li>
+                    <li data-option="D">D）「AはBと等しい」を示す関係</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ハザの関係は、意味ネットワークにおけるハザはパート部と逆の関係をします。パート部は「一部である」という属性を示しているのに対して、ハザは「所有」を示しています。例えば、パート部では「目は頭部の一部である」と表現し、ハザでは「頭部は目を所有している」と表現します。</div>
+            </div>
+            
+            <div class="question" id="question-13">
+                <div class="question-text">クエスチョンアンサリングについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）質問に対して答えとなる情報を出すシステムに関する研究分野で、まず質問を分析して回答候補を複数選び、複数の観点から見て最も適している回答を選択する</li>
+                    <li data-option="B">B）画像を認識するシステム</li>
+                    <li data-option="C">C）音声を認識するシステム</li>
+                    <li data-option="D">D）データを分類するシステム</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>クエスチョンアンサリングは、質問に対して答えとなる情報を出すシステムに関する研究分野のことです。この技術は、まず質問を分析して回答候補を複数選び、複数の観点から見て最も適している回答を選択します。この研究の成果としては、2011年にアメリカのクイズ番組に出場したIBM社のワトソンが挙げられます。</div>
+            </div>
+            
+            <div class="question" id="question-14">
+                <div class="question-text">ワトソンについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）IBMが開発した人工知能システムで、自然言語処理や機械学習などを用いて質問に回答し、2011年にアメリカのクイズ番組ジョパディで人間のチャンピオンに勝利し注目された</li>
+                    <li data-option="B">B）画像認識のためのシステム</li>
+                    <li data-option="C">C）音声認識のためのシステム</li>
+                    <li data-option="D">D）機械翻訳のためのシステム</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ワトソンは、IBMが開発した人工知能システムで、自然言語処理や機械学習などを用いて質問に回答します。2011年にアメリカのクイズ番組ジョパディで人間のチャンピオンに勝利し注目されました。</div>
+            </div>
+            
+            <div class="question" id="question-15">
+                <div class="question-text">イライザについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）1960年代に開発されたチャットボットで、シンプルなアルゴリズムだが自然言語処理とチャットボットの基礎を築いた重要なプログラム</li>
+                    <li data-option="B">B）画像認識のためのプログラム</li>
+                    <li data-option="C">C）音声認識のためのプログラム</li>
+                    <li data-option="D">D）機械翻訳のためのプログラム</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>イライザは、1960年代に開発されたチャットボットで、シンプルなアルゴリズムですが自然言語処理とチャットボットの基礎を築いた重要なプログラムです。ユーザーの入力に対して特定のキーワードを元にセラピストのような応答を返すことで、人と会話しているように見せかけるプログラムです。</div>
+            </div>
+            
+            <div class="question" id="question-16">
+                <div class="question-text">MYCINについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）主に血液感染症の診断と治療のために設計された初期のエキスパートシステムで、初期のエキスパートシステムとして最も影響力が大きいもの</li>
+                    <li data-option="B">B）画像認識のためのシステム</li>
+                    <li data-option="C">C）音声認識のためのシステム</li>
+                    <li data-option="D">D）機械翻訳のためのシステム</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>MYCINは、主に血液感染症の診断と治療のために設計された初期のエキスパートシステムです。エキスパートシステムとは専門分野の知識を取り込み、その分野の専門家のように振る舞うプログラムのことで、MYCINは初期のエキスパートシステムとして最も影響力が大きいものでした。</div>
+            </div>
+            
+            <div class="question" id="question-17">
+                <div class="question-text">オントロジーについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）人間の持つ情報をコンピュータが理解できるように整理記述すること</li>
+                    <li data-option="B">B）画像を処理する技術</li>
+                    <li data-option="C">C）音声を処理する技術</li>
+                    <li data-option="D">D）データを分類する技術</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>オントロジーは、人間の持つ情報をコンピュータが理解できるように整理記述することです。例えば、「リンゴ」という単語を見た時に「果物」を自動で関連付けるようにするためのもので、コンピュータは文字をそのままの形でしか理解できないため、こうした整理が必要になります。</div>
+            </div>
+            
+            <div class="question" id="question-18">
+                <div class="question-text">データマイニングについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）大量のデータから有用な情報やパターンを自動的に発見する技術</li>
+                    <li data-option="B">B）画像を処理する技術</li>
+                    <li data-option="C">C）音声を処理する技術</li>
+                    <li data-option="D">D）データを分類する技術</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>データマイニングは、大量のデータから有用な情報やパターンを自動的に発見する技術です。これによりビジネスの意思決定や予測などに役立つ洞察を得ることができます。具体例としては、オムツとビールに意味上の関連性はないが、オムツとビールを同時に買う人が多いという情報を見つけることができるなどが挙げられます。</div>
+            </div>
+            
+            <div class="question" id="question-19">
+                <div class="question-text">セマンティックWebについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）Web上の情報をコンピュータが意味的に理解し処理できるようにする技術のこと</li>
+                    <li data-option="B">B）画像を処理する技術</li>
+                    <li data-option="C">C）音声を処理する技術</li>
+                    <li data-option="D">D）データを分類する技術</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>セマンティックWebは、Web上の情報をコンピュータが意味的に理解し処理できるようにする技術のことです。これによりデータの検索や統合が効率的になります。従来の検索では膨大なデータが検索ワードに結びつかず目的の検索結果が得られないことがありましたが、セマンティックWebでは情報に意味を与えることで的確に検索ができるようになります。</div>
+            </div>
+            
+            <div class="question" id="question-20">
+                <div class="question-text">とロボ君について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）東京大学に合格させることを目指して2011年から開発された人工知能で、数学や世界史は得意でも国語のような常識や文脈理解を問われる分野は苦手であることが判明し、2016年にプロジェクトは凍結された</li>
+                    <li data-option="B">B）画像認識のためのシステム</li>
+                    <li data-option="C">C）音声認識のためのシステム</li>
+                    <li data-option="D">D）機械翻訳のためのシステム</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>とロボ君は、東京大学に合格させることを目指して2011年から開発された人工知能です。プロジェクトの目的は人間の思考や知性を理解することでしたが、数学や世界史は得意でも国語のような常識や文脈理解を問われる分野は苦手であることが判明しました。2016年にコンボブレイクスルーがなければ東大合格は難しいと判断され、プロジェクトは凍結されました。</div>
+            </div>
+            
+            <div class="question" id="question-21">
+                <div class="question-text">次元の呪いについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）データ分析や機械学習において入力データとなる特徴量の数が増えるほど高い精度のモデルを作るために必要なデータ量が指数関数的に増えてしまう現象</li>
+                    <li data-option="B">B）データが少ないと精度が低くなる現象</li>
+                    <li data-option="C">C）データが多すぎると処理が遅くなる現象</li>
+                    <li data-option="D">D）データの次元が低いと精度が低くなる現象</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>次元の呪いは、データ分析や機械学習において入力データとなる特徴量の数が増えるほど高い精度のモデルを作るために必要なデータ量が指数関数的に増えてしまう現象のことを言います。</div>
+            </div>
+            
+            <div class="question" id="question-22">
+                <div class="question-text">ビッグデータについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）インターネットの成長とともに蓄積された大量のデータの総称で、これを分析することでビジネスの洞察や予測が可能になる</li>
+                    <li data-option="B">B）画像データの総称</li>
+                    <li data-option="C">C）音声データの総称</li>
+                    <li data-option="D">D）テキストデータの総称</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ビッグデータは、インターネットの成長とともに蓄積された大量のデータの総称のことです。これを分析することでビジネスの洞察や予測が可能になります。</div>
+            </div>
+            
+            <div class="question" id="question-23">
+                <div class="question-text">レコメンデーションについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）ユーザーの好みや行動に基づいて商品やサービスを個別に推奨すること</li>
+                    <li data-option="B">B）画像を分類すること</li>
+                    <li data-option="C">C）音声を認識すること</li>
+                    <li data-option="D">D）データを分析すること</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>レコメンデーションは、ユーザーの好みや行動に基づいて商品やサービスを個別に推奨することです。例えば、Amazonでの商品の推薦やNetflixでの映画の推薦がこれに該当します。これを実現するための主な方法として、協調フィルタリングとコンテンツベースフィルタリングが挙げられます。</div>
+            </div>
+            
+            <div class="question" id="question-24">
+                <div class="question-text">ImageNetについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）画像認識アルゴリズムのトレーニングや評価に使用される大規模な画像データベースで、数百万枚のラベル付き画像が含まれており多くのカテゴリに分類されている</li>
+                    <li data-option="B">B）音声データのデータベース</li>
+                    <li data-option="C">C）テキストデータのデータベース</li>
+                    <li data-option="D">D）動画データのデータベース</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ImageNetは、画像認識アルゴリズムのトレーニングや評価に使用される大規模な画像データベースです。数百万枚のラベル付き画像が含まれており、多くのカテゴリに分類されています。</div>
+            </div>
+            
+            <div class="question" id="question-25">
+                <div class="question-text">ILSVRCについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）2010年から始まった画像認識の精度を競い合う競技会で、2012年ジェフリー・ヒントン率いるトロント大学がディープラーニングを初めて用いたAlexNetで圧勝し、それ以降のILSVRCのチャンピオンは全てディープラーニングを使用している</li>
+                    <li data-option="B">B）音声認識の競技会</li>
+                    <li data-option="C">C）機械翻訳の競技会</li>
+                    <li data-option="D">D）自然言語処理の競技会</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ILSVRCは、2010年から始まった画像認識の精度を競い合う競技会です。2012年、ジェフリー・ヒントン率いるトロント大学がディープラーニングを初めて用いたAlexNetで圧勝しました。それ以降のILSVRCのチャンピオンは全てディープラーニングを使用しており、ディープラーニング技術の進展に大きく貢献しました。</div>
+            </div>
+            
+            <div class="question" id="question-26">
+                <div class="question-text">AlexNetについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）2012年のILSVRCでディープラーニングを初めて用いたモデルで、圧倒的な精度を達成した</li>
+                    <li data-option="B">B）音声認識のためのモデル</li>
+                    <li data-option="C">C）機械翻訳のためのモデル</li>
+                    <li data-option="D">D）自然言語処理のためのモデル</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>AlexNetは、2012年度の画像認識コンペのILSVRCで圧倒的な精度を達成した深層畳み込みニューラルネットワークのことです。ReLUやドロップアウト、GPUによる高速学習を導入し、深層学習ブームの火付け役となったモデルです。</div>
+            </div>
+            
+            <div class="question" id="question-27">
+                <div class="question-text">CNN（畳み込みニューラルネットワーク）について、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）画像認識や分類などに特化したディープラーニングモデルの一種で、物体認識、顔認識、自動運転など多くの画像認識タスクで広く使用されている</li>
+                    <li data-option="B">B）音声認識のためのモデル</li>
+                    <li data-option="C">C）機械翻訳のためのモデル</li>
+                    <li data-option="D">D）自然言語処理のためのモデル</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>CNN（畳み込みニューラルネットワーク）は、画像認識や分類などに特化したディープラーニングモデルの一種です。物体認識、顔認識、自動運転など多くの画像認識タスクで広く使用されています。</div>
+            </div>
+            
+            <div class="question" id="question-28">
+                <div class="question-text">ルネットについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）1998年に開発された初期の畳み込みニューラルネットワーク（CNN）の1つで、手書き文字を99.3%の精度で判別可能</li>
+                    <li data-option="B">B）音声認識のためのモデル</li>
+                    <li data-option="C">C）機械翻訳のためのモデル</li>
+                    <li data-option="D">D）自然言語処理のためのモデル</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ルネットは、1998年に開発された初期の畳み込みニューラルネットワーク（CNN）の1つで、手書き文字を99.3%の精度で判別可能です。畳み込み層、プーリング層、結合層から構成されており、現在のディープラーニングモデルの基礎となっています。</div>
+            </div>
+            
+            <div class="question" id="question-29">
+                <div class="question-text">アルファゴについて、最も適切な説明を選べ</div>
+                <ul class="options">
+                    <li data-option="A">A）Google DeepMindによって開発された人工知能を用いた囲碁プログラムで、2015年に初めてプロの棋士に勝利したことで世界的なAIブームのきっかけとなった</li>
+                    <li data-option="B">B）画像認識のためのプログラム</li>
+                    <li data-option="C">C）音声認識のためのプログラム</li>
+                    <li data-option="D">D）機械翻訳のためのプログラム</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>アルファゴは、Google DeepMindによって開発された人工知能を用いた囲碁プログラムです。2015年に初めてプロの棋士に勝利したことで世界的なAIブームのきっかけとなりました。</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // 回答をリセットする関数
+        function resetAnswers() {
+            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
+                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+                const history = StudyHistory.getHistory();
+                if (history[currentPage]) {
+                    delete history[currentPage];
+                    StudyHistory.saveHistory(history);
+                }
+                location.reload();
+            }
+        }
+        
+        // 学習セッションを一時停止
+        function pauseSession() {
+            const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+            const questions = document.querySelectorAll('.question');
+            let currentQuestionIndex = 0;
+            
+            const hash = window.location.hash;
+            if (hash) {
+                const match = hash.match(/question-(\d+)/);
+                if (match) {
+                    currentQuestionIndex = parseInt(match[1]);
+                }
+            } else {
+                questions.forEach((q, idx) => {
+                    if (!q.classList.contains('answered-correct') && !q.classList.contains('answered-incorrect')) {
+                        currentQuestionIndex = idx;
+                        return;
+                    }
+                });
+            }
+            
+            const scrollPosition = window.scrollY;
+            StudyHistory.saveSession(currentPage, currentQuestionIndex, scrollPosition);
+            alert('学習を一時停止しました。メインメニューから「学習を再開」ボタンで続きから始められます。');
+            window.location.href = 'index.html';
+        }
+        
+        // ページ読み込み時にセッションを復元
+        document.addEventListener('DOMContentLoaded', function() {
+            const session = StudyHistory.getSession();
+            if (session && session.category === window.location.pathname.split('/').pop().replace('.html', '')) {
+                if (session.scrollPosition) {
+                    setTimeout(() => {
+                        window.scrollTo(0, session.scrollPosition);
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

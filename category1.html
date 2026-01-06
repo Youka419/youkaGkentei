@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>① 人工知能とは - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        
+        <h1>① 人工知能とは</h1>
+        
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>人工知能とは何か具体例を用いて説明できる</li>
+                    <li>人工知能のレベルを単純な制御プログラム、古典的な人工知能、機械学習、深層学習の4つに分類し、それぞれがどのようなものか説明できる</li>
+                    <li>AI効果を説明できる</li>
+                    <li>人工知能とロボットの違いを説明できる</li>
+                    <li>人工知能分野で議論されている代表的な問題について説明できる</li>
+                    <li>汎用的な人工知能の実現可能性についていくつかの例を取り上げて説明できる</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item">
+                    <strong>人工知能（AI）</strong>
+                    コンピューターやソフトウェアが人間の知能を模倣し、学習、推論、問題解決、意思決定などのタスクを自動的に実行する技術
+                </div>
+                <div class="keyword-item">
+                    <strong>AI効果</strong>
+                    AIの仕組みや原理を知ることで人々がその技術を特別視せず、単なる自動化や高度なアルゴリズムに過ぎないと認識する心理状態
+                </div>
+                <div class="keyword-item">
+                    <strong>エージェント</strong>
+                    特定の目的を達成するために自立的に行動するシステムやソフトウェア
+                </div>
+                <div class="keyword-item">
+                    <strong>単純な制御プログラム</strong>
+                    事前に定義されたルールや条件に基づいて動作するプログラム（レベル1）
+                </div>
+                <div class="keyword-item">
+                    <strong>古典的な人工知能</strong>
+                    論理的ルールや知識ベースシステムに基づいて問題を解決（レベル2）
+                </div>
+                <div class="keyword-item">
+                    <strong>機械学習</strong>
+                    データからパターンを学習し、そのパターンを元に予測や分類を行う技術（レベル3）
+                </div>
+                <div class="keyword-item">
+                    <strong>ディープラーニング</strong>
+                    ニューラルネットワークを使用した機械学習の一種で、特に多層のニューラルネットワークを用いて高度な特徴抽出と予測を行う（レベル4）
+                </div>
+                <div class="keyword-item">
+                    <strong>ダートマス会議</strong>
+                    1956年にアメリカのダートマス大学で開催された会議で、人工知能という用語が初めて使われた
+                </div>
+                <div class="keyword-item">
+                    <strong>トイプロブレム</strong>
+                    コンピュータで扱いにくいほど複雑な問題を本質を損なわずに単純化したもの
+                </div>
+                <div class="keyword-item">
+                    <strong>フレーム問題</strong>
+                    本来問題解決には必要のない背景も考慮して計算し続けてしまい、情報処理能力を超えて機能が停止する問題
+                </div>
+                <div class="keyword-item">
+                    <strong>シンボルグラウンディング問題</strong>
+                    AIが記号と現実世界の関係を認識できないことを指す
+                </div>
+                <div class="keyword-item">
+                    <strong>知識獲得のボトルネック</strong>
+                    コンピュータが知識を獲得することの困難さを指す
+                </div>
+                <div class="keyword-item">
+                    <strong>強いAIと弱いAI</strong>
+                    強いAIは幅広い領域で人間と同等以上の知識や理解力を持つ。弱いAIは限られたタスクや特定のドメインにおいて高いパフォーマンスを示す
+                </div>
+                <div class="keyword-item">
+                    <strong>チューリングテスト</strong>
+                    コンピューターが人間と区別できないほどの自然な会話を行うかどうかを判断するためのテスト
+                </div>
+                <div class="keyword-item">
+                    <strong>中国語の部屋</strong>
+                    チューリングテストの一種で、コンピュータは中国語を理解できず、マニュアルに従って動作するだけなため弱いAIと見なされる
+                </div>
+                <div class="keyword-item">
+                    <strong>身体性</strong>
+                    物理的な身体が存在することで得られる効果を論じる問題
+                </div>
+                <div class="keyword-item">
+                    <strong>シンギュラリティ</strong>
+                    人工知能が急速に進化し人間の知能を超える時期（2045年頃に到来されると言われている）
+                </div>
+            </div>
+        </div>
+        
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習</h2>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="question-list.html?category=category1" class="wrong-questions-link" style="background: #9c27b0; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">📋 問題一覧</a>
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="pauseSession()" class="wrong-questions-link" style="background: #2196f3; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">⏸️ 一時停止</button>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+                </div>
+            </div>
+            
+            <div class="question" id="question-0">
+                <div class="question-text">
+                    以下の文章を読み、空欄に最もよく当てはまる選択肢を1つ選べ<br><br>
+                    人工知能は有限の処理能力しかないため、現実に起こりうる問題すべてに対処することができない ( ) がある
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）フレーム問題</li>
+                    <li data-option="B">B）ブラックボックス問題</li>
+                    <li data-option="C">C）シンボルグラウンディング問題</li>
+                    <li data-option="D">D）最適化問題</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）フレーム問題</strong><br>
+                    フレーム問題は、本来問題解決には必要のない背景も考慮して計算し続けてしまい、情報処理能力を超えて機能が停止する問題です。人工知能は有限の処理能力しかないため、現実に起こりうる問題すべてに対処することができないフレーム問題があります。
+                </div>
+            </div>
+            
+            <div class="question" id="question-1">
+                <div class="question-text">
+                    人工知能のレベルを4つに分類した場合、最も基本的なレベルはどれか
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）古典的な人工知能</li>
+                    <li data-option="B">B）機械学習</li>
+                    <li data-option="C">C）ディープラーニング</li>
+                    <li data-option="D">D）単純な制御プログラム</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'D')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：D）単純な制御プログラム</strong><br>
+                    人工知能のレベルは、レベル1：単純な制御プログラム、レベル2：古典的な人工知能、レベル3：機械学習、レベル4：ディープラーニングの4つに分類されます。最も基本的なレベルは単純な制御プログラムです。
+                </div>
+            </div>
+            
+            <div class="question" id="question-2">
+                <div class="question-text">
+                    AI効果とは何か、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）AIの仕組みや原理を知ることで人々がその技術を特別視せず、単なる自動化や高度なアルゴリズムに過ぎないと認識する心理状態のこと</li>
+                    <li data-option="B">B）AIの計算速度が向上する現象</li>
+                    <li data-option="C">C）AIが人間を超える能力を獲得する現象</li>
+                    <li data-option="D">D）AIの学習データが増加する現象</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    AI効果は、AIの仕組みや原理を知ることで人々がその技術を特別視せず、単なる自動化や高度なアルゴリズムに過ぎないと認識する心理状態のことです。AIが実際に持つ能力が理解されるにつれて、その魔法のような印象が薄れ単なるツールとして捉えられるようになる現象です。
+                </div>
+            </div>
+            
+            <div class="question" id="question-3">
+                <div class="question-text">
+                    エージェントについて、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）特定の目的を達成するために自立的に行動するシステムやソフトウェア</li>
+                    <li data-option="B">B）データからパターンを学習する技術</li>
+                    <li data-option="C">C）論理的なルールに基づいて動作するシステム</li>
+                    <li data-option="D">D）大量のデータを高速に処理する技術</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    エージェントは、特定の目的を達成するために自立的に行動するシステムやソフトウェアのことを指します。具体例としては、自動運転車やゲームなどで対戦相手などをしてくれるNPC、スマホなどの音声アシスタントやGoogleアシスタントといったバーチャルアシスタントがあります。
+                </div>
+            </div>
+            
+            <div class="question" id="question-4">
+                <div class="question-text">
+                    人工知能（AI）の定義について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）コンピューターやソフトウェアが人間の知能を模倣し、学習、推論、問題解決、意思決定などのタスクを自動的に実行する技術</li>
+                    <li data-option="B">B）大量のデータを高速に処理する技術</li>
+                    <li data-option="C">C）論理的なルールに基づいて動作するシステム</li>
+                    <li data-option="D">D）人間の動作を模倣するロボット技術</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    人工知能（AI）は、コンピューターやソフトウェアが人間の知能を模倣し、学習、推論、問題解決、意思決定などのタスクを自動的に実行する技術です。しかし、唯一に定まる定義があるわけではなく、研究者間ですら定義が異なっています。そのため、同じものを見ても誰もがそれを人工知能であると認識するわけではありません。
+                </div>
+            </div>
+            
+            <div class="question" id="question-5">
+                <div class="question-text">
+                    人工知能のレベル分類において、レベル1に該当するものはどれか
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）単純な制御プログラム</li>
+                    <li data-option="B">B）古典的な人工知能</li>
+                    <li data-option="C">C）機械学習</li>
+                    <li data-option="D">D）ディープラーニング</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    人工知能は大きく分けて4つのレベルに分類されます。レベル1は単純な制御プログラムで、事前に定義されたルールや条件に基づいて動作するプログラムです。具体例としては、温度センサーを用いてエアコンのオンオフを制御したり、センサーが人の存在を検知するとドアを開ける自動ドアなどがあります。
+                </div>
+            </div>
+            
+            <div class="question" id="question-6">
+                <div class="question-text">
+                    古典的な人工知能（レベル2）について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）論理的ルールや知識ベースシステムに基づいて問題を解決する</li>
+                    <li data-option="B">B）データからパターンを学習する技術</li>
+                    <li data-option="C">C）多層のニューラルネットワークを用いて高度な特徴抽出を行う</li>
+                    <li data-option="D">D）事前に定義されたルールに基づいて動作するプログラム</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    古典的な人工知能（レベル2）は、論理的ルールや知識ベースシステムに基づいて問題を解決します。具体例としては、自ら学習はしないが、自動ロボットのように複雑な振る舞いを見せる機能を備えています。
+                </div>
+            </div>
+            
+            <div class="question" id="question-7">
+                <div class="question-text">
+                    機械学習を取り入れたAI（レベル3）について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）データからパターンを学習し、そのパターンを元に予測や分類を行う技術で、ルールは人間が定義するのではなくアルゴリズムがデータから自動的に抽出する</li>
+                    <li data-option="B">B）論理的ルールや知識ベースシステムに基づいて問題を解決する</li>
+                    <li data-option="C">C）事前に定義されたルールや条件に基づいて動作するプログラム</li>
+                    <li data-option="D">D）多層のニューラルネットワークのみを用いる技術</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    機械学習を取り入れたAI（レベル3）は、データからパターンを学習し、そのパターンを元に予測や分類を行う技術です。ルールは人間が定義するのではなく、アルゴリズムがデータから自動的に抽出します。具体例としては、通販サイトの推薦システムやスパムメールフィルターなどがあります。
+                </div>
+            </div>
+            
+            <div class="question" id="question-8">
+                <div class="question-text">
+                    ディープラーニング（深層学習）について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）ニューラルネットワークを使用した機械学習の一種で、特に多層のニューラルネットワークを用いて高度な特徴抽出と予測を行う</li>
+                    <li data-option="B">B）論理的ルールに基づいて問題を解決する技術</li>
+                    <li data-option="C">C）事前に定義されたルールに基づいて動作するプログラム</li>
+                    <li data-option="D">D）単純な統計的手法のみを用いる技術</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    ディープラーニング（深層学習）は、ニューラルネットワークを使用した機械学習の一種で、特に多層のニューラルネットワークを用いて高度な特徴抽出と予測を行います。大量のデータと計算資源を利用して高度な認識能力を実現しています。具体例としては、Googleの画像検索やFacebookの写真タグ付け機能などがあります。
+                </div>
+            </div>
+            
+            <div class="question" id="question-9">
+                <div class="question-text">
+                    人工知能とロボットの違いについて、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）人工知能AIは環境からのデータを元に学習し複雑な思考や高度な判断を行う能力を持つが、ロボットは人間によって設計されたプログラム通りに正確に動作しプログラム外の行動は行わない</li>
+                    <li data-option="B">B）人工知能とロボットは同じものである</li>
+                    <li data-option="C">C）ロボットは必ず人工知能を含む</li>
+                    <li data-option="D">D）人工知能は必ずロボットの形を取る</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    人工知能AIは環境からのデータを元に学習し、複雑な思考や高度な判断を行う能力を持ちます。具体例としては、自動運転や画像認識技術などがあります。一方でロボットは、人間によって設計されたプログラム通りに正確に動作し、プログラム外の行動は行いません。具体例としては、自動ドアや体温自動測定器などがあります。
+                </div>
+            </div>
+            
+            <div class="question" id="question-10">
+                <div class="question-text">
+                    シンギュラリティについて、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）人工知能AIが急速に進化し人間の知能を超える時期のことで、2045年頃に到来されると言われている</li>
+                    <li data-option="B">B）AIがデータからパターンを学習する技術</li>
+                    <li data-option="C">C）AIが論理的なルールに基づいて動作する時期</li>
+                    <li data-option="D">D）AIが完全に消滅する時期</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    シンギュラリティは、人工知能AIが急速に進化し人間の知能を超える時期のことを言います。2045年頃に到来されると言われています。
+                </div>
+            </div>
+            
+            <div class="question" id="question-11">
+                <div class="question-text">
+                    シンボルグラウンディング問題について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）AIが記号と現実世界の関係を認識できないことを指す</li>
+                    <li data-option="B">B）AIが大量のデータを処理できない問題</li>
+                    <li data-option="C">C）AIが計算速度が遅い問題</li>
+                    <li data-option="D">D）AIが記憶容量が不足する問題</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    シンボルグラウンディング問題は、AIが記号と現実世界の関係を認識できないことを指します。例えば、人間なら「しまう」という単語を聞けば、実際にしまうを見たことがなくても、しま模様のある馬を想像できます。しかし、AIにとって「しまう」はただの文字列に過ぎず、人間のように連想することはできません。これはAIが物事や文脈の本質を理解していないことを示しています。
+                </div>
+            </div>
+            
+            <div class="question" id="question-12">
+                <div class="question-text">
+                    身体性について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）物理的な身体が存在することで得られる効果を論じる問題で、人間は身体を通じて環境と相互作用し経験や体験を通じて高度な知能を獲得するが、AIは身体を持たないため人間と同じようには知能を獲得できないという課題がある</li>
+                    <li data-option="B">B）AIが大量のデータを処理する能力</li>
+                    <li data-option="C">C）AIが論理的に思考する能力</li>
+                    <li data-option="D">D）AIが記憶を保持する能力</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    身体性は、物理的な身体が存在することで得られる効果を論じる問題です。人間は身体を通じて環境と相互作用し、経験や体験を通じて高度な知能を獲得しますが、AIは身体を持たないため、人間と同じようには知能を獲得できないという課題があります。身体性はシンボルグラウンディング問題にも関係しており、人工知能が人間のように言葉を理解するには身体性が不可欠とされています。
+                </div>
+            </div>
+            
+            <div class="question" id="question-13">
+                <div class="question-text">
+                    ダートマス会議について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）1956年にアメリカのダートマス大学で開催された会議で、人工知能AIの研究分野の誕生を象徴する重要なイベント。この会議で初めて人工知能という用語が使われ、AIの基礎的な概念や目標が議論された</li>
+                    <li data-option="B">B）AIが初めて実用化された会議</li>
+                    <li data-option="C">C）AIが禁止された会議</li>
+                    <li data-option="D">D）AIの安全性を議論する会議</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    ダートマス会議は、1956年にアメリカのダートマス大学で開催された会議で、人工知能AIの研究分野の誕生を象徴する重要なイベントです。この会議で初めて人工知能という用語が使われ、AIの基礎的な概念や目標が議論されました。
+                </div>
+            </div>
+            
+            <div class="question" id="question-14">
+                <div class="question-text">
+                    トイプロブレムについて、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）コンピュータで扱いにくいほど複雑な問題を本質を損なわずに単純化したもの。これらは非常に限定された状況で設定された問題であり、実世界の問題には適用できないことが次第に明らかになってきた</li>
+                    <li data-option="B">B）AIが大量のデータを処理する問題</li>
+                    <li data-option="C">C）AIが計算速度が遅い問題</li>
+                    <li data-option="D">D）AIが記憶容量が不足する問題</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    トイプロブレムは、コンピュータで扱いにくいほど複雑な問題を本質を損なわずに単純化したものです。これを利用することで問題の本質を理解できますが、これらは非常に限定された状況で設定された問題であり、実世界の問題には適用できないことが次第に明らかになってきました。
+                </div>
+            </div>
+            
+            <div class="question" id="question-15">
+                <div class="question-text">
+                    知識獲得のボトルネックについて、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）コンピュータが知識を獲得することの困難さを指す。第2次AIブームでは専門知識を備えたエキスパートシステムが盛んに開発されたが、そのプロセスで膨大な知識を収集・管理する難しさや専門家の暗黙知を取り込む難しさといった課題が浮かび上がった</li>
+                    <li data-option="B">B）AIが大量のデータを処理できない問題</li>
+                    <li data-option="C">C）AIが計算速度が遅い問題</li>
+                    <li data-option="D">D）AIが記憶容量が不足する問題</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    知識獲得のボトルネックは、コンピュータが知識を獲得することの困難さを指します。第2次AIブームでは専門知識を備えたエキスパートシステムが盛んに開発されましたが、そのプロセスで膨大な知識を収集・管理する難しさや専門家の暗黙知を取り込む難しさといった課題が浮かび上がりました。また、シンボルグラウンディング問題などの課題もあり、収集した知識が増えると情報の矛盾や一貫性の問題が顕在化しました。
+                </div>
+            </div>
+            
+            <div class="question" id="question-16">
+                <div class="question-text">
+                    強いAIと弱いAIの違いについて、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）強いAIは幅広い領域で人間と同等またはそれ以上の知識や理解力を持ち多様な問題に対処できるが、現在の科学技術では強いAIを作り出すことは不可能。弱いAIは限られたタスクや特定のドメインにおいて高いパフォーマンスを示すが、一般的な知識や理解力に欠ける</li>
+                    <li data-option="B">B）強いAIと弱いAIは同じものである</li>
+                    <li data-option="C">C）弱いAIの方が強いAIより優れている</li>
+                    <li data-option="D">D）強いAIは既に実現されている</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    強いAIは幅広い領域で人間と同等またはそれ以上の知識や理解力を持ち、多様な問題に対処できるAIです。強いAIは複雑な問題を解決し、新しい状況に適用する能力を持っていますが、現在の科学技術では強いAIを作り出すことは不可能です。弱いAIは限られたタスクや特定のドメインにおいて高いパフォーマンスを示しますが、一般的な知識や理解力に欠けるAIです。例えば、音声認識や画像分類などの特定の任務を行うAIがこれに該当します。
+                </div>
+            </div>
+            
+            <div class="question" id="question-17">
+                <div class="question-text">
+                    チューリングテストについて、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）コンピューターが人間と区別できないほどの自然な会話を行うかどうかを判断するためのテスト。人間とコンピュータの間で会話を行い、外部の審査員がどちらが人間であるかを判断するのに用いられる</li>
+                    <li data-option="B">B）AIが大量のデータを処理する能力をテストする</li>
+                    <li data-option="C">C）AIが計算速度をテストする</li>
+                    <li data-option="D">D）AIが記憶容量をテストする</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    チューリングテストは、コンピューターが人間と区別できないほどの自然な会話を行うかどうかを判断するためのテストです。人間とコンピュータの間で会話を行い、外部の審査員がどちらが人間であるかを判断するのに用いられます。このテストは、コンピューターが人間と同等の知能を持っているかどうかを評価する際に使用されます。
+                </div>
+            </div>
+            
+            <div class="question" id="question-18">
+                <div class="question-text">
+                    中国語の部屋について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）チューリングテストの一種で、コンピュータは中国語で会話することでコンピューターだと気づかれないようにするテスト。コンピューターは中国語を理解できず、マニュアルに従って動作するだけなため弱いAIと見なされる</li>
+                    <li data-option="B">B）AIが中国語を完全に理解するテスト</li>
+                    <li data-option="C">C）AIが中国語を翻訳するテスト</li>
+                    <li data-option="D">D）AIが中国語を生成するテスト</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    中国語の部屋は、チューリングテストの一種で、コンピュータは中国語で会話することでコンピューターだと気づかれないようにするテストです。コンピューターは中国語を理解できず、マニュアルに従って動作するだけなため弱いAIと見なされます。テストに合格する弱いAIはありますが、物事を理解する強いAIは実現できないと言えます。
+                </div>
+            </div>
+            
+            <div class="question" id="question-19">
+                <div class="question-text">
+                    ロブナーコンテストについて、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）人工知能が自然な人間の対話を実現できるかの精度を競う大会のこと。チューリングテストに基づき、審査員が人間とコンピューターとの間で行われる会話を通じてどちらが人間かを判断する。1991年から毎年開催されており、AIの発展を促進する重要なイベントとなっている</li>
+                    <li data-option="B">B）AIが大量のデータを処理する速度を競う大会</li>
+                    <li data-option="C">C）AIが計算速度を競う大会</li>
+                    <li data-option="D">D）AIが記憶容量を競う大会</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    ロブナーコンテストは、人工知能が自然な人間の対話を実現できるかの精度を競う大会のことです。チューリングテストに基づき、審査員が人間とコンピューターとの間で行われる会話を通じてどちらが人間かを判断します。1991年から毎年開催されており、AIの発展を促進する重要なイベントとなっています。
+                </div>
+            </div>
+            
+            <div class="question" id="question-20">
+                <div class="question-text">
+                    統計的機械翻訳（SMT）について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）機械翻訳の一種で統計モデルを使用して文の翻訳を行う手法。大規模な文書の集合を使用し、言語間の文の対応関係や確率を統計的に学習する</li>
+                    <li data-option="B">B）論理的なルールに基づいて翻訳を行う手法</li>
+                    <li data-option="C">C）人間が手動で翻訳を行う手法</li>
+                    <li data-option="D">D）単純な辞書に基づいて翻訳を行う手法</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    統計的機械翻訳（SMT：Statistical Machine Translation）は、機械翻訳の一種で統計モデルを使用して文の翻訳を行う手法のことです。大規模な文書の集合を使用し、言語間の文の対応関係や確率を統計的に学習します。具体例として、英語の文脈によって「バンク」の意味がどのように変わるかを示しています。「マネー」と一緒に使われる場合は「バンク」は銀行と訳される確率が高いと言ったように、統計的に学習するような翻訳手法です。
+                </div>
+            </div>
+            
+            <div class="question" id="question-21">
+                <div class="question-text">
+                    ルールベース機械翻訳（RMT）について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）機械翻訳の一種で、人間が作成した言語規則を使用して文の翻訳を行う機械翻訳の手法。文法や語彙、文脈などの言語的な規則を明示的に定義し、規則に基づき翻訳を行う</li>
+                    <li data-option="B">B）統計モデルを使用して翻訳を行う手法</li>
+                    <li data-option="C">C）ニューラルネットワークを使用して翻訳を行う手法</li>
+                    <li data-option="D">D）人間が手動で翻訳を行う手法</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    ルールベース機械翻訳（RMT：Rule-Based Machine Translation）は、機械翻訳の一種で、人間が作成した言語規則を使用して文の翻訳を行う機械翻訳の手法になります。文法や語彙、文脈などの言語的な規則を明示的に定義し、規則に基づき翻訳を行います。
+                </div>
+            </div>
+            
+            <div class="question" id="question-22">
+                <div class="question-text">
+                    フレーム問題について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）本来問題解決には必要のない背景も考慮して計算し続けてしまい、情報処理能力を超えて機能が停止する問題</li>
+                    <li data-option="B">B）AIが大量のデータを処理できない問題</li>
+                    <li data-option="C">C）AIが計算速度が遅い問題</li>
+                    <li data-option="D">D）AIが記憶容量が不足する問題</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    フレーム問題は、本来問題解決には必要のない背景も考慮して計算し続けてしまい、情報処理能力を超えて機能が停止する問題のことを言います。買い物を例に挙げると、AIは全ての可能性を考慮しようとするため、考慮する情報が多すぎて効率的に買い物を進められない場合があります。例えば、商品の配置が変わる可能性や他の顧客の動き、在庫状況など無数の要素を全て計算しようとします。このため処理に時間がかかり、目的を達成するのが難しくなることがあります。
+                </div>
+            </div>
+            
+            <div class="question" id="question-23">
+                <div class="question-text">
+                    機械学習について、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）コンピュータが大量のデータを使って学び、その学習結果を使って予測や判断をする技術</li>
+                    <li data-option="B">B）論理的なルールに基づいて動作する技術</li>
+                    <li data-option="C">C）事前に定義されたルールに基づいて動作する技術</li>
+                    <li data-option="D">D）人間が手動でデータを処理する技術</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    機械学習は、コンピュータが大量のデータを使って学び、その学習結果を使って予測や判断をする技術のことを言います。具体例としては、AIに大量のコップの画像を学習させると、自動的に特徴を見つけ、他のコップの画像も認識できるようになるなどが挙げられます。
+                </div>
+            </div>
+            
+            <div class="question" id="question-24">
+                <div class="question-text">
+                    ディープラーニングについて、最も適切な説明を選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）人工知能の一種で、大量のデータから自動的に特徴を学習し、複雑な問題を解決する技術</li>
+                    <li data-option="B">B）論理的なルールに基づいて動作する技術</li>
+                    <li data-option="C">C）事前に定義されたルールに基づいて動作する技術</li>
+                    <li data-option="D">D）人間が手動でデータを処理する技術</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    ディープラーニングは、人工知能の一種で、大量のデータから自動的に特徴を学習し、複雑な問題を解決する技術のことを言います。具体例としては、与えられた画像が猫の画像であるかを判別するなどが挙げられます。
+                </div>
+            </div>
+            
+            <div class="question" id="question-25">
+                <div class="question-text">
+                    人工知能のレベル分類において、レベル4に該当するものはどれか
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）ディープラーニング（深層学習）</li>
+                    <li data-option="B">B）単純な制御プログラム</li>
+                    <li data-option="C">C）古典的な人工知能</li>
+                    <li data-option="D">D）機械学習</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    人工知能は大きく分けて4つのレベルに分類されます。レベル1：単純な制御プログラム、レベル2：古典的な人工知能、レベル3：機械学習、レベル4：ディープラーニング（深層学習）です。ディープラーニングは、ニューラルネットワークを使用した機械学習の一種で、特に多層のニューラルネットワークを用いて高度な特徴抽出と予測を行います。
+                </div>
+            </div>
+            
+            <div class="question" id="question-26">
+                <div class="question-text">
+                    人工知能のレベル分類において、レベル3に該当するものはどれか
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）機械学習</li>
+                    <li data-option="B">B）単純な制御プログラム</li>
+                    <li data-option="C">C）古典的な人工知能</li>
+                    <li data-option="D">D）ディープラーニング</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    人工知能は大きく分けて4つのレベルに分類されます。レベル1：単純な制御プログラム、レベル2：古典的な人工知能、レベル3：機械学習、レベル4：ディープラーニングです。機械学習を取り入れたAIは、データからパターンを学習し、そのパターンを元に予測や分類を行う技術です。
+                </div>
+            </div>
+            
+            <div class="question" id="question-27">
+                <div class="question-text">
+                    人工知能のレベル分類において、レベル2に該当するものはどれか
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）古典的な人工知能</li>
+                    <li data-option="B">B）単純な制御プログラム</li>
+                    <li data-option="C">C）機械学習</li>
+                    <li data-option="D">D）ディープラーニング</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    人工知能は大きく分けて4つのレベルに分類されます。レベル1：単純な制御プログラム、レベル2：古典的な人工知能、レベル3：機械学習、レベル4：ディープラーニングです。古典的な人工知能は、論理的ルールや知識ベースシステムに基づいて問題を解決します。
+                </div>
+            </div>
+            
+            <div class="question" id="question-28">
+                <div class="question-text">
+                    エージェントの具体例として、最も適切なものを選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）自動運転車、ゲームのNPC、スマホの音声アシスタント、Googleアシスタントなどのバーチャルアシスタント</li>
+                    <li data-option="B">B）温度センサーを用いたエアコンのオンオフ制御</li>
+                    <li data-option="C">C）自動ドア</li>
+                    <li data-option="D">D）体温自動測定器</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    エージェントは、特定の目的を達成するために自立的に行動するシステムやソフトウェアのことを指します。具体例としては、自動運転車やゲームなどで対戦相手などをしてくれるNPC、スマホなどの音声アシスタントやGoogleアシスタントといったバーチャルアシスタントがあります。
+                </div>
+            </div>
+            
+            <div class="question" id="question-29">
+                <div class="question-text">
+                    単純な制御プログラムの具体例として、最も適切なものを選べ
+                </div>
+                <ul class="options">
+                    <li data-option="A">A）温度センサーを用いてエアコンのオンオフを制御するシステム、センサーが人の存在を検知するとドアを開ける自動ドア</li>
+                    <li data-option="B">B）自動運転車</li>
+                    <li data-option="C">C）画像認識システム</li>
+                    <li data-option="D">D）音声アシスタント</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct">
+                    <strong>正解：A）</strong><br>
+                    単純な制御プログラムは、事前に定義されたルールや条件に基づいて動作するプログラムです。これらは基本的な自動化タスクを実行するために使用されます。具体例としては、温度センサーを用いてエアコンのオンオフを制御したり、センサーが人の存在を検知するとドアを開ける自動ドアなどのように、単純な条件に従って動作します。
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // 回答をリセットする関数
+        function resetAnswers() {
+            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
+                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+                const history = StudyHistory.getHistory();
+                if (history[currentPage]) {
+                    delete history[currentPage];
+                    StudyHistory.saveHistory(history);
+                }
+                location.reload();
+            }
+        }
+        
+        // 学習セッションを一時停止
+        function pauseSession() {
+            const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+            const questions = document.querySelectorAll('.question');
+            let currentQuestionIndex = 0;
+            
+            // 現在表示されている問題のインデックスを取得
+            const hash = window.location.hash;
+            if (hash) {
+                const match = hash.match(/question-(\d+)/);
+                if (match) {
+                    currentQuestionIndex = parseInt(match[1]);
+                }
+            } else {
+                // ハッシュがない場合、最初の未回答の問題を探す
+                questions.forEach((q, idx) => {
+                    if (!q.classList.contains('answered-correct') && !q.classList.contains('answered-incorrect')) {
+                        currentQuestionIndex = idx;
+                        return;
+                    }
+                });
+            }
+            
+            const scrollPosition = window.scrollY;
+            StudyHistory.saveSession(currentPage, currentQuestionIndex, scrollPosition);
+            alert('学習を一時停止しました。メインメニューから「学習を再開」ボタンで続きから始められます。');
+            window.location.href = 'index.html';
+        }
+        
+        // ページ読み込み時にセッションを復元
+        document.addEventListener('DOMContentLoaded', function() {
+            const session = StudyHistory.getSession();
+            if (session && session.category === window.location.pathname.split('/').pop().replace('.html', '')) {
+                // 同じカテゴリーページにいる場合、スクロール位置を復元
+                if (session.scrollPosition) {
+                    setTimeout(() => {
+                        window.scrollTo(0, session.scrollPosition);
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
