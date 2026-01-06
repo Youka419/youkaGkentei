@@ -45,22 +45,130 @@
                     <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
                 </div>
             </div>
+
             <div class="question" id="question-0">
-                <div class="question-text">機械学習における勾配降下法について、最も適切な説明を選べ</div>
+                <div class="question-text">Q1. 【数理・統計】「平均値」と「中央値」の違いについて、正しい説明は？（例：年収データ）</div>
                 <ul class="options">
-                    <li data-option="A">A）現在地点での最も急な下り坂方向に少しずつ移動することで関数の最小値を探す方法</li>
-                    <li data-option="B">B）ランダムに値を選ぶ方法</li>
-                    <li data-option="C">C）全ての組み合わせを試す方法</li>
-                    <li data-option="D">D）最大値を探す方法</li>
+                    <li data-option="A">A）平均値は極端な値（外れ値）の影響を受けやすいが、中央値は受けにくい。</li>
+                    <li data-option="B">B）常に平均値と中央値は同じになる。</li>
+                    <li data-option="C">C）中央値の方が計算が複雑である。</li>
+                    <li data-option="D">D）ビジネスでは常に平均値を使うべきである。</li>
                 </ul>
                 <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-                <div class="result correct"><strong>正解：A）</strong><br>勾配降下法は、現在地点での最も急な下り坂方向に少しずつ移動することで関数の最小値を探す方法です。ニューラルネットワークの学習でよく使われます。</div>
+                <div class="result correct"><strong>正解：A）</strong><br>一部の大金持ちがいると平均年収は跳ね上がりますが、真ん中の人の年収（中央値）は変わりません。肌感覚に近いのは中央値なことが多いです。</div>
+            </div>
+
+            <div class="question" id="question-1">
+                <div class="question-text">Q2. 【数理・統計】「分散（または標準偏差）」を直感的に理解する例えとして適切なのは？</div>
+                <ul class="options">
+                    <li data-option="A">A）データの「合計」を表す。</li>
+                    <li data-option="B">B）データの「ばらつき具合（平均からどれくらい離れているか）」を表す。</li>
+                    <li data-option="C">C）データの「最大値」を表す。</li>
+                    <li data-option="D">D）データの「個数」を表す。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>テストの平均点が同じでも、みんなが平均点付近なら分散は小さく、0点や100点が多いなら分散は大きくなります。</div>
+            </div>
+
+            <div class="question" id="question-2">
+                <div class="question-text">Q3. 【数理・統計】「相関係数」が -0.9（強い負の相関）になる関係の例は？</div>
+                <ul class="options">
+                    <li data-option="A">A）身長と体重（身長が高いほど体重も重い）。</li>
+                    <li data-option="B">B）暖房の設定温度と電気代（温度が高いほど電気代も高い）。</li>
+                    <li data-option="C">C）寒さとアイスクリームの売上（寒いほど売れない）。</li>
+                    <li data-option="D">D）サイコロの目と天気。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'C')">答えを確認</button>
+                <div class="result correct"><strong>正解：C）</strong><br>片方が増えると、もう片方が減る関係です。AとBは「正の相関」です。</div>
+            </div>
+
+            <div class="question" id="question-3">
+                <div class="question-text">Q4. 【数理・統計】「P値（ピーち）」が0.03（3%）でした。有意水準を5%と設定していた場合、どう判断する？</div>
+                <ul class="options">
+                    <li data-option="A">A）偶然である可能性が高いので、仮説は棄却されない。</li>
+                    <li data-option="B">B）偶然である確率は低い（5%未満）ので、統計的に有意である（意味がある差だ）と判断する。</li>
+                    <li data-option="C">C）計算間違いである。</li>
+                    <li data-option="D">D）データが足りない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「たまたまそうなった確率」が3%しかないなら、「たまたまじゃない（何か理由がある）」と考えます。</div>
+            </div>
+
+            <div class="question" id="question-4">
+                <div class="question-text">Q5. 【数理・統計】「帰無仮説」とは何か、裁判に例えると？</div>
+                <ul class="options">
+                    <li data-option="A">A）「有罪」という仮説。</li>
+                    <li data-option="B">B）「無罪（差はない、効果はない）」という仮説。これを証拠で覆そうとする。</li>
+                    <li data-option="C">C）判決文のこと。</li>
+                    <li data-option="D">D）弁護士の主張。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「新薬に効果はない（ただの誤差）」という疑ってかかる仮説を立て、それを否定することで「効果がある」ことを証明しようとします（背理法）。</div>
+            </div>
+
+            <div class="question" id="question-5">
+                <div class="question-text">Q6. 【数理・統計】機械学習の「微分」の役割を、山登り（山降り）に例えると？</div>
+                <ul class="options">
+                    <li data-option="A">A）山の標高を知ること。</li>
+                    <li data-option="B">B）足元の傾斜（どちらに下がっているか）を知ること。</li>
+                    <li data-option="C">C）山頂の景色を見ること。</li>
+                    <li data-option="D">D）地図を作ること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>一番低い谷底（誤差最小）に行きたいとき、周りが見えなくても足元の傾きがわかれば、「下り坂」の方向に進むことができます。</div>
+            </div>
+
+            <div class="question" id="question-6">
+                <div class="question-text">Q7. 【数理・統計】「行列（Matrix）」をデータ分析で使うイメージは？</div>
+                <ul class="options">
+                    <li data-option="A">A）エクセルの表（行と列）のようなデータをまとめて計算する。</li>
+                    <li data-option="B">B）円グラフを描く。</li>
+                    <li data-option="C">C）割り算を行う。</li>
+                    <li data-option="D">D）文章を作成する。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>大量のデータ（入力）と重みを一度に掛け算して処理するために必須の数学です。</div>
+            </div>
+
+            <div class="question" id="question-7">
+                <div class="question-text">Q8. 【数理・統計】「ベイズの定理」の考え方は？</div>
+                <ul class="options">
+                    <li data-option="A">A）一度決めた確率は絶対に変えない。</li>
+                    <li data-option="B">B）新しい情報（データ）が得られるたびに、確率（確信度）を更新していく。</li>
+                    <li data-option="C">C）すべての事象は同様に確からしいと考える。</li>
+                    <li data-option="D">D）平均値だけで判断する。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「迷惑メールっぽい単語」が見つかるたびに、「これは迷惑メールだ！」という確信を高めていくような考え方です。</div>
+            </div>
+
+            <div class="question" id="question-8">
+                <div class="question-text">Q9. 【数理・統計】評価指標「再現率（Recall）」の重視すべき場面は？（病気の検査）</div>
+                <ul class="options">
+                    <li data-option="A">A）健康な人を誤って陽性と診断してもいいから、実際の病気の人を見逃さないようにしたい時。</li>
+                    <li data-option="B">B）絶対に誤診をしたくない時。</li>
+                    <li data-option="C">C）検査コストを下げたい時。</li>
+                    <li data-option="D">D）正解率だけ高ければいい時。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>見逃し（取りこぼし）が許されない重大なケースでは、再現率を最大化します。</div>
+            </div>
+
+            <div class="question" id="question-9">
+                <div class="question-text">Q10. 【数理・統計】「F値」とは、何と何のバランスをとった指標？</div>
+                <ul class="options">
+                    <li data-option="A">A）正解率と誤差。</li>
+                    <li data-option="B">B）適合率（Precision）と再現率（Recall）。</li>
+                    <li data-option="C">C）平均と分散。</li>
+                    <li data-option="D">D）入力と出力。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>これらはトレードオフ（片方を上げると片方が下がる）の関係にあるため、その調和平均をとって総合力を評価します。</div>
             </div>
         </div>
     </div>
     <script src="script.js"></script>
     <script>
-        // 回答をリセットする関数
         function resetAnswers() {
             if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
                 const currentPage = window.location.pathname.split('/').pop().replace('.html', '');

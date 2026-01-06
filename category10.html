@@ -54,34 +54,94 @@
                     <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
                 </div>
             </div>
+
             <div class="question" id="question-0">
-                <div class="question-text">AIを用いた顔認識技術については、近年様々な倫理的な問題が指摘されている。この点に関して、最も不適切な選択肢を1つ選べ</div>
+                <div class="question-text">Q1. 日本政府の「人間中心のAI社会原則」の3つの基本理念に含まれないものは？</div>
                 <ul class="options">
-                    <li data-option="A">A）顔認識技術については、肌の色が濃い人や女性において認識精度が下がるサービスが存在すると指摘されている。この原因として、学習に用いたデータセットの偏りが指摘されている</li>
-                    <li data-option="B">B）顔認識技術の利用にあたっては日本では個人情報保護法を遵守する必要があるが、それだけではなくプライバシーの観点から同法を超えた対応や措置を実施することが重要な場合がある</li>
-                    <li data-option="C">C）IBM社は2020年6月に、顔認識技術を利用することの倫理的課題などを原因として、今後警察に汎用顔認識技術の提供を行わないことを表明した</li>
-                    <li data-option="D">D）アメリカでは都市によっては条例等により顔認識システムの利用を禁止しているが、その禁止対象は民間企業による利用ばかりではなく、警察などの公共性の高い公的機関による利用も含めるものが主流である</li>
+                    <li data-option="A">A）人間の尊厳</li>
+                    <li data-option="B">B）多様性と包摂</li>
+                    <li data-option="C">C）持続可能性</li>
+                    <li data-option="D">D）技術の独占</li>
                 </ul>
                 <button class="answer-btn" onclick="checkAnswer(this, 'D')">答えを確認</button>
-                <div class="result correct"><strong>正解：D）</strong><br>アメリカでは都市によっては条例等により顔認識システムの利用を禁止しているが、その禁止対象は主に民間企業による利用であり、警察などの公共性の高い公的機関による利用を禁止するものは主流ではありません。</div>
+                <div class="result correct"><strong>正解：D）</strong><br>AIは一部の人のためではなく、みんなのために使われるべきという考え方です。</div>
             </div>
-            
+
             <div class="question" id="question-1">
-                <div class="question-text">AIが与える地球環境への影響などのAIにおけるサステナビリティ上の課題について、最も不適切な選択肢を1つ選べ</div>
+                <div class="question-text">Q2. 「ELSI」とは何の略か？</div>
                 <ul class="options">
-                    <li data-option="A">A）モデルの巨大化・複雑化に伴い学習に必要な電力の増大がサステナビリティの点から問題となっている</li>
-                    <li data-option="B">B）運搬などの分野で効率の良い経路を導き出すことで、運搬によるエネルギー消費を抑えるというAIを用いた環境保護の取り組みが存在する</li>
-                    <li data-option="C">C）AIに多数のデータを学習させることは、学習効率が向上するため、電力消費量が少数データの学習の場合に比べて低下する</li>
-                    <li data-option="D">D）AIの学習や推論により発生する電力消費を抑えるべく、環境負荷の少ないモデルの開発が進められている</li>
+                    <li data-option="A">A）倫理的・法的・社会的課題 (Ethical, Legal and Social Issues)</li>
+                    <li data-option="B">B）エネルギー・労働・安全・情報</li>
+                    <li data-option="C">C）電子・論理・システム・インターネット</li>
+                    <li data-option="D">D）欧州法的社会制度</li>
                 </ul>
-                <button class="answer-btn" onclick="checkAnswer(this, 'C')">答えを確認</button>
-                <div class="result correct"><strong>正解：C）</strong><br>AIに多数のデータを学習させることは、学習効率が向上するものの、データ量が増えるほど計算量も増加するため、電力消費量は増加します。少数データの学習の場合に比べて低下するというのは誤りです。</div>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>新技術が社会に出るときに必ず議論すべき3つの観点です。</div>
+            </div>
+
+            <div class="question" id="question-2">
+                <div class="question-text">Q3. AIの判断根拠を人間が理解できるようにする技術を何と呼ぶか？</div>
+                <ul class="options">
+                    <li data-option="A">A）XAI (Explainable AI / 説明可能なAI)</li>
+                    <li data-option="B">B）Strong AI (強いAI)</li>
+                    <li data-option="C">C）IoT</li>
+                    <li data-option="D">D）DX</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ブラックボックス化しやすいディープラーニングにおいて、「なぜその答えになったか」を説明責任（アカウンタビリティ）を果たすために重要です。</div>
+            </div>
+
+            <div class="question" id="question-3">
+                <div class="question-text">Q4. 「フィルターバブル」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）検索エンジンやSNSが好みの情報ばかりを表示し、異なる意見や情報から隔離されてしまう現象。</li>
+                    <li data-option="B">B）カメラのレンズにゴミがつくこと。</li>
+                    <li data-option="C">C）AIが画像を加工すること。</li>
+                    <li data-option="D">D）スパムメールをブロックする機能。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>自分が見たい世界しか見えなくなり、社会の分断を生むリスクがあります。</div>
+            </div>
+
+            <div class="question" id="question-4">
+                <div class="question-text">Q5. 「ディープフェイク」の問題点は？</div>
+                <ul class="options">
+                    <li data-option="A">A）本物と見分けがつかない偽動画により、ポルノや政治的なデマに悪用されるリスクがある。</li>
+                    <li data-option="B">B）画質が悪くなる。</li>
+                    <li data-option="C">C）作成に時間がかかる。</li>
+                    <li data-option="D">D）著作権が発生しない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>有名人の顔を勝手に合成したり、言ってもいない発言を捏造したりすることが社会問題になっています。</div>
+            </div>
+
+            <div class="question" id="question-5">
+                <div class="question-text">Q6. 自動運転のレベル定義（SAE）において「システムが全ての運転タスクを行うが、対応困難時は人間が運転する」のは？</div>
+                <ul class="options">
+                    <li data-option="A">A）レベル2（部分運転自動化）</li>
+                    <li data-option="B">B）レベル3（条件付運転自動化）</li>
+                    <li data-option="C">C）レベル4（高度運転自動化）</li>
+                    <li data-option="D">D）レベル5（完全運転自動化）</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>レベル3からは主体が「システム」になりますが、緊急時は「人」に戻ります（アイズオフ）。レベル4からは限定領域内で完全にシステムが担当します。</div>
+            </div>
+
+            <div class="question" id="question-6">
+                <div class="question-text">Q7. AIにおける「公平性（Fairness）」の課題とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習データに含まれるバイアス（偏見）をAIが学び、性別や人種による差別的な判断をしてしまうこと。</li>
+                    <li data-option="B">B）AIの利用料金を全員同じにすること。</li>
+                    <li data-option="C">C）AIの性能をどの国でも同じにすること。</li>
+                    <li data-option="D">D）すべての人がAIを作れるようにすること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>過去の採用データに「男性優遇」の傾向があれば、AIもそれを「正解」として学んでしまう危険性があります。</div>
             </div>
         </div>
     </div>
     <script src="script.js"></script>
     <script>
-        // 回答をリセットする関数
         function resetAnswers() {
             if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
                 const currentPage = window.location.pathname.split('/').pop().replace('.html', '');

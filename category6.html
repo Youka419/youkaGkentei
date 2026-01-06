@@ -47,22 +47,106 @@
                     <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
                 </div>
             </div>
+
             <div class="question" id="question-0">
-                <div class="question-text">2012年のILSVRCでディープラーニングを初めて用いて圧勝したモデルはどれか</div>
+                <div class="question-text">Q1. 2015年に登場し、152層もの深さを実現した「ResNet」の技術的特徴は？</div>
                 <ul class="options">
-                    <li data-option="A">A）AlexNet</li>
-                    <li data-option="B">B）VGG</li>
-                    <li data-option="C">C）ResNet</li>
-                    <li data-option="D">D）GoogleNet</li>
+                    <li data-option="A">A）スキップ結合（ショートカット接続）</li>
+                    <li data-option="B">B）ドロップアウト</li>
+                    <li data-option="C">C）蒸留</li>
+                    <li data-option="D">D）敵対的生成</li>
                 </ul>
                 <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-                <div class="result correct"><strong>正解：A）AlexNet</strong><br>2012年のILSVRCでジェフリー・ヒントン率いるトロント大学がディープラーニングを初めて用いたAlexNetで圧勝しました。</div>
+                <div class="result correct"><strong>正解：A）</strong><br>入力を迂回させて出力に足し合わせることで、層を深くしても勾配が消えず、性能が落ちないようにしました。</div>
+            </div>
+
+            <div class="question" id="question-1">
+                <div class="question-text">Q2. 「セマンティック・セグメンテーション」の説明は？</div>
+                <ul class="options">
+                    <li data-option="A">A）画像を「犬」「猫」などのクラスに分類する。</li>
+                    <li data-option="B">B）画像の全ての画素（ピクセル）に対して、何が写っているかのラベルを付ける。</li>
+                    <li data-option="C">C）物体を四角い枠（バウンディングボックス）で囲む。</li>
+                    <li data-option="D">D）個々の物体（同じ種類の別の犬など）を区別する。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>画像認識の中で最も細かいタスクです。自動運転で「道路」「歩行者」「空」をピクセル単位で塗り分けるのなどに使われます。</div>
+            </div>
+
+            <div class="question" id="question-2">
+                <div class="question-text">Q3. 物体検出手法「YOLO (You Only Look Once)」の特徴は？</div>
+                <ul class="options">
+                    <li data-option="A">A）精度は高いが処理が遅い。</li>
+                    <li data-option="B">B）画像を一度見るだけで、物体の位置と種類を同時に予測するため、リアルタイム処理が可能。</li>
+                    <li data-option="C">C）セグメンテーションを行うモデルである。</li>
+                    <li data-option="D">D）動画は扱えない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>以前の手法は「候補を探す」→「中身を見る」の2段階でしたが、YOLOはこれらを1つのネットワークで一気に行うため爆速です。</div>
+            </div>
+
+            <div class="question" id="question-3">
+                <div class="question-text">Q4. 自然言語処理における「Word2Vec」ができることは？</div>
+                <ul class="options">
+                    <li data-option="A">A）単語をベクトル（数値の列）に変換し、「王様 - 男性 + 女性 = 女王」のような計算ができる。</li>
+                    <li data-option="B">B）長い文章を要約する。</li>
+                    <li data-option="C">C）感情分析を行う。</li>
+                    <li data-option="D">D）文法チェックを行う。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>単語の意味の近さを、ベクトル空間上の距離で表現できるようになりました。</div>
+            </div>
+
+            <div class="question" id="question-4">
+                <div class="question-text">Q5. 「BERT」の特徴として正しいものは？</div>
+                <ul class="options">
+                    <li data-option="A">A）文の先頭から順番に予測する。</li>
+                    <li data-option="B">B）文の「穴埋め問題（マスク）」を解くことで、文脈を双方向から事前学習する。</li>
+                    <li data-option="C">C）画像生成モデルである。</li>
+                    <li data-option="D">D）RNNベースのモデルである。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>左右両方の文脈を見て単語の意味を理解するため、検索や質問応答などで非常に高い精度を出しました。</div>
+            </div>
+
+            <div class="question" id="question-5">
+                <div class="question-text">Q6. 「GPT」シリーズの特徴は？</div>
+                <ul class="options">
+                    <li data-option="A">A）特定タスク専用のモデルである。</li>
+                    <li data-option="B">B）次に来る単語を予測することで学習する生成モデルで、多様なタスクに対応可能。</li>
+                    <li data-option="C">C）画像認識モデルである。</li>
+                    <li data-option="D">D）教師あり学習のみを用いる。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>ChatGPTの基盤です。大量のテキストから「続きを書く」訓練をすることで、驚異的な言語能力を獲得しました。</div>
+            </div>
+
+            <div class="question" id="question-6">
+                <div class="question-text">Q7. 画像生成技術「GAN（敵対的生成ネットワーク）」の仕組みは？</div>
+                <ul class="options">
+                    <li data-option="A">A）「偽物を作る生成器」と「本物か見抜く識別器」が競い合って学習する。</li>
+                    <li data-option="B">B）画像を圧縮して復元する。</li>
+                    <li data-option="C">C）画像にノイズを加える。</li>
+                    <li data-option="D">D）画素の色を平均化する。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>「偽札作り」と「警察」のいたちごっこに例えられます。結果として、警察も見破れないほど精巧な偽物（画像）が作れるようになります。</div>
+            </div>
+
+            <div class="question" id="question-7">
+                <div class="question-text">Q8. 深層強化学習「DQN (Deep Q-Network)」がブレイクスルーとなった点は？</div>
+                <ul class="options">
+                    <li data-option="A">A）Q学習のQテーブル（価値関数）をディープニューラルネットワークで近似した。</li>
+                    <li data-option="B">B）囲碁のルールを教え込んだ。</li>
+                    <li data-option="C">C）人間のプロゲーマーのデータを学習させた。</li>
+                    <li data-option="D">D）CPUのみで動作するようにした。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>それまでは巨大な表（テーブル）で管理していた情報を、AIの脳（ニューラルネット）に圧縮して覚えさせたことで、複雑なゲーム画面も扱えるようになりました。</div>
             </div>
         </div>
     </div>
     <script src="script.js"></script>
     <script>
-        // 回答をリセットする関数
         function resetAnswers() {
             if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
                 const currentPage = window.location.pathname.split('/').pop().replace('.html', '');

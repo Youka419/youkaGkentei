@@ -48,22 +48,70 @@
                     <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
                 </div>
             </div>
+
             <div class="question" id="question-0">
-                <div class="question-text">ResNetで導入されたスキップ結合の主な効果として、最も適切な説明を選べ</div>
+                <div class="question-text">Q1. 「CNN（畳み込みニューラルネットワーク）」における「畳み込み層」の役割は？</div>
                 <ul class="options">
-                    <li data-option="A">A）層が深くなっても情報が伝わりやすくなり、勾配消失問題を軽減する</li>
-                    <li data-option="B">B）計算量を増やす</li>
-                    <li data-option="C">C）メモリ使用量を増やす</li>
-                    <li data-option="D">D）学習速度を遅くする</li>
+                    <li data-option="A">A）画像サイズを小さくする。</li>
+                    <li data-option="B">B）フィルタ（カーネル）を使って画像の特徴（エッジなど）を抽出する。</li>
+                    <li data-option="C">C）確率を出力する。</li>
+                    <li data-option="D">D）過学習を防ぐ。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>特定のパターン（縦線、横線など）に反応するフィルタをスライドさせて、特徴マップを作ります。</div>
+            </div>
+
+            <div class="question" id="question-1">
+                <div class="question-text">Q2. 「プーリング層（Max Pooling）」の役割は？</div>
+                <ul class="options">
+                    <li data-option="A">A）特徴マップの解像度を下げて、位置ズレに対する頑健性（ロバスト性）を高める。</li>
+                    <li data-option="B">B）特徴を抽出する。</li>
+                    <li data-option="C">C）重みを更新する。</li>
+                    <li data-option="D">D）データを正規化する。</li>
                 </ul>
                 <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-                <div class="result correct"><strong>正解：A）</strong><br>スキップ結合により層が深くなっても情報が伝わりやすくなり、勾配消失問題を軽減する効果があります。</div>
+                <div class="result correct"><strong>正解：A）</strong><br>画像を少しぼかすような処理で、対象物が多少動いても「そこに何があるか」という情報は変わらないようにします。計算量も減らせます。</div>
+            </div>
+
+            <div class="question" id="question-2">
+                <div class="question-text">Q3. 「RNN（リカレントニューラルネットワーク）」が抱える問題と、それを解決したモデルは？</div>
+                <ul class="options">
+                    <li data-option="A">A）計算が遅い問題 → CNN</li>
+                    <li data-option="B">B）長期の記憶ができない（勾配消失）問題 → LSTM (Long Short-Term Memory)</li>
+                    <li data-option="C">C）画像が扱えない問題 → GAN</li>
+                    <li data-option="D">D）過学習しやすい問題 → Dropout</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>単純なRNNは昔のことをすぐ忘れてしまいますが、LSTMは「忘却ゲート」などを使って「重要なことは長く覚えておく」ことができます。</div>
+            </div>
+
+            <div class="question" id="question-3">
+                <div class="question-text">Q4. 「Transformer」の核となる技術は？</div>
+                <ul class="options">
+                    <li data-option="A">A）畳み込み演算 (Convolution)</li>
+                    <li data-option="B">B）Attention (注意機構)</li>
+                    <li data-option="C">C）リカレント結合 (Recurrent)</li>
+                    <li data-option="D">D）強化学習 (Reinforcement)</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「文中のどの単語に注目すべきか」を計算するSelf-Attention機構により、RNNを使わずに並列処理で文脈を理解できるようになりました。</div>
+            </div>
+
+            <div class="question" id="question-4">
+                <div class="question-text">Q5. 「バッチ正規化（Batch Normalization）」の効果は？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習を安定させ、学習速度を速める。</li>
+                    <li data-option="B">B）モデルの層を減らす。</li>
+                    <li data-option="C">C）データを増やす。</li>
+                    <li data-option="D">D）活性化関数を不要にする。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>各層に渡すデータの分布を整えることで、重みの初期値にあまり依存せず、スムーズに学習が進むようになります。</div>
             </div>
         </div>
     </div>
     <script src="script.js"></script>
     <script>
-        // 回答をリセットする関数
         function resetAnswers() {
             if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
                 const currentPage = window.location.pathname.split('/').pop().replace('.html', '');

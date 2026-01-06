@@ -42,22 +42,58 @@
                     <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
                 </div>
             </div>
+
             <div class="question" id="question-0">
-                <div class="question-text">AIプロジェクトを進める際のアジャイル開発のメリットとして、最も適切な説明を選べ</div>
+                <div class="question-text">Q1. AIプロジェクトにおける「PoC（概念実証）」の目的は？</div>
                 <ul class="options">
-                    <li data-option="A">A）開発スピードが早く、仕様変更などに柔軟に対応可能</li>
-                    <li data-option="B">B）事前に全ての計画を立てる必要がある</li>
-                    <li data-option="C">C）変更が困難</li>
-                    <li data-option="D">D）開発期間が長くなる</li>
+                    <li data-option="A">A）完成品を顧客に納品すること。</li>
+                    <li data-option="B">B）本格開発の前に、実現可能性や費用対効果を小規模に検証すること。</li>
+                    <li data-option="C">C）契約書を作成すること。</li>
+                    <li data-option="D">D）運用保守を行うこと。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>AIはやってみないと精度が出るかわからないため、いきなり本開発せず、まずは「お試し」で確かめるフェーズが必要です。</div>
+            </div>
+
+            <div class="question" id="question-1">
+                <div class="question-text">Q2. 「エッジAI」のメリットは？</div>
+                <ul class="options">
+                    <li data-option="A">A）通信遅延が少なく、プライバシー保護に有利。</li>
+                    <li data-option="B">B）処理能力がクラウドより高い。</li>
+                    <li data-option="C">C）大規模なモデルを動かせる。</li>
+                    <li data-option="D">D）電力消費が大きい。</li>
                 </ul>
                 <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-                <div class="result correct"><strong>正解：A）</strong><br>アジャイル開発は開発スピードが早く、仕様変更などに柔軟に対応可能というメリットがあります。</div>
+                <div class="result correct"><strong>正解：A）</strong><br>スマホやIoT機器などの端末（エッジ）側で処理するため、画像などをネットに送る必要がなく、リアルタイム性やセキュリティに優れます。</div>
+            </div>
+
+            <div class="question" id="question-2">
+                <div class="question-text">Q3. 「アジャイル開発」がAI開発に向いている理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）仕様を最初から完全に固定できるから。</li>
+                    <li data-option="B">B）試行錯誤を繰り返しながら精度を上げていくプロセスが、AIの性質に合っているから。</li>
+                    <li data-option="C">C）開発期間が長くなるから。</li>
+                    <li data-option="D">D）ドキュメント作成を重視するから。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>AI開発は「やってみないとわからない」不確実性が高いため、短いサイクルで改善を繰り返すアジャイル型が主流です。</div>
+            </div>
+
+            <div class="question" id="question-3">
+                <div class="question-text">Q4. 「アノテーション」とは何の作業か？</div>
+                <ul class="options">
+                    <li data-option="A">A）プログラムのバグを修正する。</li>
+                    <li data-option="B">B）学習データに正解ラベル（タグ）を付与する。</li>
+                    <li data-option="C">C）データを圧縮する。</li>
+                    <li data-option="D">D）モデルを公開する。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>画像に「これは猫」と情報を付けたり、物体を枠で囲ったりする作業です。AIの品質を左右する非常に重要な泥臭い作業です。</div>
             </div>
         </div>
     </div>
     <script src="script.js"></script>
     <script>
-        // 回答をリセットする関数
         function resetAnswers() {
             if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
                 const currentPage = window.location.pathname.split('/').pop().replace('.html', '');

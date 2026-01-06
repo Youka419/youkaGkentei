@@ -46,22 +46,130 @@
                     <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
                 </div>
             </div>
+
             <div class="question" id="question-0">
-                <div class="question-text">GPUやTPUがディープラーニングの学習・推論に適する理由として、最も適切な説明を選べ</div>
+                <div class="question-text">Q1. 「単純パーセプトロン」で解くことができない問題は？</div>
                 <ul class="options">
-                    <li data-option="A">A）並列計算能力に優れ、大規模な行列演算を高速に処理可能</li>
-                    <li data-option="B">B）順次処理に特化している</li>
-                    <li data-option="C">C）メモリ容量が小さい</li>
-                    <li data-option="D">D）消費電力が少ない</li>
+                    <li data-option="A">A）線形分離可能な問題（ANDゲートなど）</li>
+                    <li data-option="B">B）線形分離不可能な問題（XORゲートなど）</li>
+                    <li data-option="C">C）2値分類問題</li>
+                    <li data-option="D">D）論理和（OR）の問題</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>単純パーセプトロンは直線の境界線しか引けないため、排他的論理和（XOR）のような曲がった境界線が必要な問題は解けません。</div>
+            </div>
+
+            <div class="question" id="question-1">
+                <div class="question-text">Q2. 「多層パーセプトロン」がXOR問題を解けるようになった理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）入力層を増やしたから。</li>
+                    <li data-option="B">B）隠れ層（中間層）を追加し、非線形な活性化関数を導入したから。</li>
+                    <li data-option="C">C）データ量を増やしたから。</li>
+                    <li data-option="D">D）コンピュータの性能が上がったから。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>隠れ層と「シグモイド関数」などの非線形関数を組み合わせることで、複雑な形の境界線を表現できるようになりました。</div>
+            </div>
+
+            <div class="question" id="question-2">
+                <div class="question-text">Q3. ディープラーニングにおける「誤差逆伝播法（バックプロパゲーション）」の役割は？</div>
+                <ul class="options">
+                    <li data-option="A">A）入力データを加工する。</li>
+                    <li data-option="B">B）出力と正解の誤差（ズレ）を後ろから前へ伝えて、パラメータ（重み）を修正する。</li>
+                    <li data-option="C">C）ニューロンをランダムに削除する。</li>
+                    <li data-option="D">D）層の数を自動で決める。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「期待外れの答え」が出たときに、誰（どの重み）がどれくらい悪かったのかを逆算して責任を取らせる（修正する）仕組みです。</div>
+            </div>
+
+            <div class="question" id="question-3">
+                <div class="question-text">Q4. 「活性化関数」として「ReLU関数」がよく使われる理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）0〜1の確率を出力できるから。</li>
+                    <li data-option="B">B）勾配消失問題が起きにくく、計算が単純で速いから。</li>
+                    <li data-option="C">C）負の値も扱えるから。</li>
+                    <li data-option="D">D）微分不可能だから。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>シグモイド関数は層が深くなると勾配が消えてしまいますが、ReLUは入力がプラスならそのまま通すため、深くても学習が進みやすいです。</div>
+            </div>
+
+            <div class="question" id="question-4">
+                <div class="question-text">Q5. 「勾配消失問題」とはどのような現象か？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習が進むにつれて誤差が0になってしまう現象。</li>
+                    <li data-option="B">B）層を深くすると、入力側に近づくにつれて誤差の情報が小さくなり、学習が進まなくなる現象。</li>
+                    <li data-option="C">C）重みの値が無限大に発散してしまう現象。</li>
+                    <li data-option="D">D）データが足りなくなる現象。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「伝言ゲーム」のように、層が深いと最後の人（出力層）の声が最初の人（入力層付近）に届かなくなり、修正ができなくなります。</div>
+            </div>
+
+            <div class="question" id="question-5">
+                <div class="question-text">Q6. 「勾配降下法」で学習が局所解（ローカルミニマム）に留まってしまうことを防ぐ工夫は？</div>
+                <ul class="options">
+                    <li data-option="A">A）学習率を0にする。</li>
+                    <li data-option="B">B）SGD（確率的勾配降下法）やミニバッチ学習を使う。</li>
+                    <li data-option="C">C）層を減らす。</li>
+                    <li data-option="D">D）活性化関数を使わない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>毎回少しずつ違うデータ（ミニバッチ）を使って計算することで、ランダムな揺らぎが生まれ、小さな窪み（局所解）から脱出しやすくなります。</div>
+            </div>
+
+            <div class="question" id="question-6">
+                <div class="question-text">Q7. 「ドロップアウト」の目的は？</div>
+                <ul class="options">
+                    <li data-option="A">A）計算速度を上げる。</li>
+                    <li data-option="B">B）過学習を防ぐために、学習時にランダムにニューロンを無効化する。</li>
+                    <li data-option="C">C）勾配消失を防ぐ。</li>
+                    <li data-option="D">D）データを増やす。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>毎回違うメンバー（ニューロン）でチームを組ませることで、特定のメンバーに頼りすぎる（過学習）のを防ぎます。</div>
+            </div>
+
+            <div class="question" id="question-7">
+                <div class="question-text">Q8. ディープラーニングにおける「事前学習」と「ファインチューニング」の説明は？</div>
+                <ul class="options">
+                    <li data-option="A">A）最初から全てのデータを学習させること。</li>
+                    <li data-option="B">B）大規模データで学習済みモデルの重みを初期値とし、自分のタスクのデータで微調整すること。</li>
+                    <li data-option="C">C）教師なし学習のみを行うこと。</li>
+                    <li data-option="D">D）モデルの構造を自動探索すること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>「賢い人（学習済みモデル）」に「新しい仕事（タスク）」を教える方が、一から教えるより早くて正確です。</div>
+            </div>
+
+            <div class="question" id="question-8">
+                <div class="question-text">Q9. 「オートエンコーダ」の特徴は？</div>
+                <ul class="options">
+                    <li data-option="A">A）入力と同じものを出力するように学習し、特徴抽出や次元圧縮を行う教師なし学習。</li>
+                    <li data-option="B">B）画像を分類する教師あり学習。</li>
+                    <li data-option="C">C）音声を生成するモデル。</li>
+                    <li data-option="D">D）強化学習の一種。</li>
                 </ul>
                 <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-                <div class="result correct"><strong>正解：A）</strong><br>GPUやTPUは並列計算能力に優れ、大規模な行列演算を高速に処理可能なため、ディープラーニングの学習・推論に適しています。</div>
+                <div class="result correct"><strong>正解：A）</strong><br>データをギュッと圧縮してから元に戻す訓練をすることで、データの本質的な特徴（ボトルネック特徴量）を学習します。異常検知にも使われます。</div>
+            </div>
+
+            <div class="question" id="question-9">
+                <div class="question-text">Q10. 「GPU」がディープラーニングに適している理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）複雑な条件分岐処理が得意だから。</li>
+                    <li data-option="B">B）大量の単純な行列計算を並列処理するのが得意だから。</li>
+                    <li data-option="C">C）消費電力が少ないから。</li>
+                    <li data-option="D">D）OSを動かすのに適しているから。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'B')">答えを確認</button>
+                <div class="result correct"><strong>正解：B）</strong><br>ディープラーニングの中身は巨大な行列の掛け算の塊なので、単純計算を同時に何千個もできるGPUが最強です。</div>
             </div>
         </div>
     </div>
     <script src="script.js"></script>
     <script>
-        // 回答をリセットする関数
         function resetAnswers() {
             if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
                 const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
