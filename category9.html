@@ -1,369 +1,475 @@
-<div class="section quiz-section">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
-        <h2 style="margin: 0;">📝 問題演習（強化版：全30問）</h2>
-        <div style="display: flex; gap: 10px;">
-            <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
-            <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 回答をリセット</button>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⑨ AIに関する法律と契約 - G検定 学習アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← トップページに戻る</a>
+        
+        <h1>⑨ AIに関する法律と契約</h1>
+        
+        <div class="section">
+            <div class="goals">
+                <h3>🎯 到達目標</h3>
+                <ul>
+                    <li>個人情報保護法が適用される場面を理解している</li>
+                    <li>個人情報等の定義に従い基本的な事例について個人情報かの当てはめができる</li>
+                    <li>AI開発における生成物の著作権について具体的な事例で当てはめができる</li>
+                    <li>特許権と著作権の住み分けについてAIの場面に即して基本を理解している</li>
+                    <li>AI開発の各フェーズの内容とそれらのフェーズが置かれている趣旨を理解している</li>
+                    <li>SaaS型における特殊性を理解している</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📚 重要キーワード</h2>
+            <div class="keywords">
+                <div class="keyword-item"><strong>個人情報</strong>生存する個人に関する情報で、特定の個人を識別できるもの</div>
+                <div class="keyword-item"><strong>個人データ</strong>個人情報のうちデータベースとして構造化された形で管理される情報</div>
+                <div class="keyword-item"><strong>匿名加工情報</strong>個人を特定できないように加工され、さらに元の情報に復元できないようにした情報</div>
+                <div class="keyword-item"><strong>仮名加工情報</strong>個人情報保護法に基づき特定の個人を識別できないように加工された情報</div>
+                <div class="keyword-item"><strong>GDPR</strong>一般データ保護規則。EUの個人情報保護法</div>
+                <div class="keyword-item"><strong>AI生成物</strong>AI技術を用いて生成された文章や画像、音楽、映像などのコンテンツ</div>
+                <div class="keyword-item"><strong>著作権</strong>人間が独自に作った創作物を保護する法律</div>
+                <div class="keyword-item"><strong>特許権</strong>新しい技術やアイデアが新規性と進歩性を持つ場合に認められる権利</div>
+                <div class="keyword-item"><strong>職務発明</strong>従業員や役員が職務上の行為として行った発明</div>
+                <div class="keyword-item"><strong>営業秘密</strong>企業が事業活動上の競争力を保つために秘密として管理する情報</div>
+                <div class="keyword-item"><strong>NDA</strong>秘密保持契約。取引や協議の過程で知り得た秘密情報を第3者に漏洩しないように取り決める契約</div>
+                <div class="keyword-item"><strong>POC</strong>概念実証。新しいアイデアや技術の実現可能性を検証するための施策や実験</div>
+                <div class="keyword-item"><strong>SaaS</strong>インターネット経由でソフトウェアを提供する形態</div>
+            </div>
+        </div>
+        
+        <div class="section quiz-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+                <h2 style="margin: 0;">📝 問題演習（強化版：全30問）</h2>
+                <div style="display: flex; gap: 10px;">
+                    <a href="history.html" class="wrong-questions-link" style="background: #f44336; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-size: 0.9em;">❌ 間違えた問題を見る</a>
+                    <button onclick="pauseLearning()" style="background: #2196F3; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">⏸️ 一時停止</button>
+                    <button onclick="resetAnswers()" style="background: #ff9800; color: white; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.9em;">🔄 リセット</button>
+                </div>
+            </div>
+
+            <div class="question" id="question-0">
+                <div class="question-text">Q1. 著作権法第30条の4（情報解析のための利用）において、著作権者の許可なく利用できる行為は？</div>
+                <ul class="options">
+                    <li data-option="A">A）AI開発のための学習データとして、Web上の画像や文章を収集・解析すること（営利目的含む）。</li>
+                    <li data-option="B">B）学習データに含まれる画像をそのまま販売すること。</li>
+                    <li data-option="C">C）「享受」を目的に、好きなキャラクターの画像を収集すること。</li>
+                    <li data-option="D">D）AIが生成した画像を、著作権者の許可なく公開すること。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>「思想又は感情を享受する目的」でなければ、原則として許諾不要です。これが日本が「機械学習パラダイス」と呼ばれる理由です。</div>
+            </div>
+
+            <div class="question" id="question-1">
+                <div class="question-text">Q2. AIが生成した作品に「著作権」が発生するための条件は？</div>
+                <ul class="options">
+                    <li data-option="A">A）人間がAIを「道具」として使いこなし、創作的寄与（思想感情の創作的表現）が認められる場合。</li>
+                    <li data-option="B">B）AIが完全に自律的に生成した場合。</li>
+                    <li data-option="C">C）プロンプト（指示文）が長い場合。</li>
+                    <li data-option="D">D）有料のAIツールを使った場合。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>単に「猫の絵を描いて」と指示しただけでは著作権は発生しません。人間が加筆修正したり、詳細な指示で試行錯誤した過程が必要です。</div>
+            </div>
+
+            <div class="question" id="question-2">
+                <div class="question-text">Q3. AI開発契約において、学習済みモデルの権利帰属はどうなるのが一般的か？</div>
+                <ul class="options">
+                    <li data-option="A">A）法律で決まっていないため、契約で定める必要がある（経産省ガイドラインでは、開発者側に帰属させ、ユーザに利用権を与える形を提案）。</li>
+                    <li data-option="B">B）必ず発注者（ユーザ）のものになる。</li>
+                    <li data-option="C">C）必ず開発者（ベンダ）のものになる。</li>
+                    <li data-option="D">D）国のものになる。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>モデルはベンダのノウハウの塊である一方、データはユーザのものなので揉めやすい部分です。契約での明確化が必須です。</div>
+            </div>
+
+            <div class="question" id="question-3">
+                <div class="question-text">Q4. 「特許権」で保護されるものは？</div>
+                <ul class="options">
+                    <li data-option="A">A）技術的なアイデア（発明）。アルゴリズムや学習済みモデルも要件を満たせば対象になる。</li>
+                    <li data-option="B">B）プログラムのコードそのもの（表現）。</li>
+                    <li data-option="C">C）データの集合体。</li>
+                    <li data-option="D">D）芸術作品。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>著作権は「表現（コード）」を守り、特許権は「アイデア（技術）」を守ります。AIの発明も「物の発明」として保護され得ます。</div>
+            </div>
+
+            <div class="question" id="question-4">
+                <div class="question-text">Q5. 不正競争防止法における「営業秘密」の3要件に含まれないものは？</div>
+                <ul class="options">
+                    <li data-option="A">A）新規性（世界で初めてであること）。</li>
+                    <li data-option="B">B）秘密管理性（秘密として管理されている）。</li>
+                    <li data-option="C">C）有用性（事業活動に有用である）。</li>
+                    <li data-option="D">D）非公知性（公然と知られていない）。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>「新規性」は特許の要件です。営業秘密は、古くからの秘伝のタレのように、新しくなくても秘密であれば守られます。</div>
+            </div>
+
+            <div class="question" id="question-5">
+                <div class="question-text">Q6. 「限定提供データ」とは何か？</div>
+                <ul class="options">
+                    <li data-option="A">A）秘密管理されていないが、特定の者に限定して提供されるデータ（地図データやID-POSデータなど）で、不正取得などを規制するもの。</li>
+                    <li data-option="B">B）社外秘のデータ。</li>
+                    <li data-option="C">C）誰でも使えるオープンデータ。</li>
+                    <li data-option="D">D）個人情報のこと。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ビッグデータ時代に対応し、営業秘密ほど厳格ではないが、価値あるデータの不正利用を防ぐために新設されました。</div>
+            </div>
+
+            <div class="question" id="question-6">
+                <div class="question-text">Q7. 個人情報保護法における「要配慮個人情報」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）人種、信条、社会的身分、病歴、犯罪歴など、差別につながる恐れがある情報。取得には原則本人の同意が必要。</li>
+                    <li data-option="B">B）電話番号やメールアドレス。</li>
+                    <li data-option="C">C）クレジットカード番号。</li>
+                    <li data-option="D">D）購買履歴。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>取り扱いに特に慎重さが求められる情報です。「オプトアウト（事後停止）」による第三者提供も禁止されています。</div>
+            </div>
+
+            <div class="question" id="question-7">
+                <div class="question-text">Q8. 「匿名加工情報」と「仮名加工情報」の違いは？</div>
+                <ul class="options">
+                    <li data-option="A">A）匿名加工情報は復元不可で第三者提供可。仮名加工情報は他の情報と照合すれば特定可能で、第三者提供は原則禁止（内部分析用）。</li>
+                    <li data-option="B">B）違いはない。</li>
+                    <li data-option="C">C）仮名加工情報の方が規制が厳しい。</li>
+                    <li data-option="D">D）匿名加工情報は個人情報に含まれる。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>2020年改正で作られた「仮名加工情報」は、企業内でのデータ活用（AI開発など）をやりやすくするための緩和措置です。</div>
+            </div>
+
+            <div class="question" id="question-8">
+                <div class="question-text">Q9. EUの「GDPR（一般データ保護規則）」の制裁金は？</div>
+                <ul class="options">
+                    <li data-option="A">A）全世界売上高の4%または2000万ユーロの高い方など、極めて巨額。</li>
+                    <li data-option="B">B）最大100万円。</li>
+                    <li data-option="C">C）注意勧告のみ。</li>
+                    <li data-option="D">D）日本企業には適用されない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>世界で最も厳しいプライバシー規制の一つです。日本からEU域内のデータを扱う場合も対象になるため注意が必要です（域外適用）。</div>
+            </div>
+
+            <div class="question" id="question-9">
+                <div class="question-text">Q10. AI開発が「準委任契約」になりやすい理由は？</div>
+                <ul class="options">
+                    <li data-option="A">A）AIは試行錯誤が必要であり、最初から「完成（精度100%）」を約束することが困難だから。</li>
+                    <li data-option="B">B）開発者が責任を取りたくないから。</li>
+                    <li data-option="C">C）費用を安くするため。</li>
+                    <li data-option="D">D）法律で決まっているから。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>請負契約（完成責任あり）だと、精度が出なかった場合に契約違反になってしまいます。</div>
+            </div>
+
+            <div class="question" id="question-10">
+                <div class="question-text">Q11. 経産省「AI・データの利用に関する契約ガイドライン」が推奨する開発プロセスは？</div>
+                <ul class="options">
+                    <li data-option="A">A）段階的開発（アセスメント→PoC→開発→運用）。各段階で契約を見直す。</li>
+                    <li data-option="B">B）一括請負契約。</li>
+                    <li data-option="C">C）口約束での開発。</li>
+                    <li data-option="D">D）無償開発。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>リスクをコントロールするため、フェーズごとに契約を結び直したり、終了条件を決めたりすることが推奨されています。</div>
+            </div>
+
+            <div class="question" id="question-11">
+                <div class="question-text">Q12. 学習済みモデルに「バグ（瑕疵）」がある場合、ベンダの責任は？</div>
+                <ul class="options">
+                    <li data-option="A">A）準委任契約の場合、善管注意義務を果たしていれば、バグがあっても責任を負わないのが原則。</li>
+                    <li data-option="B">B）どんな契約でも必ず責任を負う。</li>
+                    <li data-option="C">C）バグがあれば全額返金しなければならない。</li>
+                    <li data-option="D">D）ユーザが責任を負う。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>ただし、明らかに注意不足だった場合（善管注意義務違反）は責任を問われます。請負契約の場合は契約不適合責任（旧：瑕疵担保責任）を負います。</div>
+            </div>
+
+            <div class="question" id="question-12">
+                <div class="question-text">Q13. 「ディープフェイク」を作成・公開した場合の法的責任は？</div>
+                <ul class="options">
+                    <li data-option="A">A）名誉毀損罪、著作権侵害、肖像権侵害などに問われる可能性がある。</li>
+                    <li data-option="B">B）AIが作ったものなので責任は問われない。</li>
+                    <li data-option="C">C）技術的な実験であれば許される。</li>
+                    <li data-option="D">D）プラットフォーム側の責任になる。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>たとえ「AIがやった」と言い訳しても、作成者や拡散者は法的責任を免れません。</div>
+            </div>
+
+            <div class="question" id="question-13">
+                <div class="question-text">Q14. 自動運転車が事故を起こした場合の責任は？</div>
+                <ul class="options">
+                    <li data-option="A">A）レベルによって異なる。レベル3までは運転者（人間）の責任が基本だが、システムの欠陥があればメーカー責任（製造物責任法）になる場合もある。</li>
+                    <li data-option="B">B）全てAIの責任になる。</li>
+                    <li data-option="C">C）全て国の責任になる。</li>
+                    <li data-option="D">D）責任は問われない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>レベル4以上（完全自動）になると、刑事責任を人間に問うのが難しくなるため、法整備の過渡期にあります。</div>
+            </div>
+
+            <div class="question" id="question-14">
+                <div class="question-text">Q15. 「オープンデータ」のライセンスで、商用利用も加工も自由な最も緩いものは？</div>
+                <ul class="options">
+                    <li data-option="A">A）CC BY（クリエイティブ・コモンズ 表示）</li>
+                    <li data-option="B">B）CC BY-NC（非営利）</li>
+                    <li data-option="C">C）CC BY-ND（改変禁止）</li>
+                    <li data-option="D">D）CC0（パブリックドメイン）</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'D')">答えを確認</button>
+                <div class="result correct"><strong>正解：D）</strong><br>CC0は著作権を放棄（または不行使）した状態で、クレジット表示すら不要です。CC BYは表示すれば自由に使えます。</div>
+            </div>
+
+            <div class="question" id="question-15">
+                <div class="question-text">Q16. 2020年改正著作権法で、リバースエンジニアリング等に関する規定はどうなった？</div>
+                <ul class="options">
+                    <li data-option="A">A）セキュリティ対策や互換性確認などのためのリバースエンジニアリングに伴う複製が、権利者の許諾なく可能になった（30条の4など）。</li>
+                    <li data-option="B">B）全面的に禁止された。</li>
+                    <li data-option="C">C）許可制になった。</li>
+                    <li data-option="D">D）特に変更はない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>AI開発だけでなく、セキュリティ解析なども含めて、イノベーションを阻害しないよう柔軟な権利制限規定が整備されました。</div>
+            </div>
+
+            <div class="question" id="question-16">
+                <div class="question-text">Q17. プログラムの著作物の登録制度（プログラム登録）のメリットは？</div>
+                <ul class="options">
+                    <li data-option="A">A）著作権の発生時期（創作年月日）の証明や、第三者対抗要件になる。過失の推定などの効果もある。</li>
+                    <li data-option="B">B）特許と同じ強力な独占権が得られる。</li>
+                    <li data-option="C">C）バグがないことを国が証明してくれる。</li>
+                    <li data-option="D">D）登録しないと著作権が発生しない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>著作権は作った瞬間に発生（無方式主義）しますが、登録することで「いつ作ったか」などを証明しやすくなり、裁判で有利になります。</div>
+            </div>
+
+            <div class="question" id="question-17">
+                <div class="question-text">Q18. 「利用規約」でAIによるデータ収集（スクレイピング）を禁止しているサイトからデータを収集した場合、法的には？</div>
+                <ul class="options">
+                    <li data-option="A">A）著作権法上は適法でも、民法上の不法行為や債務不履行（契約違反）問われるリスクがある。</li>
+                    <li data-option="B">B）著作権法が優先されるので問題ない。</li>
+                    <li data-option="C">C）刑事罰が科される。</li>
+                    <li data-option="D">D）サイト側の規約が無効になる。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>法律でOKでも、契約（規約）でNGならアウトです。クローリング時はrobots.txtや規約の確認が必須です。</div>
+            </div>
+
+            <div class="question" id="question-18">
+                <div class="question-text">Q19. AIが差別的な判断をした場合、企業が問われる可能性のある責任は？</div>
+                <ul class="options">
+                    <li data-option="A">A）レピュテーションリスク（評判の低下）や、採用差別などであれば法的な責任。</li>
+                    <li data-option="B">B）AIのせいなので責任はない。</li>
+                    <li data-option="C">C）開発したエンジニア個人の責任。</li>
+                    <li data-option="D">D）学習データの提供者の責任。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>AIの判断結果に対する責任は、それを利用して事業を行っている企業が負います。「AIガバナンス」が重要になる理由です。</div>
+            </div>
+
+            <div class="question" id="question-19">
+                <div class="question-text">Q20. 「データポータビリティ権」とは？（GDPRなど）</div>
+                <ul class="options">
+                    <li data-option="A">A）ユーザーが自分のデータを、使いやすい形式で受け取ったり、他のサービスへ移行させたりする権利。</li>
+                    <li data-option="B">B）データを持ち運ぶためのUSBメモリをもらえる権利。</li>
+                    <li data-option="C">C）データを削除させる権利。</li>
+                    <li data-option="D">D）データを販売する権利。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>特定のプラットフォーマーによるデータの囲い込み（ロックイン）を防ぐための権利です。</div>
+            </div>
+
+            <div class="question" id="question-20">
+                <div class="question-text">Q21. AI開発で「OSS（オープンソースソフトウェア）」を利用する際の注意点は？</div>
+                <ul class="options">
+                    <li data-option="A">A）ライセンス（GPL、MIT、Apacheなど）の種類を確認し、コピーレフト（ソースコード公開義務）があるか等に注意する。</li>
+                    <li data-option="B">B）無料なので自由に使って良い。</li>
+                    <li data-option="C">C）商用利用は一切できない。</li>
+                    <li data-option="D">D）著作権が存在しない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>GPLライセンスのコードを組み込むと、自社製品のコードも公開しなければならなくなる（感染する）リスクがあります。</div>
+            </div>
+
+            <div class="question" id="question-21">
+                <div class="question-text">Q22. 弁護士法72条（非弁行為）との関係で、AIができる業務の限界は？</div>
+                <ul class="options">
+                    <li data-option="A">A）一般的な法律情報の提供はOKだが、個別の事件に対する具体的な法律判断や鑑定を行うことはNG（弁護士法違反の恐れ）。</li>
+                    <li data-option="B">B）AIなら裁判の代理人もできる。</li>
+                    <li data-option="C">C）全ての法律相談が可能。</li>
+                    <li data-option="D">D）契約書の作成も自由にできる。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>「リーガルテック」の限界点です。具体的な事件の解決策を提示するのは弁護士の独占業務です。</div>
+            </div>
+
+            <div class="question" id="question-22">
+                <div class="question-text">Q23. 「忘れられる権利（消去権）」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）ネット上の自分に関する古くなった情報や不適切な情報の削除を求める権利。</li>
+                    <li data-option="B">B）AIに学習された記憶を消す権利。</li>
+                    <li data-option="C">C）過去の犯罪歴を消す権利。</li>
+                    <li data-option="D">D）認知症の権利。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>検索エンジンの検索結果からの削除などが議論されます。AI学習データの削除（Machine Unlearning）も今後の課題です。</div>
+            </div>
+
+            <div class="question" id="question-23">
+                <div class="question-text">Q24. 「プロファイリング」に対するGDPRの規制は？</div>
+                <ul class="options">
+                    <li data-option="A">A）プロファイリングに基づく自動化された意思決定（融資拒否など）について、異議を申し立てる権利や、人間による関与を求める権利がある。</li>
+                    <li data-option="B">B）プロファイリングは全面的に禁止。</li>
+                    <li data-option="C">C）特に規制はない。</li>
+                    <li data-option="D">D）プロファイリング結果は公開しなければならない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>AIに「あなたは信用がない」と勝手に決めつけられない権利が保障されています。</div>
+            </div>
+
+            <div class="question" id="question-24">
+                <div class="question-text">Q25. 日本の「AI事業者ガイドライン」の法的拘束力は？</div>
+                <ul class="options">
+                    <li data-option="A">A）ない（ソフトロー）。自主的な取り組みを促すもの。</li>
+                    <li data-option="B">B）ある（ハードロー）。違反すると罰金。</li>
+                    <li data-option="C">C）一部だけある。</li>
+                    <li data-option="D">D）国際条約である。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>技術の進化が早いため、硬直的な法律（ハードロー）ではなく、柔軟なガイドライン（ソフトロー）で対応するのが日本の基本スタンスです（EUはハードロー志向）。</div>
+            </div>
+
+            <div class="question" id="question-25">
+                <div class="question-text">Q26. 「オプトイン」と「オプトアウト」の違いは？</div>
+                <ul class="options">
+                    <li data-option="A">A）オプトインは「事前に同意すること」、オプトアウトは「事後的に拒否すること」。</li>
+                    <li data-option="B">B）オプトインは拒否、オプトアウトは同意。</li>
+                    <li data-option="C">C）メールを送ることと受け取ること。</li>
+                    <li data-option="D">D）国内と海外。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>個人情報の第三者提供やメルマガ配信などは、原則「オプトイン（事前同意）」が必要です。</div>
+            </div>
+
+            <div class="question" id="question-26">
+                <div class="question-text">Q27. 生成AIと「パブリシティ権」の関係は？</div>
+                <ul class="options">
+                    <li data-option="A">A）有名人の名前や肖像を、顧客吸引力として無断で営利利用した場合（AIで生成した偽タレントの広告など）、侵害となる可能性がある。</li>
+                    <li data-option="B">B）AI生成物であれば侵害にならない。</li>
+                    <li data-option="C">C）有名人には権利がない。</li>
+                    <li data-option="D">D）死後なら問題ない。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>人格権とは別に、有名人の「経済的な価値」を守る権利です。LoRAなどで特定の画風や声を真似る行為も議論になっています。</div>
+            </div>
+
+            <div class="question" id="question-27">
+                <div class="question-text">Q28. 「モデル契約書」における「利用権」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）ユーザが、ベンダに帰属した学習済みモデルを、自社の事業のために独占的（または非独占的）に使用できる権利。</li>
+                    <li data-option="B">B）モデルを転売できる権利。</li>
+                    <li data-option="C">C）モデルの著作権を持つこと。</li>
+                    <li data-option="D">D）モデルを削除する権利。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>所有権や知財がベンダにあっても、ユーザが自由にビジネスで使えれば（利用権があれば）目的は達成できる、という考え方です。</div>
+            </div>
+
+            <div class="question" id="question-28">
+                <div class="question-text">Q29. 医師法との関係で、AIによる診断は？</div>
+                <ul class="options">
+                    <li data-option="A">A）AIはあくまで「診断支援」であり、最終的な診断・治療方針の決定は医師が行わなければならない。</li>
+                    <li data-option="B">B）AIが単独で診断を下して良い。</li>
+                    <li data-option="C">C）医師免許があればAIも診断できる。</li>
+                    <li data-option="D">D）患者が同意すればAIのみで良い。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>AIが勝手に病名を確定させることは医師法違反（無資格医業）になる恐れがあります。責任主体は常に医師です。</div>
+            </div>
+
+            <div class="question" id="question-29">
+                <div class="question-text">Q30. 「情報銀行（情報信託機能）」とは？</div>
+                <ul class="options">
+                    <li data-option="A">A）個人からデータを預かり、本人の指示や同意に基づいて企業に提供し、対価を本人に還元する仕組み。</li>
+                    <li data-option="B">B）お金の代わりに情報を預ける銀行。</li>
+                    <li data-option="C">C）政府のデータベース。</li>
+                    <li data-option="D">D）AIの学習データを保存するUSB。</li>
+                </ul>
+                <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
+                <div class="result correct"><strong>正解：A）</strong><br>個人が自分のデータをコントロールし（PDS）、活用してメリットを得るための社会インフラです。</div>
+            </div>
         </div>
     </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // 回答リセット機能
+        function resetAnswers() {
+            if (confirm('この分野の回答をリセットしますか？学習履歴からも削除されます。')) {
+                const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+                const history = StudyHistory.getHistory();
+                if (history[currentPage]) {
+                    delete history[currentPage];
+                    StudyHistory.saveHistory(history);
+                }
+                location.reload();
+            }
+        }
 
-    <div class="question" id="question-0">
-        <div class="question-text">Q1. 著作権法第30条の4（情報解析のための利用）において、著作権者の許可なく利用できる行為は？</div>
-        <ul class="options">
-            <li data-option="A">A）AI開発のための学習データとして、Web上の画像や文章を収集・解析すること（営利目的含む）。</li>
-            <li data-option="B">B）学習データに含まれる画像をそのまま販売すること。</li>
-            <li data-option="C">C）「享受」を目的に、好きなキャラクターの画像を収集すること。</li>
-            <li data-option="D">D）AIが生成した画像を、著作権者の許可なく公開すること。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>「思想又は感情を享受する目的」でなければ、原則として許諾不要です。これが日本が「機械学習パラダイス」と呼ばれる理由です。</div>
-    </div>
-
-    <div class="question" id="question-1">
-        <div class="question-text">Q2. AIが生成した作品に「著作権」が発生するための条件は？</div>
-        <ul class="options">
-            <li data-option="A">A）人間がAIを「道具」として使いこなし、創作的寄与（思想感情の創作的表現）が認められる場合。</li>
-            <li data-option="B">B）AIが完全に自律的に生成した場合。</li>
-            <li data-option="C">C）プロンプト（指示文）が長い場合。</li>
-            <li data-option="D">D）有料のAIツールを使った場合。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>単に「猫の絵を描いて」と指示しただけでは著作権は発生しません。人間が加筆修正したり、詳細な指示で試行錯誤した過程が必要です。</div>
-    </div>
-
-    <div class="question" id="question-2">
-        <div class="question-text">Q3. AI開発契約において、学習済みモデルの権利帰属はどうなるのが一般的か？</div>
-        <ul class="options">
-            <li data-option="A">A）法律で決まっていないため、契約で定める必要がある（経産省ガイドラインでは、開発者側に帰属させ、ユーザに利用権を与える形を提案）。</li>
-            <li data-option="B">B）必ず発注者（ユーザ）のものになる。</li>
-            <li data-option="C">C）必ず開発者（ベンダ）のものになる。</li>
-            <li data-option="D">D）国のものになる。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>モデルはベンダのノウハウの塊である一方、データはユーザのものなので揉めやすい部分です。契約での明確化が必須です。</div>
-    </div>
-
-    <div class="question" id="question-3">
-        <div class="question-text">Q4. 「特許権」で保護されるものは？</div>
-        <ul class="options">
-            <li data-option="A">A）技術的なアイデア（発明）。アルゴリズムや学習済みモデルも要件を満たせば対象になる。</li>
-            <li data-option="B">B）プログラムのコードそのもの（表現）。</li>
-            <li data-option="C">C）データの集合体。</li>
-            <li data-option="D">D）芸術作品。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>著作権は「表現（コード）」を守り、特許権は「アイデア（技術）」を守ります。AIの発明も「物の発明」として保護され得ます。</div>
-    </div>
-
-    <div class="question" id="question-4">
-        <div class="question-text">Q5. 不正競争防止法における「営業秘密」の3要件に含まれないものは？</div>
-        <ul class="options">
-            <li data-option="A">A）新規性（世界で初めてであること）。</li>
-            <li data-option="B">B）秘密管理性（秘密として管理されている）。</li>
-            <li data-option="C">C）有用性（事業活動に有用である）。</li>
-            <li data-option="D">D）非公知性（公然と知られていない）。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>「新規性」は特許の要件です。営業秘密は、古くからの秘伝のタレのように、新しくなくても秘密であれば守られます。</div>
-    </div>
-
-    <div class="question" id="question-5">
-        <div class="question-text">Q6. 「限定提供データ」とは何か？</div>
-        <ul class="options">
-            <li data-option="A">A）秘密管理されていないが、特定の者に限定して提供されるデータ（地図データやID-POSデータなど）で、不正取得などを規制するもの。</li>
-            <li data-option="B">B）社外秘のデータ。</li>
-            <li data-option="C">C）誰でも使えるオープンデータ。</li>
-            <li data-option="D">D）個人情報のこと。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>ビッグデータ時代に対応し、営業秘密ほど厳格ではないが、価値あるデータの不正利用を防ぐために新設されました。</div>
-    </div>
-
-    <div class="question" id="question-6">
-        <div class="question-text">Q7. 個人情報保護法における「要配慮個人情報」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）人種、信条、社会的身分、病歴、犯罪歴など、差別につながる恐れがある情報。取得には原則本人の同意が必要。</li>
-            <li data-option="B">B）電話番号やメールアドレス。</li>
-            <li data-option="C">C）クレジットカード番号。</li>
-            <li data-option="D">D）購買履歴。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>取り扱いに特に慎重さが求められる情報です。「オプトアウト（事後停止）」による第三者提供も禁止されています。</div>
-    </div>
-
-    <div class="question" id="question-7">
-        <div class="question-text">Q8. 「匿名加工情報」と「仮名加工情報」の違いは？</div>
-        <ul class="options">
-            <li data-option="A">A）匿名加工情報は復元不可で第三者提供可。仮名加工情報は他の情報と照合すれば特定可能で、第三者提供は原則禁止（内部分析用）。</li>
-            <li data-option="B">B）違いはない。</li>
-            <li data-option="C">C）仮名加工情報の方が規制が厳しい。</li>
-            <li data-option="D">D）匿名加工情報は個人情報に含まれる。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>2020年改正で作られた「仮名加工情報」は、企業内でのデータ活用（AI開発など）をやりやすくするための緩和措置です。</div>
-    </div>
-
-    <div class="question" id="question-8">
-        <div class="question-text">Q9. EUの「GDPR（一般データ保護規則）」の制裁金は？</div>
-        <ul class="options">
-            <li data-option="A">A）全世界売上高の4%または2000万ユーロの高い方など、極めて巨額。</li>
-            <li data-option="B">B）最大100万円。</li>
-            <li data-option="C">C）注意勧告のみ。</li>
-            <li data-option="D">D）日本企業には適用されない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>世界で最も厳しいプライバシー規制の一つです。日本からEU域内のデータを扱う場合も対象になるため注意が必要です（域外適用）。</div>
-    </div>
-
-    <div class="question" id="question-9">
-        <div class="question-text">Q10. AI開発が「準委任契約」になりやすい理由は？</div>
-        <ul class="options">
-            <li data-option="A">A）AIは試行錯誤が必要であり、最初から「完成（精度100%）」を約束することが困難だから。</li>
-            <li data-option="B">B）開発者が責任を取りたくないから。</li>
-            <li data-option="C">C）費用を安くするため。</li>
-            <li data-option="D">D）法律で決まっているから。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>請負契約（完成責任あり）だと、精度が出なかった場合に契約違反になってしまいます。</div>
-    </div>
-
-    <div class="question" id="question-10">
-        <div class="question-text">Q11. 経産省「AI・データの利用に関する契約ガイドライン」が推奨する開発プロセスは？</div>
-        <ul class="options">
-            <li data-option="A">A）段階的開発（アセスメント→PoC→開発→運用）。各段階で契約を見直す。</li>
-            <li data-option="B">B）一括請負契約。</li>
-            <li data-option="C">C）口約束での開発。</li>
-            <li data-option="D">D）無償開発。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>リスクをコントロールするため、フェーズごとに契約を結び直したり、終了条件を決めたりすることが推奨されています。</div>
-    </div>
-
-    <div class="question" id="question-11">
-        <div class="question-text">Q12. 学習済みモデルに「バグ（瑕疵）」がある場合、ベンダの責任は？</div>
-        <ul class="options">
-            <li data-option="A">A）準委任契約の場合、善管注意義務を果たしていれば、バグがあっても責任を負わないのが原則。</li>
-            <li data-option="B">B）どんな契約でも必ず責任を負う。</li>
-            <li data-option="C">C）バグがあれば全額返金しなければならない。</li>
-            <li data-option="D">D）ユーザが責任を負う。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>ただし、明らかに注意不足だった場合（善管注意義務違反）は責任を問われます。請負契約の場合は契約不適合責任（旧：瑕疵担保責任）を負います。</div>
-    </div>
-
-    <div class="question" id="question-12">
-        <div class="question-text">Q13. 「ディープフェイク」を作成・公開した場合の法的責任は？</div>
-        <ul class="options">
-            <li data-option="A">A）名誉毀損罪、著作権侵害、肖像権侵害などに問われる可能性がある。</li>
-            <li data-option="B">B）AIが作ったものなので責任は問われない。</li>
-            <li data-option="C">C）技術的な実験であれば許される。</li>
-            <li data-option="D">D）プラットフォーム側の責任になる。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>たとえ「AIがやった」と言い訳しても、作成者や拡散者は法的責任を免れません。</div>
-    </div>
-
-    <div class="question" id="question-13">
-        <div class="question-text">Q14. 自動運転車が事故を起こした場合の責任は？</div>
-        <ul class="options">
-            <li data-option="A">A）レベルによって異なる。レベル3までは運転者（人間）の責任が基本だが、システムの欠陥があればメーカー責任（製造物責任法）になる場合もある。</li>
-            <li data-option="B">B）全てAIの責任になる。</li>
-            <li data-option="C">C）全て国の責任になる。</li>
-            <li data-option="D">D）責任は問われない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>レベル4以上（完全自動）になると、刑事責任を人間に問うのが難しくなるため、法整備の過渡期にあります。</div>
-    </div>
-
-    <div class="question" id="question-14">
-        <div class="question-text">Q15. 「オープンデータ」のライセンスで、商用利用も加工も自由な最も緩いものは？</div>
-        <ul class="options">
-            <li data-option="A">A）CC BY（クリエイティブ・コモンズ 表示）</li>
-            <li data-option="B">B）CC BY-NC（非営利）</li>
-            <li data-option="C">C）CC BY-ND（改変禁止）</li>
-            <li data-option="D">D）CC0（パブリックドメイン）</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'D')">答えを確認</button>
-        <div class="result correct"><strong>正解：D）</strong><br>CC0は著作権を放棄（または不行使）した状態で、クレジット表示すら不要です。CC BYは表示すれば自由に使えます。</div>
-    </div>
-
-    <div class="question" id="question-15">
-        <div class="question-text">Q16. 2020年改正著作権法で、リバースエンジニアリング等に関する規定はどうなった？</div>
-        <ul class="options">
-            <li data-option="A">A）セキュリティ対策や互換性確認などのためのリバースエンジニアリングに伴う複製が、権利者の許諾なく可能になった（30条の4など）。</li>
-            <li data-option="B">B）全面的に禁止された。</li>
-            <li data-option="C">C）許可制になった。</li>
-            <li data-option="D">D）特に変更はない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>AI開発だけでなく、セキュリティ解析なども含めて、イノベーションを阻害しないよう柔軟な権利制限規定が整備されました。</div>
-    </div>
-
-    <div class="question" id="question-16">
-        <div class="question-text">Q17. プログラムの著作物の登録制度（プログラム登録）のメリットは？</div>
-        <ul class="options">
-            <li data-option="A">A）著作権の発生時期（創作年月日）の証明や、第三者対抗要件になる。過失の推定などの効果もある。</li>
-            <li data-option="B">B）特許と同じ強力な独占権が得られる。</li>
-            <li data-option="C">C）バグがないことを国が証明してくれる。</li>
-            <li data-option="D">D）登録しないと著作権が発生しない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>著作権は作った瞬間に発生（無方式主義）しますが、登録することで「いつ作ったか」などを証明しやすくなり、裁判で有利になります。</div>
-    </div>
-
-    <div class="question" id="question-17">
-        <div class="question-text">Q18. 「利用規約」でAIによるデータ収集（スクレイピング）を禁止しているサイトからデータを収集した場合、法的には？</div>
-        <ul class="options">
-            <li data-option="A">A）著作権法上は適法でも、民法上の不法行為や債務不履行（契約違反）問われるリスクがある。</li>
-            <li data-option="B">B）著作権法が優先されるので問題ない。</li>
-            <li data-option="C">C）刑事罰が科される。</li>
-            <li data-option="D">D）サイト側の規約が無効になる。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>法律でOKでも、契約（規約）でNGならアウトです。クローリング時はrobots.txtや規約の確認が必須です。</div>
-    </div>
-
-    <div class="question" id="question-18">
-        <div class="question-text">Q19. AIが差別的な判断をした場合、企業が問われる可能性のある責任は？</div>
-        <ul class="options">
-            <li data-option="A">A）レピュテーションリスク（評判の低下）や、採用差別などであれば法的な責任。</li>
-            <li data-option="B">B）AIのせいなので責任はない。</li>
-            <li data-option="C">C）開発したエンジニア個人の責任。</li>
-            <li data-option="D">D）学習データの提供者の責任。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>AIの判断結果に対する責任は、それを利用して事業を行っている企業が負います。「AIガバナンス」が重要になる理由です。</div>
-    </div>
-
-    <div class="question" id="question-19">
-        <div class="question-text">Q20. 「データポータビリティ権」とは？（GDPRなど）</div>
-        <ul class="options">
-            <li data-option="A">A）ユーザーが自分のデータを、使いやすい形式で受け取ったり、他のサービスへ移行させたりする権利。</li>
-            <li data-option="B">B）データを持ち運ぶためのUSBメモリをもらえる権利。</li>
-            <li data-option="C">C）データを削除させる権利。</li>
-            <li data-option="D">D）データを販売する権利。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>特定のプラットフォーマーによるデータの囲い込み（ロックイン）を防ぐための権利です。</div>
-    </div>
-
-    <div class="question" id="question-20">
-        <div class="question-text">Q21. AI開発で「OSS（オープンソースソフトウェア）」を利用する際の注意点は？</div>
-        <ul class="options">
-            <li data-option="A">A）ライセンス（GPL、MIT、Apacheなど）の種類を確認し、コピーレフト（ソースコード公開義務）があるか等に注意する。</li>
-            <li data-option="B">B）無料なので自由に使って良い。</li>
-            <li data-option="C">C）商用利用は一切できない。</li>
-            <li data-option="D">D）著作権が存在しない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>GPLライセンスのコードを組み込むと、自社製品のコードも公開しなければならなくなる（感染する）リスクがあります。</div>
-    </div>
-
-    <div class="question" id="question-21">
-        <div class="question-text">Q22. 弁護士法72条（非弁行為）との関係で、AIができる業務の限界は？</div>
-        <ul class="options">
-            <li data-option="A">A）一般的な法律情報の提供はOKだが、個別の事件に対する具体的な法律判断や鑑定を行うことはNG（弁護士法違反の恐れ）。</li>
-            <li data-option="B">B）AIなら裁判の代理人もできる。</li>
-            <li data-option="C">C）全ての法律相談が可能。</li>
-            <li data-option="D">D）契約書の作成も自由にできる。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>「リーガルテック」の限界点です。具体的な事件の解決策を提示するのは弁護士の独占業務です。</div>
-    </div>
-
-    <div class="question" id="question-22">
-        <div class="question-text">Q23. 「忘れられる権利（消去権）」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）ネット上の自分に関する古くなった情報や不適切な情報の削除を求める権利。</li>
-            <li data-option="B">B）AIに学習された記憶を消す権利。</li>
-            <li data-option="C">C）過去の犯罪歴を消す権利。</li>
-            <li data-option="D">D）認知症の権利。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>検索エンジンの検索結果からの削除などが議論されます。AI学習データの削除（Machine Unlearning）も今後の課題です。</div>
-    </div>
-
-    <div class="question" id="question-23">
-        <div class="question-text">Q24. 「プロファイリング」に対するGDPRの規制は？</div>
-        <ul class="options">
-            <li data-option="A">A）プロファイリングに基づく自動化された意思決定（融資拒否など）について、異議を申し立てる権利や、人間による関与を求める権利がある。</li>
-            <li data-option="B">B）プロファイリングは全面的に禁止。</li>
-            <li data-option="C">C）特に規制はない。</li>
-            <li data-option="D">D）プロファイリング結果は公開しなければならない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>AIに「あなたは信用がない」と勝手に決めつけられない権利が保障されています。</div>
-    </div>
-
-    <div class="question" id="question-24">
-        <div class="question-text">Q25. 日本の「AI事業者ガイドライン」の法的拘束力は？</div>
-        <ul class="options">
-            <li data-option="A">A）ない（ソフトロー）。自主的な取り組みを促すもの。</li>
-            <li data-option="B">B）ある（ハードロー）。違反すると罰金。</li>
-            <li data-option="C">C）一部だけある。</li>
-            <li data-option="D">D）国際条約である。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>技術の進化が早いため、硬直的な法律（ハードロー）ではなく、柔軟なガイドライン（ソフトロー）で対応するのが日本の基本スタンスです（EUはハードロー志向）。</div>
-    </div>
-
-    <div class="question" id="question-25">
-        <div class="question-text">Q26. 「オプトイン」と「オプトアウト」の違いは？</div>
-        <ul class="options">
-            <li data-option="A">A）オプトインは「事前に同意すること」、オプトアウトは「事後的に拒否すること」。</li>
-            <li data-option="B">B）オプトインは拒否、オプトアウトは同意。</li>
-            <li data-option="C">C）メールを送ることと受け取ること。</li>
-            <li data-option="D">D）国内と海外。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>個人情報の第三者提供やメルマガ配信などは、原則「オプトイン（事前同意）」が必要です。</div>
-    </div>
-
-    <div class="question" id="question-26">
-        <div class="question-text">Q27. 生成AIと「パブリシティ権」の関係は？</div>
-        <ul class="options">
-            <li data-option="A">A）有名人の名前や肖像を、顧客吸引力として無断で営利利用した場合（AIで生成した偽タレントの広告など）、侵害となる可能性がある。</li>
-            <li data-option="B">B）AI生成物であれば侵害にならない。</li>
-            <li data-option="C">C）有名人には権利がない。</li>
-            <li data-option="D">D）死後なら問題ない。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>人格権とは別に、有名人の「経済的な価値」を守る権利です。LoRAなどで特定の画風や声を真似る行為も議論になっています。</div>
-    </div>
-
-    <div class="question" id="question-27">
-        <div class="question-text">Q28. 「モデル契約書」における「利用権」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）ユーザが、ベンダに帰属した学習済みモデルを、自社の事業のために独占的（または非独占的）に使用できる権利。</li>
-            <li data-option="B">B）モデルを転売できる権利。</li>
-            <li data-option="C">C）モデルの著作権を持つこと。</li>
-            <li data-option="D">D）モデルを削除する権利。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>所有権や知財がベンダにあっても、ユーザが自由にビジネスで使えれば（利用権があれば）目的は達成できる、という考え方です。</div>
-    </div>
-
-    <div class="question" id="question-28">
-        <div class="question-text">Q29. 医師法との関係で、AIによる診断は？</div>
-        <ul class="options">
-            <li data-option="A">A）AIはあくまで「診断支援」であり、最終的な診断・治療方針の決定は医師が行わなければならない。</li>
-            <li data-option="B">B）AIが単独で診断を下して良い。</li>
-            <li data-option="C">C）医師免許があればAIも診断できる。</li>
-            <li data-option="D">D）患者が同意すればAIのみで良い。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>AIが勝手に病名を確定させることは医師法違反（無資格医業）になる恐れがあります。責任主体は常に医師です。</div>
-    </div>
-
-    <div class="question" id="question-29">
-        <div class="question-text">Q30. 「情報銀行（情報信託機能）」とは？</div>
-        <ul class="options">
-            <li data-option="A">A）個人からデータを預かり、本人の指示や同意に基づいて企業に提供し、対価を本人に還元する仕組み。</li>
-            <li data-option="B">B）お金の代わりに情報を預ける銀行。</li>
-            <li data-option="C">C）政府のデータベース。</li>
-            <li data-option="D">D）AIの学習データを保存するUSB。</li>
-        </ul>
-        <button class="answer-btn" onclick="checkAnswer(this, 'A')">答えを確認</button>
-        <div class="result correct"><strong>正解：A）</strong><br>個人が自分のデータをコントロールし（PDS）、活用してメリットを得るための社会インフラです。</div>
-    </div>
-</div>
+        // 学習一時停止機能
+        function pauseLearning() {
+            const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+            const questions = document.querySelectorAll('.question');
+            let currentQuestionIndex = 0;
+            
+            // 未回答の最初の問題を探す
+            for (let i = 0; i < questions.length; i++) {
+                if (!questions[i].classList.contains('answered-correct') && !questions[i].classList.contains('answered-incorrect')) {
+                    currentQuestionIndex = i;
+                    break;
+                }
+            }
+            
+            const scrollPosition = window.scrollY;
+            StudyHistory.saveSession(currentPage, currentQuestionIndex, scrollPosition);
+            alert('学習を一時停止しました。TOPページから「学習を再開」ボタンで続きから始められます。');
+            window.location.href = 'index.html';
+        }
+        
+        // ページ読み込み時に続きから再開する機能
+        document.addEventListener('DOMContentLoaded', function() {
+            const session = StudyHistory.getSession();
+            const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+            
+            // セッション情報があり、かつ同じページの場合のみ復元
+            if (session && session.category === currentPage) {
+                // スクロール位置を復元
+                if (session.scrollPosition) {
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: session.scrollPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
