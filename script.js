@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 5問ずつ出題の初期化
+    // 15問ずつ出題の初期化（各章は15問ずつ）
     initializeQuestionSet();
     
     // 現在のセットに応じて問題を表示/非表示
@@ -175,7 +175,7 @@ function showCurrentQuestionSet() {
     // 表示範囲内の問題のみ表示
     allQuestions.forEach((question, index) => {
         if (index >= partStartIndex && index <= partEndIndex) {
-            // さらに5問ずつのセット内かどうか
+            // currentQuestionSet が全問範囲になっている場合は全表示される
             if (index >= currentQuestionSet.startIndex && index <= currentQuestionSet.endIndex) {
                 question.style.display = 'block';
             } else {
@@ -191,15 +191,16 @@ function showCurrentQuestionSet() {
     if (quizSection) {
         const setIndex = parseInt(urlParams.get('set') || '0');
         const partQuestionCount = partEndIndex - partStartIndex + 1;
-        const totalSets = Math.ceil(partQuestionCount / 5);
+        const totalSets = Math.ceil(partQuestionCount / SET_SIZE);
         const setInfo = document.createElement('div');
         setInfo.id = 'set-info';
         setInfo.style.cssText = 'background: #e8f4f8; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;';
         
         if (part > 0) {
-            setInfo.innerHTML = `<strong>${partName} - 問題セット ${setIndex + 1}/${totalSets}</strong> (問題 ${currentQuestionSet.startIndex + 1}-${Math.min(currentQuestionSet.endIndex + 1, totalQuestions)} / ${partName} ${partQuestionCount}問 / 全${totalQuestions}問)`;
+            setInfo.innerHTML = `<strong>${partName} - 問題セット ${setIndex + 1}/${totalSets}</strong> (問題 ${currentQuestionSet.startIndex + 1}-${Math.min(currentQuestionSet.endIndex + 1, partEndIndex + 1)})`;
         } else {
-            setInfo.innerHTML = `<strong>問題セット ${setIndex + 1}/${totalSets}</strong> (問題 ${currentQuestionSet.startIndex + 1}-${Math.min(currentQuestionSet.endIndex + 1, totalQuestions)} / 全${totalQuestions}問)`;
+            // part === 0 のときは「全問」を表示（全ての問題が出る）
+            setInfo.innerHTML = `<strong>全問表示</strong> (問題 ${partStartIndex + 1}-${partEndIndex + 1})`;
         }
         
         // 既存のセット情報を削除
@@ -217,13 +218,16 @@ function showCurrentQuestionSet() {
 }
 
 // 現在の出題セットを管理
+const SET_SIZE = 15; // 各セットは15問ずつ
 let currentQuestionSet = {
     startIndex: 0,
-    endIndex: 4,
-    answeredCount: 0
+    endIndex: SET_SIZE - 1,
+    answeredCount: 0,
+    totalSets: 1,
+    part: 0
 };
 
-// 5問ずつ出題する機能
+// 15問ずつ出題する機能
 function initializeQuestionSet() {
     const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
     const urlParams = new URLSearchParams(window.location.search);
@@ -246,16 +250,25 @@ function initializeQuestionSet() {
         partEndIndex = totalQuestions - 1;
     }
     
-    // 5問ずつのセット内での開始・終了インデックス
     const partQuestionCount = partEndIndex - partStartIndex + 1;
-    const maxSetIndex = Math.ceil(partQuestionCount / 5) - 1;
-    const actualSetIndex = Math.min(setIndex, maxSetIndex);
+    const maxSetIndex = Math.ceil(partQuestionCount / SET_SIZE) - 1;
+    const actualSetIndex = Math.min(setIndex, Math.max(0, maxSetIndex));
     
-    currentQuestionSet.startIndex = partStartIndex + (actualSetIndex * 5);
-    currentQuestionSet.endIndex = Math.min(currentQuestionSet.startIndex + 4, partEndIndex);
+    // part === 0 (全問) の場合はすべての問題を表示する
+    if (part === 0) {
+        currentQuestionSet.startIndex = partStartIndex;
+        currentQuestionSet.endIndex = partEndIndex;
+        currentQuestionSet.totalSets = 1;
+        currentQuestionSet.part = 0;
+    } else {
+        currentQuestionSet.startIndex = partStartIndex + (actualSetIndex * SET_SIZE);
+        currentQuestionSet.endIndex = Math.min(currentQuestionSet.startIndex + SET_SIZE - 1, partEndIndex);
+        currentQuestionSet.totalSets = Math.ceil(partQuestionCount / SET_SIZE);
+        currentQuestionSet.part = part;
+    }
     currentQuestionSet.answeredCount = 0;
     
-    // 表示されている問題数をカウント
+    // 表示されている問題数をカウント（表示されているもののみ）
     const visibleQuestions = document.querySelectorAll('.question:not([style*="display: none"])');
     visibleQuestions.forEach(q => {
         if (q.classList.contains('answered-correct') || q.classList.contains('answered-incorrect')) {
@@ -263,13 +276,15 @@ function initializeQuestionSet() {
         }
     });
     
-    // 5問解いたら「次へ」ボタンを表示
+    // 15問（1セット）解いたら「次へ」ボタンを表示（ただし part===0 全問表示時は表示しない）
     checkAndShowNextButton();
 }
 
-// 5問解いたかチェックして「次へ」ボタンを表示
+// 15問解いたかチェックして「次へ」ボタンを表示
 function checkAndShowNextButton() {
-    if (currentQuestionSet.answeredCount >= 5) {
+    // 全問表示(=part 0) のときはセット移動しない
+    if (currentQuestionSet.part === 0) return;
+    if (currentQuestionSet.answeredCount >= SET_SIZE) {
         showNextSetButton();
     }
 }
@@ -287,7 +302,7 @@ function showNextSetButton() {
     const nextButton = document.createElement('button');
     nextButton.id = 'next-set-btn';
     nextButton.className = 'next-set-btn';
-    nextButton.textContent = '▶️ 次の5問へ';
+    nextButton.textContent = '▶️ 次の15問へ';
     nextButton.style.cssText = 'background: #4caf50; color: white; border: none; padding: 15px 40px; border-radius: 8px; cursor: pointer; font-size: 1.1em; margin: 30px auto; display: block; font-weight: bold;';
     
     nextButton.addEventListener('click', function() {
@@ -314,7 +329,7 @@ function showNextSetButton() {
         }
         
         const partQuestionCount = partEndIndex - partStartIndex + 1;
-        const totalSets = Math.ceil(partQuestionCount / 5);
+        const totalSets = Math.ceil(partQuestionCount / SET_SIZE);
         
         let nextUrl = `${currentPage}.html`;
         const params = [];
@@ -395,7 +410,7 @@ function checkAnswer(button, correctAnswer) {
         currentQuestionSet.answeredCount++;
     }
     
-    // 5問解いたら「次へ」ボタンを表示
+    // 15問解いたら「次へ」ボタンを表示（ただし全問表示中は表示しない）
     checkAndShowNextButton();
     
     // 次の問題へのボタンを追加
